@@ -11,40 +11,77 @@
                     <span class="red">o</span>
                 </div>
                 <div>Create your account</div>
-                <div>
-                    <mat-form-field class="form-field" appearance="outline">
-                        <mat-label>First Name</mat-label>
-                        <input matInput type="text">
-                    </mat-form-field>
-                    <mat-form-field class="form-field" appearance="outline">
-                        <mat-label>Last Name</mat-label>
-                        <input matInput type="text" >
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field class="name-field" appearance="outline">
-                        <mat-label>Username</mat-label>
-                        <input matInput type="text" >
-                        <mat-hint>You can use letter, number & period</mat-hint>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field class="form-field" appearance="outline">
-                        <mat-label>Password</mat-label>
-                        <input matInput type="password" >
-
-                    </mat-form-field>
-                    <mat-form-field class="form-field" appearance="outline">
-                        <mat-label>Confirm Password</mat-label>
-                        <input matInput type="password" >
-                    </mat-form-field>
-                </div>
-                <div>
-                    <a href="/login" class="signin">sign In instead</a>
-                    <span fxLayout="row" fxLayoutAlign="end">
-                        <button type="submit" mat-flat-button color="primary">Next</button>
-                    </span>
-                </div>
+                <form [formGroup]="form">
+                    <div>
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>First Name</mat-label>
+                            <input matInput type="text" formControlName="firstFormControl" autocomplete="off">
+                            <mat-error *ngIf="form.controls.firstFormControl.hasError('required')">
+                                First name is required
+                            </mat-error>
+                            <mat-error
+                                *ngIf="form.controls.firstFormControl.hasError('pattern') && !form.controls.firstFormControl.hasError('required')">
+                                please enter valid name
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput type="text" formControlName="lastFormControl" autocomplete="off">
+                            <mat-error *ngIf="form.controls.lastFormControl.hasError('required')">
+                                last name is required
+                            </mat-error>
+                            <mat-error
+                                *ngIf="form.controls.lastFormControl.hasError('pattern') && !form.controls.lastFormControl.hasError('required')">
+                                please enter valid name
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="name-field" appearance="outline">
+                            <mat-label>Username</mat-label>
+                            <input matInput type="text" formControlName="emailFormControl" autocomplete="off" required>
+                            <mat-hint>You can use letter, number & period</mat-hint>
+                            <mat-error *ngIf="form.controls.emailFormControl.hasError('required')">
+                                email is required
+                            </mat-error>
+                            <mat-error
+                                *ngIf="form.controls.emailFormControl.hasError('email')&& !form.controls.emailFormControl.hasError('required')">
+                                please enter valid email id
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label for="password">Password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="passFormControl" autocomplete="off">
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+                            </mat-icon>
+                            <mat-error *ngIf="form.controls.passFormControl.hasError('required')">
+                                password is required
+                            </mat-error>
+                            <mat-error
+                                *ngIf="form.controls.passFormControl.hasError('pattern') && !form.controls.passFormControl.hasError('required')">
+                                password must have atleast 1 letter, 1 number, 1symbol and 8 char long
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="form-field" appearance="outline">
+                            <mat-label>Confirm Password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="passConfirmFormControl"
+                                autocomplete="off">
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+                            </mat-icon>
+                            <mat-error *ngIf="form.controls.passConfirmFormControl.valid">
+                                password not matching
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <a href="/login" class="signin">sign In instead</a>
+                        <span fxLayout="row" fxLayoutAlign="end">
+                            <button type="submit" mat-flat-button color="primary" (click)="onubmit()">Next</button>
+                        </span>
+                    </div>
+                </form>
             </div>
 
             <div fxFlex="30%" fxLayoutAlign="center center">
