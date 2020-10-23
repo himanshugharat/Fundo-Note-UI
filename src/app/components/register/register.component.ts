@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms"
 @Component({
@@ -9,7 +10,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/fo
 export class RegisterComponent implements OnInit {
   hide = true;
   form: FormGroup;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private http:HttpClient) {
     this.form = this.fb.group({
       firstFormControl: ["", 
         Validators.pattern('[a-zA-Z]{2,}')],
@@ -35,10 +36,16 @@ export class RegisterComponent implements OnInit {
         }
       }
     }
+    this.http.get("http://fundoonotes.incubation.bridgelabz.com/api/user/service").toPromise().then(data=>{
+      console.log(data)
+    })
   }
+  
+  
   onubmit() {
     console.log(this.form.value)
   }
   ngOnInit(): void {
   }
+
 }

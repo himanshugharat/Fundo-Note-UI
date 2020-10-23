@@ -13,6 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 import { LoginComponent } from './components/login/login.component';
 import {MatIconModule} from '@angular/material/icon';
+import {HttpClientModule}from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

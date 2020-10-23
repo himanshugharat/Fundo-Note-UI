@@ -15,7 +15,7 @@
                     <div>
                         <mat-form-field class="form-field" appearance="outline">
                             <mat-label>First Name</mat-label>
-                            <input matInput type="text" formControlName="firstFormControl" autocomplete="off">
+                            <input matInput type="text" formControlName="firstFormControl" autocomplete="off" required>
                             <mat-error *ngIf="form.controls.firstFormControl.hasError('required')">
                                 First name is required
                             </mat-error>
@@ -26,7 +26,7 @@
                         </mat-form-field>
                         <mat-form-field class="form-field" appearance="outline">
                             <mat-label>Last Name</mat-label>
-                            <input matInput type="text" formControlName="lastFormControl" autocomplete="off">
+                            <input matInput type="text" formControlName="lastFormControl" autocomplete="off" required>
                             <mat-error *ngIf="form.controls.lastFormControl.hasError('required')">
                                 last name is required
                             </mat-error>
@@ -53,7 +53,8 @@
                     <div>
                         <mat-form-field class="form-field" appearance="outline">
                             <mat-label for="password">Password</mat-label>
-                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="passFormControl" autocomplete="off">
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="passFormControl"
+                                autocomplete="off" required>
                             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
                             </mat-icon>
                             <mat-error *ngIf="form.controls.passFormControl.hasError('required')">
@@ -67,7 +68,7 @@
                         <mat-form-field class="form-field" appearance="outline">
                             <mat-label>Confirm Password</mat-label>
                             <input matInput [type]="hide ? 'password' : 'text'" formControlName="passConfirmFormControl"
-                                autocomplete="off">
+                                autocomplete="off" required>
                             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
                             </mat-icon>
                             <mat-error *ngIf="form.controls.passConfirmFormControl.valid">
