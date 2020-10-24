@@ -4,25 +4,26 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/fo
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['../../../style/style.scss','./register.component.scss']
 })
 
 export class RegisterComponent implements OnInit {
   hide = true;
   form: FormGroup;
+  validName:boolean;
   constructor(private fb: FormBuilder,private http:HttpClient) {
     this.form = this.fb.group({
-      firstFormControl: ["", 
+      firstName: ["", 
         Validators.pattern('[a-zA-Z]{2,}')],
-      lastFormControl: ["", 
+      lastName: ["", 
         Validators.pattern('[a-zA-Z]{2,}')],
-      emailFormControl: ["", 
+      email: ["", 
         Validators.email],
-      passFormControl: ["", 
+      password: ["", 
         Validators.pattern('[A-Za-z0-9\\d!$%@#£€*?&]{8,}$')],
-      passConfirmFormControl: ["", Validatepass],
+        Confirmpassword: ["", ConfirmpassValidation],
     })
-    function Validatepass(control: AbstractControl) {
+    function ConfirmpassValidation(control: AbstractControl) {
       if (control && (control.value != null || control.value != undefined)) {
         const passConfirmValue = control.value;
         const passControl = control.root.get('passFormControl')
@@ -36,15 +37,14 @@ export class RegisterComponent implements OnInit {
         }
       }
     }
+    this.validName=this.form.controls.firstName.hasError('required')
     this.http.get("http://fundoonotes.incubation.bridgelabz.com/api/user/service").toPromise().then(data=>{
       console.log(data)
     })
   }
   
   
-  onubmit() {
-    console.log(this.form.value)
-  }
+
   ngOnInit(): void {
   }
 

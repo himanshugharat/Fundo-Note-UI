@@ -14,11 +14,15 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms'
 import { LoginComponent } from './components/login/login.component';
 import {MatIconModule} from '@angular/material/icon';
 import {HttpClientModule}from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
