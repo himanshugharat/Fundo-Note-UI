@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgotPasswordComponent implements OnInit {
 hide=true;
-  constructor() { }
+Password = new FormControl('', [
+  Validators.minLength(8),
+  Validators.required,
+]);
+getPasswordErrorMsg(){
+  return this.Password.hasError('required')
+    ? 'Password is Required'
+    : 'please enter valid Password';
+}
+  constructor(private user:UserService) { }
 
   ngOnInit(): void {
   }
-
+reset(){
+  let data={
+    "newPassword":this.Password.value
+  }
+  this.user.resetPassword(data).subscribe(re=>console.log(localStorage.getItem['error']))
+}
 }

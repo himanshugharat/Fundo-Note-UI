@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +9,43 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   hide=true;
-  form: FormGroup;
-  constructor(private fb: FormBuilder) { 
-    this.form = this.fb.group({
-      email: ["", 
-        Validators.email],
-        password: ""
-    })
+  // form: FormGroup;
+  // constructor(private fb: FormBuilder) { 
+  //   this.form = this.fb.group({
+  //     email: ["", 
+  //       Validators.email],
+  //       password: ""
+  //   })
+//}
+constructor(private user:UserService) { }
+  
+  Email = new FormControl('', [Validators.email, Validators.required]);
+  Password = new FormControl('', [
+    Validators.minLength(8),
+    Validators.required,
+  ]);
+
+  getEmailErrorMessage() {
+    return this.Email.hasError('required')
+      ? 'Email is Required'
+      : 'please enter valid email';
   }
 
+  getPasswordErrorMessage() {
+    return this.Password.hasError('required')
+      ? 'Password is Required '
+      : 'Password should be minimum of 8 characters';
+  }
   ngOnInit(): void {
   }
+  
+login(){
+  let data={
+    "email":this.Email.value,
+    "password":this.Password.value
+  }
 
+  this.user.loginUser(data).subscribe(res=>console.log(res))
+  alert("login successful");
+}
 }

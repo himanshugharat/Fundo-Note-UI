@@ -16,6 +16,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {HttpClientModule}from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { UserService } from './service/user.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     MatIconModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
