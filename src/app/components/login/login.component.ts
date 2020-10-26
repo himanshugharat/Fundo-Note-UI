@@ -9,14 +9,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class LoginComponent implements OnInit {
   hide=true;
-  // form: FormGroup;
-  // constructor(private fb: FormBuilder) { 
-  //   this.form = this.fb.group({
-  //     email: ["", 
-  //       Validators.email],
-  //       password: ""
-  //   })
-//}
+  
 constructor(private user:UserService) { }
   
   Email = new FormControl('', [Validators.email, Validators.required]);
@@ -44,8 +37,12 @@ login(){
     "email":this.Email.value,
     "password":this.Password.value
   }
-
-  this.user.loginUser(data).subscribe(res=>console.log(res))
-  alert("login successful");
+  this.user.loginUser(data).subscribe(res=> {localStorage.setItem("fundo",res['id'])
+console.log(res)
+console.log(localStorage.getItem("fundo"))
+if(res){
+  alert("login successfully.")
+}
+})
 }
 }

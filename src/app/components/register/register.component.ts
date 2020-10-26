@@ -2,6 +2,7 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-register',
@@ -11,11 +12,8 @@ import { UserService } from 'src/app/service/user.service';
 
 export class RegisterComponent implements OnInit {
   hide = true;
-  form: FormGroup;
-  validName: boolean;
-  public emp = [];
-  success: boolean
-  constructor(private user: UserService) {
+  
+  constructor(private user: UserService, public route:Router) {
   }
   ConfirmpassValidation(control: AbstractControl) {
     if (control && (control.value != null || control.value != undefined)) {
@@ -72,7 +70,7 @@ export class RegisterComponent implements OnInit {
       : 'Password and ConfirmPassword do not match';
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {} 
   register() {
     let data = {
       "firstName": this.FirstName.value,
@@ -80,10 +78,12 @@ export class RegisterComponent implements OnInit {
       "service": "advance",
       "email": this.Email.value,
       "password": this.Password.value,
-      //"token":"q2SrxGHLVjJwdVGfBqr57qgyLzJvnVObrlK4wMUf9ZuSEEib2Nib3HccucCrb6EH"
     }
-    JSON.stringify(data)
-    console.log(data)
-    this.user.registerUser(data).subscribe(data => console.log(data))
+    this.user.registerUser(data).subscribe(response => {console.log(response)
+    if(response!=null){
+      alert("register successfully.")
+      this.route.navigate(['login'])
+    }
+    })
   }
 }

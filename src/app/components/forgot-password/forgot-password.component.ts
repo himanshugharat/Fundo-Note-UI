@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnChanges, SimpleChanges ,OnDestroy,DoCheck,AfterViewInit,AfterViewChecked,AfterContentInit,AfterContentChecked} from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 
@@ -20,12 +20,15 @@ getPasswordErrorMsg(){
 }
   constructor(private user:UserService) { }
 
-  ngOnInit(): void {
-  }
-reset(){
+
+   ngOnInit(): void {console.log("oninit")}
+  
+ reset(){
   let data={
-    "newPassword":this.Password.value
-  }
-  this.user.resetPassword(data).subscribe(re=>console.log(localStorage.getItem['error']))
-}
+   "newPassword":this.Password.value
+  }   
+  this.user.resetPassword(data).subscribe(re=>{console.log(re)
+  })
+  
+ }
 }

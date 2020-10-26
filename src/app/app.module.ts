@@ -17,13 +17,15 @@ import {HttpClientModule}from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { UserService } from './service/user.service';
+import { ResetComponent } from './components/reset/reset.component';
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
     HeaderComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ResetComponent
   ],
   imports: [
     BrowserModule,

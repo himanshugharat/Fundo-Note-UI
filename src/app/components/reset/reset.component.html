@@ -1,7 +1,7 @@
 <div fxLayout="row wrap" fxLayoutAlign="center center" class="main">
     <div fxLayout="row" fxLayoutGap="10">
         <mat-card class="card">
-            <form (ngSubmit)="login()">
+            <form (ngSubmit)="reset()">
                 <div class="fundoo">
                     <app-header></app-header>
                 </div>
@@ -17,23 +17,10 @@
                             </mat-error>
                         </mat-form-field>
                     </div>
-                    <div>
-                        <mat-form-field class="login-form-field" appearance="outline">
-                            <mat-label>Password</mat-label>
-                            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="Password"
-                            autocomplete="off" required>
-                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
-                            </mat-icon>
-                            <mat-error *ngIf="Password.invalid">
-                            {{ getPasswordErrorMessage() }}
-                            </mat-error>   
-                        </mat-form-field>
-                    </div>
                 </form>
-                <div routerLink="/forgot" class="signin">forgot password</div>
                 <a routerLink="/register" class="signin">sign up instead</a>
                 <span fxLayout="row" fxLayoutAlign="end">
-                    <button type="submit" mat-flat-button color="primary">Login</button>
+                    <button type="submit" mat-flat-button color="primary">submit</button>
                 </span>
             </form>
         </mat-card>
