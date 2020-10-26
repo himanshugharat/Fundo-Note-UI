@@ -5,7 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['../../../style/style.scss', './login.component.scss']
+  styleUrls: [ './login.component.scss']
 })
 export class LoginComponent implements OnInit {
   hide = true;

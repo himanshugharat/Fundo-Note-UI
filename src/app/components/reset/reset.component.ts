@@ -5,7 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-reset',
   templateUrl: './reset.component.html',
-  styleUrls: ['./reset.component.scss', '../../../style/style.scss']
+  styleUrls: ['./reset.component.scss']
 })
 export class ResetComponent implements OnInit {
 

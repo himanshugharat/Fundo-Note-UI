@@ -5,7 +5,7 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss', '../../../style/style.scss']
+  styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
   hide = true;
