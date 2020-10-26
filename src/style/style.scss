@@ -1,49 +1,47 @@
 @import "variable.scss";
 
-.form-field{
-    width:49% ;
-    padding-right:1%;
+.form-field {
+  width: 49%;
+  padding-right: 1%;
 }
 
-.name-field{
- width :$size ;
+.name-field {
+  width: $size;
 }
 
-.main{
-    margin-top: 10%;
+.main {
+  margin-top: 10%;
 }
 
-
-.signin{
-    text-decoration: none;
-    color: $blue;
-    font-size: 30; 
-    cursor: pointer;
+.signin {
+  text-decoration: none;
+  color: $blue;
+  font-size: 30;
+  cursor: pointer;
 }
 
-.image{
-    width: 400%;
+.image {
+  width: 400%;
 }
 
-@mixin fundoo{
-    font-size: 25px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .blue{
-    color: $blue;
-  }
-  
-  .yellow{
-    color:$yellow;
-  }
-  
-  .red{
-    color:$red;
-  }
+@mixin fundoo {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
-  .green{
-    color: $green;
-  }
-   
+.blue {
+  color: $blue;
+}
+
+.yellow {
+  color: $yellow;
+}
+
+.red {
+  color: $red;
+}
+
+.green {
+  color: $green;
+}

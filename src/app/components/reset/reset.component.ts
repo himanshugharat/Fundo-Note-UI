@@ -5,11 +5,11 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-reset',
   templateUrl: './reset.component.html',
-  styleUrls: ['./reset.component.scss','../../../style/style.scss']
+  styleUrls: ['./reset.component.scss', '../../../style/style.scss']
 })
 export class ResetComponent implements OnInit {
 
-  constructor(private user:UserService) { }
+  constructor(private user: UserService) { }
   Email = new FormControl('', [Validators.email, Validators.required]);
   ngOnInit(): void {
   }
@@ -18,11 +18,11 @@ export class ResetComponent implements OnInit {
       ? 'Email is Required'
       : 'please enter valid email';
   }
-  reset(){
-    let data={
-      "email":this.Email.value
+  reset() {
+    let data = {
+      "email": this.Email.value
     }
-    return this.user.resetMail(data).subscribe(re=>console.log(re))
+    return this.user.resetMail(data).subscribe(re => console.log(re))
   }
 }
 

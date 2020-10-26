@@ -11,8 +11,7 @@
                         <mat-form-field class="form-field" appearance="outline">
                             <mat-label>First Name</mat-label>
                             <input matInput type="text" [formControl]="FirstName" autocomplete="off" required>
-                            <mat-error
-                                *ngIf="FirstName.invalid">
+                            <mat-error *ngIf="FirstName.invalid">
                                 {{getFirstNameErrorMsg()}}
                             </mat-error>
                         </mat-form-field>

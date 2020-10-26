@@ -6,13 +6,12 @@
                     <app-header></app-header>
                 </div>
                 <div>Login to your account</div>
-                <form >
+                <form>
                     <div>
                         <mat-form-field class="login-form-field" appearance="outline">
                             <mat-label>UserName</mat-label>
                             <input matInput type="text" [formControl]="Email" autocomplete="off" required>
-                            <mat-error
-                                *ngIf="Email.invalid">
+                            <mat-error *ngIf="Email.invalid">
                                 {{getEmailErrorMessage()}}
                             </mat-error>
                         </mat-form-field>

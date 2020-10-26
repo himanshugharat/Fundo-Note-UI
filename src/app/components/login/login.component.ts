@@ -5,13 +5,13 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['../../../style/style.scss','./login.component.scss']
+  styleUrls: ['../../../style/style.scss', './login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  hide=true;
-  
-constructor(private user:UserService) { }
-  
+  hide = true;
+
+  constructor(private user: UserService) { }
+
   Email = new FormControl('', [Validators.email, Validators.required]);
   Password = new FormControl('', [
     Validators.minLength(8),
@@ -31,18 +31,19 @@ constructor(private user:UserService) { }
   }
   ngOnInit(): void {
   }
-  
-login(){
-  let data={
-    "email":this.Email.value,
-    "password":this.Password.value
+
+  login() {
+    let data = {
+      "email": this.Email.value,
+      "password": this.Password.value
+    }
+    this.user.loginUser(data).subscribe(res => {
+      localStorage.setItem("fundo", res['id'])
+      console.log(res)
+      console.log(localStorage.getItem("fundo"))
+      if (res) {
+        alert("login successfully.")
+      }
+    })
   }
-  this.user.loginUser(data).subscribe(res=> {localStorage.setItem("fundo",res['id'])
-console.log(res)
-console.log(localStorage.getItem("fundo"))
-if(res){
-  alert("login successfully.")
-}
-})
-}
 }

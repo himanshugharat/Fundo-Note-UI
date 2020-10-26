@@ -12,8 +12,8 @@ import { UserService } from 'src/app/service/user.service';
 
 export class RegisterComponent implements OnInit {
   hide = true;
-  
-  constructor(private user: UserService, public route:Router) {
+
+  constructor(private user: UserService, public route: Router) {
   }
   ConfirmpassValidation(control: AbstractControl) {
     if (control && (control.value != null || control.value != undefined)) {
@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit {
       : 'Password and ConfirmPassword do not match';
   }
 
-  ngOnInit(): void {} 
+  ngOnInit(): void { }
   register() {
     let data = {
       "firstName": this.FirstName.value,
@@ -79,11 +79,12 @@ export class RegisterComponent implements OnInit {
       "email": this.Email.value,
       "password": this.Password.value,
     }
-    this.user.registerUser(data).subscribe(response => {console.log(response)
-    if(response!=null){
-      alert("register successfully.")
-      this.route.navigate(['login'])
-    }
+    this.user.registerUser(data).subscribe(response => {
+      console.log(response)
+      if (response != null) {
+        alert("register successfully.")
+        this.route.navigate(['login'])
+      }
     })
   }
 }

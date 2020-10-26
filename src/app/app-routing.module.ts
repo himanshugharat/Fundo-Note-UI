@@ -6,9 +6,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { ResetComponent } from './components/reset/reset.component';
 
 const routes: Routes = [{ path: "register", component: RegisterComponent },
-                        { path: "login", component: LoginComponent },
-                        { path: "resetpassword/:id", component: ForgotPasswordComponent },
-                        { path: "forgot", component: ResetComponent }];
+{ path: "login", component: LoginComponent },
+{ path: "resetpassword/:id", component: ForgotPasswordComponent },
+{ path: "forgot", component: ResetComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
