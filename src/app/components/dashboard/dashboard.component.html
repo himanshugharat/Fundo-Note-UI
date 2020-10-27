@@ -1,47 +1,25 @@
-<!-- <div>
-  <div fxLayout="row"class="titleBar">
-    <div class="example-sidenav-content" fxLayoutAlign="center center">
-      <button type="button" mat-button (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </div>
-    <div class="title">Fundo</div>
-    <div>
-      <form class="example-form">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>search</mat-label>
-          <input matInput type="search" placeholder="search">
-        </mat-form-field>
-      </form>
-    </div>
-    <div><mat-icon>menu</mat-icon></div>
-    <div><mat-icon>menu</mat-icon></div>
-    <div><mat-icon>menu</mat-icon></div>
-    <div><mat-icon>menu</mat-icon></div>
-  </div> -->
 <div>
   <mat-toolbar class="header">
     <button mat-icon-button (click)="drawer.toggle()">
-          <mat-icon>menu</mat-icon>
+      <mat-icon>menu</mat-icon>
     </button>
     <span>Fundoo</span>
     <mat-card class="input-card">
       <button mat-button>
-          <mat-icon>search</mat-icon>
+        <mat-icon>search</mat-icon>
       </button>
-          <div class="input-feild">
-          <input
-          type="search">
-          </div>
-  </mat-card>
-    <span class="spacer"></span>
-    <button mat-icon-button >
+      <div class="input-feild">
+        <input type="search">
+      </div>
+    </mat-card>
+    <span class="settings"></span>
+    <button mat-icon-button>
       <mat-icon>widgets</mat-icon>
     </button>
-    <button mat-icon-button >
+    <button mat-icon-button>
       <mat-icon>settings</mat-icon>
     </button>
-    <button mat-icon-button >
+    <button mat-icon-button>
       <mat-icon>account_circle</mat-icon>
     </button>
   </mat-toolbar>
