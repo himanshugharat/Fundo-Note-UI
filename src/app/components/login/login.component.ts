@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {  FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/service/user.service';
 export class LoginComponent implements OnInit {
   hide = true;
 
-  constructor(private user: UserService) { }
+  constructor(private user: UserService,public snackBar: MatSnackBar) { }
 
   Email = new FormControl('', [Validators.email, Validators.required]);
   Password = new FormControl('', [
@@ -33,16 +34,16 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    let data = {
+    let userData = {
       "email": this.Email.value,
       "password": this.Password.value
     }
-    this.user.loginUser(data).subscribe(res => {
-      localStorage.setItem("fundo", res['id'])
-      console.log(res)
+    this.user.loginUser(userData).subscribe(response => {
+      localStorage.setItem("fundo", response['id'])
+      console.log(response)
       console.log(localStorage.getItem("fundo"))
-      if (res) {
-        alert("login successfully.")
+      if (response) {
+        this.snackBar.open("login successfully.",'success')
       }
     })
   }

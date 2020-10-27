@@ -15,3 +15,4 @@ const routes: Routes = [{ path: "register", component: RegisterComponent },
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+//http://localhost:4200/resetpassword/QeeMEmZwgecpfVGTCrEDxKrBA9PjxDhk7EYh3h02ZuUHZGCU68aKEvmpC02xqCVa

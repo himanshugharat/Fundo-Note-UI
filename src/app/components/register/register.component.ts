@@ -1,9 +1,8 @@
-import { registerLocaleData } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms"
+import { AbstractControl, FormControl, Validators } from "@angular/forms"
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -13,7 +12,7 @@ import { UserService } from 'src/app/service/user.service';
 export class RegisterComponent implements OnInit {
   hide = true;
 
-  constructor(private user: UserService, public route: Router) {
+  constructor(private user: UserService, public route: Router,public snackBar: MatSnackBar) {
   }
   ConfirmpassValidation(control: AbstractControl) {
     if (control && (control.value != null || control.value != undefined)) {
@@ -81,9 +80,11 @@ export class RegisterComponent implements OnInit {
     }
     this.user.registerUser(data).subscribe(response => {
       console.log(response)
-      if (response != null) {
-        alert("register successfully.")
+      if (response['data'].success == true) {
+        this.snackBar.open("register successfully",'success') 
         this.route.navigate(['login'])
+      }else{
+        this.snackBar.open("unable to register successfully.","failed")
       }
     })
   }
