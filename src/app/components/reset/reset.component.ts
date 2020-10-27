@@ -9,11 +9,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./reset.component.scss']
 })
 export class ResetComponent implements OnInit {
+  errors;
   constructor(private user: UserService, public snackBar: MatSnackBar) { }
   Email = new FormControl('', [Validators.email, Validators.required]);
   ngOnInit(): void {
   }
-  
+
   getEmailErrorMessage() {
     return this.Email.hasError('required')
       ? 'Email is Required'
@@ -21,15 +22,22 @@ export class ResetComponent implements OnInit {
   }
 
   reset() {
-    let data = {
+    let emailData = {
       "email": this.Email.value
     }
-    return this.user.resetMail(data).subscribe(response => {
+    return this.user.resetMail(emailData).subscribe(response => {
       console.log(response)
-      if (response != null) {
-        this.snackBar.open("PizzaPartyComponent", 'success')
+      if (response['success'] == true) {
+        this.snackBar.open("email send succssefully", 'success')
       }
-    })
+    },
+      error => {
+        this.errors = error;
+      }
+    )
+    if (this.errors) {
+      this.snackBar.open("email not send.", 'failed')
+    }
   }
 }
 

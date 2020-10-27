@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {  FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { error } from 'protractor';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class LoginComponent implements OnInit {
   hide = true;
-
+  errors;
   constructor(private user: UserService,public snackBar: MatSnackBar) { }
 
   Email = new FormControl('', [Validators.email, Validators.required]);
@@ -42,9 +43,15 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("fundo", response['id'])
       console.log(response)
       console.log(localStorage.getItem("fundo"))
-      if (response) {
+      if (response['id']) {
         this.snackBar.open("login successfully.",'success')
       }
-    })
+    },
+    error => {
+      this.errors = error;
+  })
+  if(this.errors){
+    this.snackBar.open("login unsuccessfully.",'failed')
+  }
   }
 }

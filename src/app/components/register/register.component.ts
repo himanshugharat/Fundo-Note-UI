@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, Validators } from "@angular/forms"
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/service/user.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: [ './register.component.scss']
+  styleUrls: ['./register.component.scss']
 })
 
 export class RegisterComponent implements OnInit {
   hide = true;
-
-  constructor(private user: UserService, public route: Router,public snackBar: MatSnackBar) {
+  errors;
+  constructor(private user: UserService, public route: Router, public snackBar: MatSnackBar) {
   }
   ConfirmpassValidation(control: AbstractControl) {
     if (control && (control.value != null || control.value != undefined)) {
@@ -71,21 +72,26 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void { }
   register() {
-    let data = {
+    let userdata = {
       "firstName": this.FirstName.value,
       "lastName": this.LastName.value,
       "service": "advance",
       "email": this.Email.value,
       "password": this.Password.value,
     }
-    this.user.registerUser(data).subscribe(response => {
+    this.user.registerUser(userdata).subscribe(response => {
       console.log(response)
-      if (response['data'].success == true) {
-        this.snackBar.open("register successfully",'success') 
+      if (response['data'].success == false) {
+        this.snackBar.open("register successfully", 'success')
         this.route.navigate(['login'])
-      }else{
-        this.snackBar.open("unable to register successfully.","failed")
       }
-    })
+    },
+      error => {
+        this.errors = error;
+      }
+    )
+    if (this.errors) {
+      this.snackBar.open("login unsuccessfully.", 'failed')
+    }
   }
 }

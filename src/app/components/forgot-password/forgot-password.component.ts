@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ForgotPasswordComponent  {
   hide = true;
+  errors;
   Password = new FormControl('', [
     Validators.minLength(8),
     Validators.required,
@@ -28,6 +29,12 @@ export class ForgotPasswordComponent  {
     }
     this.user.resetPassword(userData).subscribe(response => {
       console.log(response)
-    })
+    },
+    error => {
+      this.errors = error;
+  })
+  if(this.errors){
+    this.snackBar.open("error please check inputs.",'failed')
+  }
   }
 }

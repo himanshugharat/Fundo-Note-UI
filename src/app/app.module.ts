@@ -19,6 +19,11 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { UserService } from './service/user.service';
 import { ResetComponent } from './components/reset/reset.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +32,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     LoginComponent,
     HeaderComponent,
     ForgotPasswordComponent,
-    ResetComponent
+    ResetComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ReactiveFormsModule,
     MatIconModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
