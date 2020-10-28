@@ -32,12 +32,9 @@ export class forgotPassword implements OnInit {
       }
     },
       error => {
-        this.errors = error;
+        this.snackBar.open("email not send.", 'failed')
       }
     )
-    if (this.errors) {
-      this.snackBar.open("email not send.", 'failed')
-    }
   }
 }
 

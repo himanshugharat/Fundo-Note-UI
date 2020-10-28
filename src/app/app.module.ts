@@ -23,6 +23,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatListModule} from '@angular/material/list';
+import { NotesComponent } from './components/notes/notes.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {TextFieldModule} from '@angular/cdk/text-field';
 
 
 @NgModule({
@@ -33,7 +36,8 @@ import {MatListModule} from '@angular/material/list';
     HeaderComponent,
     ResetPasswordComponent,
     forgotPassword,
-    DashboardComponent
+    DashboardComponent,
+    NotesComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,9 @@ import {MatListModule} from '@angular/material/list';
     MatSnackBarModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule,
+    TextFieldModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

@@ -48,10 +48,7 @@ export class LoginComponent implements OnInit {
       }
     },
     error => {
-      this.errors = error;
+      this.snackBar.open("login unsuccessfully.",'failed')
   })
-  if(this.errors){
-    this.snackBar.open("login unsuccessfully.",'failed')
-  }
   }
 }
