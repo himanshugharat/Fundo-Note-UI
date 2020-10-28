@@ -80,8 +80,7 @@ export class RegisterComponent implements OnInit {
       "password": this.Password.value,
     }
     this.user.registerUser(userdata).subscribe(response => {
-      console.log(response)
-      if (response['data'].success == false) {
+      if (response['data'].success == true) {
         this.snackBar.open("register successfully", 'success')
         this.route.navigate(['login'])
       }

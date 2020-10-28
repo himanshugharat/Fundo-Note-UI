@@ -15,9 +15,9 @@ import { LoginComponent } from './components/login/login.component';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/resetPassword/resetPassword.component';
 import { UserService } from './service/user.service';
-import { ResetComponent } from './components/reset/reset.component';
+import { forgotPassword } from './components/forgotPassword/forgotPassword.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -31,8 +31,8 @@ import {MatListModule} from '@angular/material/list';
     RegisterComponent,
     LoginComponent,
     HeaderComponent,
-    ForgotPasswordComponent,
-    ResetComponent,
+    ResetPasswordComponent,
+    forgotPassword,
     DashboardComponent
   ],
   imports: [

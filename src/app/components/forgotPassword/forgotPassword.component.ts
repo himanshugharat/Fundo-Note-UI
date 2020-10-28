@@ -4,11 +4,11 @@ import { UserService } from 'src/app/service/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-reset',
-  templateUrl: './reset.component.html',
-  styleUrls: ['./reset.component.scss']
+  selector: 'app-forgotPassword',
+  templateUrl: './forgotPassword.component.html',
+  styleUrls: ['./forgotPassword.component.scss']
 })
-export class ResetComponent implements OnInit {
+export class forgotPassword implements OnInit {
   errors;
   constructor(private user: UserService, public snackBar: MatSnackBar) { }
   Email = new FormControl('', [Validators.email, Validators.required]);
