@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
   showFiller = false;
+  isButtonVisible = true;
   typesOfOperation: string[] = ['Note', 'Reminder', 'Edit lable', 'Archive', 'Bin'];
   constructor() { }
 
