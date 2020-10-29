@@ -26,6 +26,8 @@ import {MatListModule} from '@angular/material/list';
 import { NotesComponent } from './components/notes/notes.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {TextFieldModule} from '@angular/cdk/text-field';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -57,7 +59,9 @@ import {TextFieldModule} from '@angular/cdk/text-field';
     MatToolbarModule,
     MatListModule,
     MatExpansionModule,
-    TextFieldModule
+    TextFieldModule,
+    MatMenuModule,
+    MatDatepickerModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

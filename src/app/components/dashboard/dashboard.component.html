@@ -21,16 +21,13 @@
     <button mat-icon-button>
       <mat-icon>account_circle</mat-icon>
     </button>
-
   </mat-toolbar>
-
   <div fxLayout="row" fxLayoutAlign="start start">
-
     <mat-drawer-container class="container" autosize>
       <div class="nav" (mouseenter)="drawer.toggle()" *ngIf="isButtonVisible"
-        (mouseleave)="isButtonVisible = !isButtonVisible" fxFlex="10%" >
+        (mouseleave)="isButtonVisible = !isButtonVisible" fxFlex="10%">
         <button mat-icon-button>
-          <mat-icon>menu</mat-icon>
+          <mat-icon>emoji_objects</mat-icon>
         </button>
         <button mat-icon-button>
           <mat-icon>notifications</mat-icon>
@@ -53,11 +50,9 @@
           </mat-list-option>
         </mat-selection-list>
       </mat-drawer>
-        <div fxFlex="90%" fxLayoutAlign="center start" class="content">
-            <app-notes></app-notes>
-        </div>
-    
+      <div fxFlex="90%" fxLayoutAlign="center start" class="content">
+        <app-notes></app-notes> 
+      </div>
     </mat-drawer-container>
-
   </div>
 </div>
