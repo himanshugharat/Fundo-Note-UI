@@ -1,4 +1,6 @@
-<link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+  rel="stylesheet">
 <div>
   <mat-card (click)="reset=false" *ngIf="reset" class="front-card">
     <mat-form-field appearance="none">
@@ -13,7 +15,8 @@
         <input matInput autocomplete="off" [formControl]="Title">
       </mat-form-field>
       <button mat-icon-button>
-        <mat-icon class="material-icons-outlined" (click)="notePinned=!notePinned">{{!notePinned ? 'push_pin':'done'}}</mat-icon>
+        <mat-icon class="material-icons-outlined" (click)="notePinned=!notePinned">{{!notePinned ? 'push_pin':'done'}}
+        </mat-icon>
       </button>
       <div>
         <mat-form-field appearance="none">
@@ -21,7 +24,7 @@
         </mat-form-field>
         <span fxLayout="row" fxLayoutAlign="start">
           <button mat-icon-button (click)="reminder=true">
-            <mat-icon >add_alert</mat-icon>
+            <mat-icon>add_alert</mat-icon>
           </button>
           <button mat-icon-button>
             <mat-icon>person_add</mat-icon>
@@ -32,7 +35,7 @@
           <button mat-icon-button (click)="card=true">
             <mat-icon>insert_photo</mat-icon>
           </button>
-          
+
           <button mat-icon-button>
             <mat-icon>archive</mat-icon>
           </button>
@@ -60,6 +63,5 @@
     <input type="date">
     <input type="time">
     <button type="submit" mat-button (click)="reminder=false">save</button>
-    
   </mat-card>
 </div>
