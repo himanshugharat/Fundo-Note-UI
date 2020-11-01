@@ -1,43 +1,43 @@
 <div fxLayout="row wrap " fxLayoutGap="20px">
-    <mat-card class="card" *ngFor="let n of note" appearance="outline">
-        <mat-card-header>
-            <mat-card-title>
-                title: {{n.title}}
-            </mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            description: {{n.description}}
-        </mat-card-content>
-        <mat-action>
-            <span fxLayout="row" fxLayoutAlign="end end">
-                <button mat-icon-button>
-                  <mat-icon class="material-icons-outlined">add_alert</mat-icon>
-                </button>
-                <button mat-icon-button>
-                  <mat-icon class="material-icons-outlined">person_add</mat-icon>
-                </button>
-                <button mat-icon-button>
-                  <mat-icon class="material-icons-outlined">color_lens</mat-icon>
-                </button>
-                <button mat-icon-button (click)="card=true">
-                  <mat-icon class="material-icons-outlined">insert_photo</mat-icon>
-                </button>
-      
-                <button mat-icon-button>
-                  <mat-icon class="material-icons-outlined">archive</mat-icon>
-                </button>
-                <button mat-icon-button [matMenuTriggerFor]="menu">
-                  <mat-icon class="material-icons-outlined">more_vert</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu">
-                  <button mat-menu-item>
-                    <span>add lable</span>
-                  </button>
-                  <button mat-menu-item>
-                    <span>add drwaing</span>
-                  </button>
-                </mat-menu>
-              </span>
-            </mat-action>
-    </mat-card>
+  <mat-card class="card" *ngFor="let n of note" appearance="outline">
+    <mat-card-header>
+      <mat-card-title>
+        title: {{n.title}}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      description: {{n.description}}
+    </mat-card-content>
+    <mat-action>
+      <span fxLayout="row" fxLayoutAlign="end end">
+        <button mat-icon-button>
+          <mat-icon class="material-icons-outlined">add_alert</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon class="material-icons-outlined">person_add</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon class="material-icons-outlined">color_lens</mat-icon>
+        </button>
+        <button mat-icon-button (click)="card=true">
+          <mat-icon class="material-icons-outlined">insert_photo</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+          <mat-icon class="material-icons-outlined">archive</mat-icon>
+        </button>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <span>add lable</span>
+          </button>
+          <button mat-menu-item>
+            <span>add drwaing</span>
+          </button>
+        </mat-menu>
+      </span>
+    </mat-action>
+  </mat-card>
 </div>
