@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {  FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import { error } from 'protractor';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { error } from 'protractor';
 export class LoginComponent implements OnInit {
   hide = true;
   errors;
-  constructor(private user: UserService,public snackBar: MatSnackBar) { }
+  constructor(private user: UserService,public snackBar: MatSnackBar,public route:Router) { }
 
   Email = new FormControl('', [Validators.email, Validators.required]);
   Password = new FormControl('', [
@@ -41,10 +42,15 @@ export class LoginComponent implements OnInit {
     }
     this.user.loginUser(userData).subscribe(response => {
       localStorage.setItem("fundo", response['id'])
+      localStorage.setItem("name", response['firstName'])
+      localStorage.setItem("email", response['email'])
       console.log(response)
       console.log(localStorage.getItem("fundo"))
+      console.log(localStorage.getItem("name"))
+      console.log(localStorage.getItem("email"))
       if (response['id']) {
         this.snackBar.open("login successfully.",'success')
+        this.route.navigate(['dashboard'])
       }
     },
     error => {

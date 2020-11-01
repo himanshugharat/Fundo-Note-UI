@@ -32,6 +32,7 @@ export class forgotPassword implements OnInit {
       }
     },
       error => {
+        //console.log(error)
         this.snackBar.open("email not send.", 'failed')
       }
     )

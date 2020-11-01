@@ -18,16 +18,17 @@ import { HeaderComponent } from './components/header/header.component';
 import { ResetPasswordComponent } from './components/resetPassword/resetPassword.component';
 import { UserService } from './service/user.service';
 import { forgotPassword } from './components/forgotPassword/forgotPassword.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatListModule} from '@angular/material/list';
-import { NotesComponent } from './components/notes/notes.component';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {TextFieldModule} from '@angular/cdk/text-field';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { CreateNotesComponent } from './components/createNotes/createNotes.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { GetNoteComponent } from './components/get-note/get-note.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     ResetPasswordComponent,
     forgotPassword,
     DashboardComponent,
-    NotesComponent
+    CreateNotesComponent,
+    GetNoteComponent
   ],
   imports: [
     BrowserModule,

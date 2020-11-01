@@ -102,3 +102,11 @@ $white:white;
   margin-top: 10px;
 }
 
+::ng-deep .userDetail{
+  width :200px ;
+  padding: 10px;
+}
+
+.userDetail div{
+  padding: 10px;
+}

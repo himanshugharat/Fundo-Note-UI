@@ -5,14 +5,16 @@ import { ResetPasswordComponent } from './components/resetPassword/resetPassword
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { forgotPassword } from './components/forgotPassword/forgotPassword.component';
-import { NotesComponent } from './components/notes/notes.component';
+import { CreateNotesComponent } from './components/createNotes/createNotes.component';
+import { GetNoteComponent } from './components/get-note/get-note.component';
 
 const routes: Routes = [{ path: "register", component: RegisterComponent },
 { path: "login", component: LoginComponent },
 { path: "", component: LoginComponent },
 { path: "resetpassword/:id", component: ResetPasswordComponent },
 { path: "forgot", component: forgotPassword },
-{ path: "dashboard", component: DashboardComponent ,children:[{ path: "notes", component: NotesComponent }]},
+{ path: "getnote", component: GetNoteComponent },
+{ path: "dashboard", component: DashboardComponent, children: [{ path: "notes", component: CreateNotesComponent }] },
 ];
 
 @NgModule({

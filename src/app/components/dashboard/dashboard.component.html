@@ -1,10 +1,13 @@
+<link
+  href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+  rel="stylesheet">
 <div>
   <mat-toolbar class="header">
     <button mat-icon-button (click)="drawer.toggle()" (click)="isButtonVisible = !isButtonVisible">
       <mat-icon>menu</mat-icon>
     </button>
     <img src="../../../assets/image/keepIcon.png">
-    <span>Note</span>
+    <span>Fundoo Note</span>
     <mat-card class="input-card">
       <mat-icon>search</mat-icon>
       <div class="input-feild">
@@ -13,33 +16,45 @@
     </mat-card>
     <span class="settings"></span>
     <button mat-icon-button>
-      <mat-icon>widgets</mat-icon>
+      <mat-icon class="material-icons-outlined">widgets</mat-icon>
     </button>
     <button mat-icon-button>
-      <mat-icon>settings</mat-icon>
+      <mat-icon class="material-icons-outlined">settings</mat-icon>
     </button>
-    <button mat-icon-button>
-      <mat-icon>account_circle</mat-icon>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon class="material-icons-outlined">account_circle</mat-icon>
     </button>
+    <mat-menu #menu="matMenu">
+      <div class="userDetail">
+        <div fxLayout="row wrap" fxLayoutAlign="center">
+          <mat-icon class="material-icons-outlined">account_circle</mat-icon>
+        </div>
+        <div>Name: {{name}}</div>
+        <div>Email: {{email}}</div>
+        <div fxLayout="row wrap" fxLayoutAlign="end end">
+          <button mat-stroked-button type="submit" (click)="logout()">logout</button>
+        </div>
+      </div>
+    </mat-menu>
   </mat-toolbar>
   <div fxLayout="row" fxLayoutAlign="start start">
     <mat-drawer-container class="container" autosize>
       <div class="nav" (mouseenter)="drawer.toggle()" *ngIf="isButtonVisible"
-        (mouseleave)="isButtonVisible = !isButtonVisible" fxFlex="10%">
+        (mouseleave)="isButtonVisible = !isButtonVisible" fxFlex="20%">
         <button mat-icon-button>
-          <mat-icon>emoji_objects</mat-icon>
+          <mat-icon class="material-icons-outlined">emoji_objects</mat-icon>
         </button>
         <button mat-icon-button>
-          <mat-icon>notifications</mat-icon>
+          <mat-icon class="material-icons-outlined">notifications</mat-icon>
         </button>
         <button mat-icon-button>
-          <mat-icon>create</mat-icon>
+          <mat-icon class="material-icons-outlined">create</mat-icon>
         </button>
         <button mat-icon-button>
-          <mat-icon>archive</mat-icon>
+          <mat-icon class="material-icons-outlined">archive</mat-icon>
         </button>
         <button mat-icon-button>
-          <mat-icon>delete</mat-icon>
+          <mat-icon class="material-icons-outlined">delete</mat-icon>
         </button>
       </div>
       <mat-drawer #drawer class="sidenav" mode="side" (mouseleave)="drawer.toggle()"
@@ -50,9 +65,10 @@
           </mat-list-option>
         </mat-selection-list>
       </mat-drawer>
-      <div fxFlex="90%" fxLayoutAlign="center start" class="content">
-        <app-notes></app-notes> 
+      <div fxFlex="80%" fxLayoutAlign="center start" class="content">
+        <app-notes></app-notes>
       </div>
+
     </mat-drawer-container>
   </div>
 </div>
