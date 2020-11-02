@@ -1,4 +1,4 @@
-<div fxLayout="row wrap " fxLayoutGap="20px">
+<div fxLayout="row wrap " fxLayoutGap="20px" *ngIf="!nonoteCondition">
   <mat-card class="card" *ngFor="let n of note; let i=index" appearance="outline" 
   (mouseenter)="onHover(i)" (mouseleave)="onHover(-1)" >
     <mat-card-header>
@@ -15,4 +15,11 @@
   </div>
     </mat-action>
   </mat-card>
+</div>
+<div *ngIf="noNote()" fxLayout="row" fxLayoutAlign="center center" class="disabled" >
+  
+  <img src="../../../assets/image/keepIcon.png" alt="icon">
+  <div>
+  no note to display
+</div>
 </div>

@@ -37,5 +37,8 @@ export class CreateNotesComponent implements OnInit {
     )
 
   }
+  changeNotePinned(){
+    return this.notePinned=!this.notePinned
+  }
 
 }

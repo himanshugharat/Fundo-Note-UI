@@ -3,7 +3,7 @@
   rel="stylesheet">
 <div fxLayout="row">
   <mat-toolbar class="header">
-    <button mat-icon-button (click)="drawer.toggle()" (click)="isButtonVisible = !isButtonVisible">
+    <button mat-icon-button (click)="drawer.toggle()" (click)="changeVisiblity()">
       <mat-icon>menu</mat-icon>
     </button>
     <img src="../../../assets/image/keepIcon.png">
@@ -35,7 +35,7 @@
 <mat-drawer-container class="container" autosize>
   <div>
     <div fxFlex="10%">
-      <span class="nav" *ngIf="isButtonVisible" (mouseleave)="isButtonVisible = !isButtonVisible">
+      <span class="nav" *ngIf="checkVisiblity()" (mouseleave)="changeVisiblity()">
         <button mat-icon-button>
           <mat-icon class="material-icons-outlined" (mouseenter)="drawer.toggle()">emoji_objects</mat-icon>
         </button>

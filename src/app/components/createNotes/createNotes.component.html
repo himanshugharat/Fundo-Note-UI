@@ -14,7 +14,7 @@
         <input matInput autocomplete="off" placeholder="title" [formControl]="title">
       </mat-form-field>
       <button mat-icon-button>
-        <mat-icon class="material-icons-outlined" (click)="notePinned=!notePinned">{{!notePinned ? 'push_pin':'done'}}
+        <mat-icon class="material-icons-outlined" (click)="changeNotePinned()">{{!notePinned ? 'push_pin':'done'}}
         </mat-icon>
       </button>
         <mat-form-field appearance="none">

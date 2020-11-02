@@ -8,8 +8,9 @@ import { NotesService } from 'src/app/service/notes.service';
 })
 export class GetNoteComponent implements OnInit {
   note = []
-  isButtonVisible=false
-  hoverIndex=-1
+  isButtonVisible = false
+  hoverIndex = -1
+  nonoteCondition = false
   constructor(private http: NotesService) { }
 
   ngOnInit(): void {
@@ -22,8 +23,11 @@ export class GetNoteComponent implements OnInit {
     })
 
   }
-  onHover(i){
-this.hoverIndex=i
+  onHover(i) {
+    this.hoverIndex = i
+  }
+  noNote(){
+   return (this.note.length==0)?this.nonoteCondition=true:this.nonoteCondition=false;
   }
 
 }
