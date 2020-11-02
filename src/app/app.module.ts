@@ -30,6 +30,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { GetNoteComponent } from './components/get-note/get-note.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { CardPannelComponent } from './components/card-pannel/card-pannel.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     DashboardComponent,
     CreateNotesComponent,
     GetNoteComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CardPannelComponent
   ],
   imports: [
     BrowserModule,

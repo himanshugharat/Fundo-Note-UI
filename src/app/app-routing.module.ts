@@ -8,6 +8,7 @@ import { forgotPassword } from './components/forgotPassword/forgotPassword.compo
 import { CreateNotesComponent } from './components/createNotes/createNotes.component';
 import { GetNoteComponent } from './components/get-note/get-note.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { CardPannelComponent } from './components/card-pannel/card-pannel.component';
 
 const routes: Routes = [{ path: "register", component: RegisterComponent },
 { path: "login", component: LoginComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [{ path: "register", component: RegisterComponent },
 { path: "resetpassword/:id", component: ResetPasswordComponent },
 { path: "forgot", component: forgotPassword },
 { path: "getnote", component: GetNoteComponent },
-{ path: "dashboard", component: DashboardComponent, children: [{ path: "notes", component: CreateNotesComponent }] },
+{ path: "dashboard", component: DashboardComponent, children: [{ path: "notes", component: CreateNotesComponent },
+{ path: "icon-pannel", component: CardPannelComponent },] },
 { path: "**", component: PageNotFoundComponent },
 ];
 

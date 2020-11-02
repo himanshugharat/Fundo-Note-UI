@@ -1,48 +1,18 @@
 <div fxLayout="row wrap " fxLayoutGap="20px">
-  <mat-card class="card" *ngFor="let n of note" appearance="outline" 
-  (mouseenter)="isButtonVisible = true" (mouseleave)="isButtonVisible = false">
+  <mat-card class="card" *ngFor="let n of note; let i=index" appearance="outline" 
+  (mouseenter)="onHover(i)" (mouseleave)="onHover(-1)" >
     <mat-card-header>
       <mat-card-title>
-        title: {{n.title}}
+        {{n.title}}
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      description: {{n.description}}
+      {{n.description}}
     </mat-card-content>
     <mat-action>
-      <div  *ngIf="isButtonVisible">
-      <span fxLayout="row" fxLayoutAlign="end end">
-        <button mat-icon-button>
-          <mat-icon class="material-icons-outlined">add_alert</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon class="material-icons-outlined">person_add</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon class="material-icons-outlined">color_lens</mat-icon>
-        </button>
-        <button mat-icon-button (click)="card=true">
-          <mat-icon class="material-icons-outlined">insert_photo</mat-icon>
-        </button>
-
-        <button mat-icon-button>
-          <mat-icon class="material-icons-outlined">archive</mat-icon>
-        </button>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <mat-icon class="material-icons-outlined">more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>
-            <span>add lable</span>
-          </button>
-          <button mat-menu-item>
-            <span>add drwaing</span>
-          </button>
-        </mat-menu>
-  
-      </span>
+      <div *ngIf="i==hoverIndex">
+      <app-card-pannel></app-card-pannel>
   </div>
     </mat-action>
-  
   </mat-card>
 </div>

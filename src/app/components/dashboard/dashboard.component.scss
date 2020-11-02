@@ -7,6 +7,12 @@ $white:white;
   right: 0;
 }
 
+.slider{
+  position: absolute;
+  top: 10%;
+  width: 200px;
+  
+}
 .titleBar {
   display: flex;
   flex-wrap: wrap;
@@ -103,10 +109,7 @@ $white:white;
 }
 
 ::ng-deep .userDetail{
-  width :200px ;
+  width :160px ;
   padding: 10px;
 }
 
-.userDetail div{
-  padding: 10px;
-}
