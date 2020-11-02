@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { forgotPassword } from './components/forgotPassword/forgotPassword.component';
 import { CreateNotesComponent } from './components/createNotes/createNotes.component';
 import { GetNoteComponent } from './components/get-note/get-note.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [{ path: "register", component: RegisterComponent },
 { path: "login", component: LoginComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [{ path: "register", component: RegisterComponent },
 { path: "forgot", component: forgotPassword },
 { path: "getnote", component: GetNoteComponent },
 { path: "dashboard", component: DashboardComponent, children: [{ path: "notes", component: CreateNotesComponent }] },
+{ path: "**", component: PageNotFoundComponent },
 ];
 
 @NgModule({

@@ -24,7 +24,7 @@ export class UserService {
   }
 
   resetPassword(data) {
-    let url = this._url + "reset-password?access_token=" + this.id
+    let url = this._url + "reset-password"
     return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('fundo') } })
   }
 

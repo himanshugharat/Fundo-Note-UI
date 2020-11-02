@@ -8,8 +8,9 @@ import { NotesService } from 'src/app/service/notes.service';
 })
 export class GetNoteComponent implements OnInit {
   note = []
+  isButtonVisible=false
   constructor(private http: NotesService) { }
-  
+
   ngOnInit(): void {
     this.http.getNotes().subscribe(re => {
       for (let i = 0; i < re['data'].data.length; i++) {

@@ -29,6 +29,7 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { GetNoteComponent } from './components/get-note/get-note.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { GetNoteComponent } from './components/get-note/get-note.component';
     forgotPassword,
     DashboardComponent,
     CreateNotesComponent,
-    GetNoteComponent
+    GetNoteComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

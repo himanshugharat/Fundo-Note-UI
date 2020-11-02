@@ -1,5 +1,6 @@
 <div fxLayout="row wrap " fxLayoutGap="20px">
-  <mat-card class="card" *ngFor="let n of note" appearance="outline">
+  <mat-card class="card" *ngFor="let n of note" appearance="outline" 
+  (mouseenter)="isButtonVisible = true" (mouseleave)="isButtonVisible = false">
     <mat-card-header>
       <mat-card-title>
         title: {{n.title}}
@@ -9,6 +10,7 @@
       description: {{n.description}}
     </mat-card-content>
     <mat-action>
+      <div  *ngIf="isButtonVisible">
       <span fxLayout="row" fxLayoutAlign="end end">
         <button mat-icon-button>
           <mat-icon class="material-icons-outlined">add_alert</mat-icon>
@@ -37,7 +39,10 @@
             <span>add drwaing</span>
           </button>
         </mat-menu>
+  
       </span>
+  </div>
     </mat-action>
+  
   </mat-card>
 </div>
