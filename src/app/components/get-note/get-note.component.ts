@@ -17,6 +17,7 @@ export class GetNoteComponent implements OnInit {
       for (let i = 0; i < re['data'].data.length; i++) {
         this.note.push(re['data'].data[i]);
       }
+      this.note.reverse()
       console.log(this.note)
     })
 
