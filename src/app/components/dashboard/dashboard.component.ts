@@ -11,7 +11,7 @@ import { UserService } from 'src/app/service/user.service';
 export class DashboardComponent implements OnInit {
   showFiller = false;
   isButtonVisible = true;
-  id = localStorage.getItem('fundo')
+  token = localStorage.getItem('token')
   name = localStorage.getItem('name')
   email = localStorage.getItem('email')
   constructor(private http: UserService, public snackBar: MatSnackBar, public route: Router) { }

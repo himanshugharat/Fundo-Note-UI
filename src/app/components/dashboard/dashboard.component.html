@@ -61,8 +61,11 @@
 <mat-drawer #drawer class="sidenav" mode="side" (mouseleave)="drawer.toggle()"
   (mouseleave)="changeVisiblity()" class="slider">
   <mat-selection-list [multiple]="false">
-    <mat-list-option class="option" routerLink="/dashboard/notes" #note [selected]="note">
+    <mat-list-option  class="option" routerLink="/dashboard/notes" #note [selected]="note">
+      <div>
+      <mat-icon class="material-icons-outlined">emoji_objects</mat-icon>
       Note
+    </div>
     </mat-list-option>
     <mat-list-option>Reminder</mat-list-option>
     <mat-list-option>Edit lable</mat-list-option>

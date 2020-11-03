@@ -1,5 +1,4 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog'
 import { NotesService } from 'src/app/service/notes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class DialogNoteComponent implements OnInit {
   title 
-  description 
+  description
   constructor(@Inject(MAT_DIALOG_DATA)public data:any,public noteService:NotesService,public snackBar:MatSnackBar ) { }
 
   ngOnInit(): void {

@@ -41,11 +41,11 @@ export class LoginComponent implements OnInit {
       "password": this.Password.value
     }
     this.user.loginUser(userData).subscribe(response => {
-      localStorage.setItem("fundo", response['id'])
+      localStorage.setItem("token", response['id'])
       localStorage.setItem("name", response['firstName'])
       localStorage.setItem("email", response['email'])
       console.log(response)
-      console.log(localStorage.getItem("fundo"))
+      console.log(localStorage.getItem("id"))
       console.log(localStorage.getItem("name"))
       console.log(localStorage.getItem("email"))
       if (response['id']) {

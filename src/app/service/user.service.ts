@@ -7,7 +7,6 @@ import { HttpService } from './http_service/http.service';
 })
 
 export class UserService {
-  private id = localStorage.getItem("fundo")
   private _url = "http://fundoonotes.incubation.bridgelabz.com/api/user/"
 
   constructor(private http: HttpService) {
@@ -25,16 +24,16 @@ export class UserService {
 
   resetPassword(data) {
     let url = this._url + "reset-password"
-    return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('fundo') } })
+    return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
   }
 
   resetMail(data) {
     let url = this._url + "reset"
-    return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('fundo') } })
+    return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
   }
 
   logout(data) {
     let url = this._url + "logout"
-    return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('fundo') } })
+    return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
   }
 }
