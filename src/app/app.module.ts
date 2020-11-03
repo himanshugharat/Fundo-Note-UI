@@ -31,7 +31,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { GetNoteComponent } from './components/get-note/get-note.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { CardPannelComponent } from './components/card-pannel/card-pannel.component';
-
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogNoteComponent } from './components/dialog-note/dialog-note.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +46,10 @@ import { CardPannelComponent } from './components/card-pannel/card-pannel.compon
     CreateNotesComponent,
     GetNoteComponent,
     PageNotFoundComponent,
-    CardPannelComponent
+    CardPannelComponent,
+    DialogNoteComponent
   ],
+  entryComponents:[GetNoteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -67,7 +70,8 @@ import { CardPannelComponent } from './components/card-pannel/card-pannel.compon
     MatExpansionModule,
     TextFieldModule,
     MatMenuModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatDialogModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

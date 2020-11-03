@@ -14,7 +14,6 @@ export class DashboardComponent implements OnInit {
   id = localStorage.getItem('fundo')
   name = localStorage.getItem('name')
   email = localStorage.getItem('email')
-  typesOfOperation: string[] = ['Note', 'Reminder', 'Edit lable', 'Archive', 'Bin'];
   constructor(private http: UserService, public snackBar: MatSnackBar, public route: Router) { }
 
   ngOnInit(): void {
@@ -31,10 +30,12 @@ export class DashboardComponent implements OnInit {
       this.snackBar.open("logout unsuccessfully.", 'failed')
     })
   }
-  changeVisiblity(){
-    return this.isButtonVisible=!this.isButtonVisible
+
+  changeVisiblity() {
+    return this.isButtonVisible = !this.isButtonVisible
   }
-  checkVisiblity(){
+
+  checkVisiblity() {
     return this.isButtonVisible
   }
 

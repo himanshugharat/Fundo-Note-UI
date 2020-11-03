@@ -18,5 +18,9 @@ export class NotesService {
     let url = this._url+"getNotesList"
     return this.http.getService(url,true ,{headers:{'Authorization':localStorage.getItem('fundo')}})
   }
+  updateNote(data){
+    let url = this._url+"updateNotes"
+    return this.http.postService(data,url,true ,{headers:{'Authorization':localStorage.getItem('fundo')}})
+  }
 }
 

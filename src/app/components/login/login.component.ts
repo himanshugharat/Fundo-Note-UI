@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: [ './login.component.scss']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   hide = true;
   errors;
-  constructor(private user: UserService,public snackBar: MatSnackBar,public route:Router) { }
+  constructor(private user: UserService, public snackBar: MatSnackBar, public route: Router) { }
 
   Email = new FormControl('', [Validators.email, Validators.required]);
   Password = new FormControl('', [
@@ -49,12 +49,12 @@ export class LoginComponent implements OnInit {
       console.log(localStorage.getItem("name"))
       console.log(localStorage.getItem("email"))
       if (response['id']) {
-        this.snackBar.open("login successfully.",'success')
+        this.snackBar.open("login successfully.", 'success')
         this.route.navigate(['dashboard'])
       }
     },
-    error => {
-      this.snackBar.open("login unsuccessfully.",'failed')
-  })
+      error => {
+        this.snackBar.open("login unsuccessfully.", 'failed')
+      })
   }
 }
