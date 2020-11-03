@@ -55,22 +55,19 @@
       </span>
     </div>
     <div fxFlex="90%" fxLayoutAlign="center start" class="content">
-      <div fxLayout="column">
-        <div fxLayoutAlign="center">
-          <app-notes></app-notes>
-        </div>
-        <div fxLayoutAlign="center">
-          <app-get-note></app-get-note>
-        </div>
-      </div>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </mat-drawer-container>
 <mat-drawer #drawer class="sidenav" mode="side" (mouseleave)="drawer.toggle()"
   (mouseleave)="isButtonVisible = !isButtonVisible" class="slider">
   <mat-selection-list [multiple]="false">
-    <mat-list-option *ngFor="let operation of typesOfOperation" [value]="operation" class="option">
-      {{operation}}
+    <mat-list-option class="option" routerLink="/dashboard/notes" #note [selected]="note">
+      Note
     </mat-list-option>
+    <mat-list-option>Reminder</mat-list-option>
+    <mat-list-option>Edit lable</mat-list-option>
+    <mat-list-option>Archive</mat-list-option>
+    <mat-list-option>Bin</mat-list-option>
   </mat-selection-list>
 </mat-drawer>

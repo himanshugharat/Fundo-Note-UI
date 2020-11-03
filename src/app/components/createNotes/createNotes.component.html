@@ -1,38 +1,38 @@
 <link
   href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
   rel="stylesheet">
-<div>
-  <mat-card (click)="reset=false" *ngIf="reset" class="front-card">
-    <mat-form-field appearance="none">
-      <input matInput placeholder="take a note" autocomplete="off">
-    </mat-form-field>
-    <mat-icon class="material-icons-outlined">create</mat-icon>
-  </mat-card>
-  <mat-card *ngIf="reset==false" class="back-card">
-    <form>
-      <mat-form-field appearance="none">
-        <input matInput autocomplete="off" placeholder="title" [formControl]="title">
-      </mat-form-field>
-      <button mat-icon-button>
-        <mat-icon class="material-icons-outlined" (click)="changeNotePinned()">{{!notePinned ? 'push_pin':'done'}}
-        </mat-icon>
-      </button>
+<div fxLayout="column">
+  <div fxLayoutAlign="center">
+    <div>
+      <mat-card (click)="reset=false" *ngIf="reset" class="front-card">
         <mat-form-field appearance="none">
-          <input matInput placeholder="take a note" autocomplete="off" autofocus [formControl]="description">
+          <input matInput placeholder="take a note" autocomplete="off">
         </mat-form-field>
-        <span fxLayout="row" fxLayoutAlign="end end">
-       <app-card-pannel></app-card-pannel>
-          <span class="settings"></span>
-          <button type="button" mat-button (click)="addNote()" (click)="reset=true">close</button>
-        </span>
-    </form>
-  </mat-card>
-  <mat-card *ngIf="card"><input type="file">
-    <button type="submit" mat-button (click)="card=false">save</button>
-  </mat-card>
-  <mat-card *ngIf="reminder">
-    <input type="date">
-    <input type="time">
-    <button type="submit" mat-button (click)="reminder=false">save</button>
-  </mat-card>
+        <mat-icon class="material-icons-outlined">create</mat-icon>
+      </mat-card>
+      <mat-card *ngIf="!reset" class="back-card">
+        <form>
+          <mat-form-field appearance="none">
+            <input matInput autocomplete="off" placeholder="title" [formControl]="title">
+          </mat-form-field>
+          <button mat-icon-button>
+            <mat-icon class="material-icons-outlined" (click)="changeNotePinned()" (click)="reset=true">
+              {{!notePinned ? 'push_pin':'done'}}
+            </mat-icon>
+          </button>
+          <mat-form-field appearance="none">
+            <input matInput placeholder="take a note" autocomplete="off" autofocus [formControl]="description">
+          </mat-form-field>
+          <span fxLayout="row" fxLayoutAlign="end end">
+            <app-card-pannel></app-card-pannel>
+            <span class="settings"></span>
+            <button type="button" mat-button (click)="addNote()" (click)="reset=true">close</button>
+          </span>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<div fxLayoutAlign="center">
+  <app-get-note></app-get-note>
 </div>

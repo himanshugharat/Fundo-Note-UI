@@ -15,9 +15,12 @@ const routes: Routes = [{ path: "register", component: RegisterComponent },
 { path: "", component: LoginComponent },
 { path: "resetpassword/:id", component: ResetPasswordComponent },
 { path: "forgot", component: forgotPassword },
-{ path: "getnote", component: GetNoteComponent },
-{ path: "dashboard", component: DashboardComponent, children: [{ path: "notes", component: CreateNotesComponent },
-{ path: "icon-pannel", component: CardPannelComponent },] },
+{ path: "icon-pannel", component: CardPannelComponent },
+{
+  path: "dashboard", component: DashboardComponent, children:
+    [{ path: "notes", component: CreateNotesComponent },
+    { path: "getnote", component: GetNoteComponent }]
+},
 { path: "**", component: PageNotFoundComponent },
 ];
 
