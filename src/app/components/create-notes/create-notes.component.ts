@@ -5,8 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-notes',
-  templateUrl: './createNotes.component.html',
-  styleUrls: ['./createNotes.component.scss']
+  templateUrl: './create-notes.component.html',
+  styleUrls: ['./create-notes.component.scss']
 })
 export class CreateNotesComponent implements OnInit {
   reset = true

@@ -4,9 +4,9 @@ import { UserService } from 'src/app/service/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-resetPassword',
-  templateUrl: './resetPassword.component.html',
-  styleUrls: ['./resetPassword.component.scss']
+  selector: 'app-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent  {
   hide = true;

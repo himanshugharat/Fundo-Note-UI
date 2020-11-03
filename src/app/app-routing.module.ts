@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ResetPasswordComponent } from './components/resetPassword/resetPassword.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { forgotPassword } from './components/forgotPassword/forgotPassword.component';
-import { CreateNotesComponent } from './components/createNotes/createNotes.component';
+import { forgotPassword } from './components/forgot-password/forgot-password.component';
+import { CreateNotesComponent } from './components/create-notes/create-notes.component';
 import { GetNoteComponent } from './components/get-note/get-note.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { CardPannelComponent } from './components/card-pannel/card-pannel.component';

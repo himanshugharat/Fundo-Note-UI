@@ -4,9 +4,9 @@ import { UserService } from 'src/app/service/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-forgotPassword',
-  templateUrl: './forgotPassword.component.html',
-  styleUrls: ['./forgotPassword.component.scss']
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.scss']
 })
 export class forgotPassword implements OnInit {
   errors;
