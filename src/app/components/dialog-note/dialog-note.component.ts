@@ -2,7 +2,7 @@ import { Component, OnInit,Inject } from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog'
 import { NotesService } from 'src/app/service/notes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { SharedService } from 'src/app/service/shared/shared.service';
 @Component({
   selector: 'app-dialog-note',
   templateUrl: './dialog-note.component.html',
@@ -11,7 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class DialogNoteComponent implements OnInit {
   title 
   description
-  constructor(@Inject(MAT_DIALOG_DATA)public data:any,public noteService:NotesService,public snackBar:MatSnackBar ) { }
+  constructor(@Inject(MAT_DIALOG_DATA)public data:any,public noteService:NotesService,public snackBar:MatSnackBar,
+  private shared: SharedService) { }
 
   ngOnInit(): void {
   }
@@ -31,7 +32,7 @@ updateNote(){
   console.log(noteData)
   this.noteService.updateNote(noteData).subscribe(response => {
     if (response['data'].success == true) {
-      window.location.reload()
+      //window.location.reload()
       console.log(response)
       this.snackBar.open("note added successfully", 'success')
     }
@@ -41,5 +42,8 @@ updateNote(){
       this.snackBar.open("unable to add plz try again", 'failed')
     }
   )
+}
+UpdateNoteComponent(){
+  this.shared.sendEvent();
 }
 }

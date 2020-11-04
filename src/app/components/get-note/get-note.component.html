@@ -6,16 +6,19 @@
         <mat-card-title>
           {{n.title}}
         </mat-card-title>
+          <mat-card-title>
+            <mat-card-content>
+              {{n.description}}
+            </mat-card-content>
+         </mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        {{n.description}}
-      </mat-card-content>
     </div>
-    <mat-action>
-      <div *ngIf="i==hoverIndex" class="pannel">
+    <mat-content>
+       <span *ngIf="i==hoverIndex" class="pannel"> 
+      <!-- <span *ngIf="displayPannel()" class="pannel"> -->
         <app-card-pannel></app-card-pannel>
-      </div>
-    </mat-action>
+        </span>
+  </mat-content>
   </mat-card>
 </div>
 <div *ngIf="noNote()" fxLayout="row" fxLayoutAlign="center center" class="disabled">

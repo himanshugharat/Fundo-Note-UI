@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NotesService } from 'src/app/service/notes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SharedService } from 'src/app/service/shared/shared.service';
 
 @Component({
   selector: 'app-notes',
@@ -10,7 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CreateNotesComponent implements OnInit {
   reset = true
-  constructor(private note: NotesService, public snackBar: MatSnackBar) { }
+  constructor(private note: NotesService, public snackBar: MatSnackBar, private shared: SharedService) { }
 
   ngOnInit(): void {
   }
@@ -27,7 +28,7 @@ export class CreateNotesComponent implements OnInit {
     }
     this.note.addNotes(noteData).subscribe(response => {
       if (response['status'].success == true) {
-        window.location.reload()
+        //window.location.reload()
         this.snackBar.open("note added successfully", 'success')
       }
     },
@@ -41,5 +42,7 @@ export class CreateNotesComponent implements OnInit {
   changeNotePinned() {
     return this.notePinned = !this.notePinned
   }
-
+  UpdateNoteComponent(){
+    this.shared.sendEvent();
+  }
 }

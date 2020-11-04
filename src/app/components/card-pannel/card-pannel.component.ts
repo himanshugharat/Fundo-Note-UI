@@ -11,5 +11,8 @@ export class CardPannelComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  getvalue(){
+    console.log("ok")
+  }
 
 }
