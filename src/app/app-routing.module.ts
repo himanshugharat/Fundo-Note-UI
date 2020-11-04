@@ -9,6 +9,7 @@ import { CreateNotesComponent } from './components/create-notes/create-notes.com
 import { GetNoteComponent } from './components/get-note/get-note.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { CardPannelComponent } from './components/card-pannel/card-pannel.component';
+import { TrashBinComponent } from './components/trash-bin/trash-bin.component';
 
 const routes: Routes = [{ path: "register", component: RegisterComponent },
 { path: "login", component: LoginComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [{ path: "register", component: RegisterComponent },
 {
   path: "dashboard", component: DashboardComponent, children:
     [{ path: "notes", component: CreateNotesComponent },
-    { path: "getnote", component: GetNoteComponent }]
+    { path: "getnote", component: GetNoteComponent },
+    { path: "bin", component: TrashBinComponent }]
 },
 { path: "**", component: PageNotFoundComponent },
 ];

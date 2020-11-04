@@ -16,7 +16,7 @@
     <mat-content>
        <span *ngIf="i==hoverIndex" class="pannel"> 
       <!-- <span *ngIf="displayPannel()" class="pannel"> -->
-        <app-card-pannel></app-card-pannel>
+        <app-card-pannel [noteId]="n.id"></app-card-pannel>
         </span>
   </mat-content>
   </mat-card>

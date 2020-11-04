@@ -62,14 +62,11 @@
   (mouseleave)="changeVisiblity()" class="slider">
   <mat-selection-list [multiple]="false">
     <mat-list-option  class="option" routerLink="/dashboard/notes" #note [selected]="note">
-      <div>
-      <mat-icon class="material-icons-outlined">emoji_objects</mat-icon>
-      Note
-    </div>
+      Notes
     </mat-list-option>
-    <mat-list-option>Reminder</mat-list-option>
+    <mat-list-option >Reminder</mat-list-option>
     <mat-list-option>Edit lable</mat-list-option>
     <mat-list-option>Archive</mat-list-option>
-    <mat-list-option>Bin</mat-list-option>
+    <mat-list-option class="option" routerLink="/dashboard/bin">Bin</mat-list-option>
   </mat-selection-list>
 </mat-drawer>

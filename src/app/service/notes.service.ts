@@ -21,5 +21,13 @@ export class NotesService {
     let url = this._url+"updateNotes"
     return this.http.postService(data,url,true ,{headers:{'Authorization':localStorage.getItem('token')}})
   }
+  deleteNote(data){
+    let url = this._url+"trashNotes"
+    return this.http.postService(data,url,true ,{headers:{'Authorization':localStorage.getItem('token')}})
+  }
+  getTrashNote(){
+    let url = this._url+"getTrashNotesList"
+    return this.http.getService(url,true ,{headers:{'Authorization':localStorage.getItem('token')}})
+  }
 }
 

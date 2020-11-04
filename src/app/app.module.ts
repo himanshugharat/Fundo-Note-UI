@@ -33,6 +33,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { CardPannelComponent } from './components/card-pannel/card-pannel.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogNoteComponent } from './components/dialog-note/dialog-note.component';
+import { TrashBinComponent } from './components/trash-bin/trash-bin.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { DialogNoteComponent } from './components/dialog-note/dialog-note.compon
     GetNoteComponent,
     PageNotFoundComponent,
     CardPannelComponent,
-    DialogNoteComponent
+    DialogNoteComponent,
+    TrashBinComponent
   ],
   entryComponents:[GetNoteComponent],
   imports: [
