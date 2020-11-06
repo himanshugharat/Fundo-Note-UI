@@ -1,7 +1,6 @@
 
 <div fxLayout="row wrap " fxLayoutGap="20px" >
-    <mat-card class="card" *ngFor="let n of note; let i=index" appearance="outline" (mouseenter)="onHover(i)"
-    (mouseleave)="onHover(-1)">
+    <mat-card class="card" *ngFor="let n of note; let i=index" appearance="outline">
       <div (click)="openDialog(n.title,n.description,n.id)">
         <mat-card-header>
           <mat-card-title>
@@ -14,21 +13,17 @@
            </mat-card-title>
         </mat-card-header>
       </div>
-       <mat-content>
-        <span *ngIf="i==hoverIndex" class="pannel"> 
-        <button mat-icon-button >
-          <mat-icon class="material-icons-outlined">restore_from_trash</mat-icon>
-      </button>
-      <button mat-icon-button>
-          <mat-icon class="material-icons-outlined">delete_forever</mat-icon>
-      </button>
-      </span>
-    </mat-content>
+      <!-- <mat-content>
+         <span *ngIf="i==hoverIndex" class="pannel"> 
+        <span *ngIf="displayPannel()" class="pannel"> 
+          <app-card-pannel [noteId]="n.id"></app-card-pannel>
+          </span>
+    </mat-content> -->
     </mat-card>
   </div>
   <div *ngIf="noNote()" fxLayout="row" fxLayoutAlign="center center" class="disabled">
     <img src="../../../assets/image/keepIcon.png" alt="icon">
     <div>
-      no note in Bin
+      no note in Archive
     </div>
   </div>

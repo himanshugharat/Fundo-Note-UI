@@ -2,19 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { NotesService } from 'src/app/service/notes.service';
 
 @Component({
-  selector: 'app-trash-bin',
-  templateUrl: './trash-bin.component.html',
-  styleUrls: ['./trash-bin.component.scss']
+  selector: 'app-archive',
+  templateUrl: './archive.component.html',
+  styleUrls: ['./archive.component.scss']
 })
-export class TrashBinComponent implements OnInit {
-note=[]
-nonoteCondition=false
-isButtonVisible = false
-  hoverIndex = -1
+export class ArchiveComponent implements OnInit {
+  note=[]
+  nonoteCondition=false
   constructor(private notesService: NotesService) { }
 
   ngOnInit(): void {
-    this.notesService.getTrashNote().subscribe(response => {
+    this.notesService.getArchiveNote().subscribe(response => {
       for (let i = 0; i < response['data'].data.length; i++) {
         this.note.push(response['data'].data[i]);
       }
@@ -26,7 +24,5 @@ isButtonVisible = false
   noNote() {
     return (this.note.length == 0) ? this.nonoteCondition = true : this.nonoteCondition = false;
   }
-  onHover(i) {
-    this.hoverIndex = i
-  }
+
 }

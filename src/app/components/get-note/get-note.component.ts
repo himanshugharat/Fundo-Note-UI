@@ -24,12 +24,16 @@ export class GetNoteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.getNotes().subscribe(re => {
-      for (let i = 0; i < re['data'].data.length; i++) {
-        this.note.push(re['data'].data[i]);
+    this.http.getNotes().subscribe(response => {
+      for (let i = 0; i < response['data'].data.length; i++) {
+        if (response['data'].data[i].isDeleted || response['data'].data[i].isArchived) { }
+        else {
+          this.note.push(response['data'].data[i]);
+        }
       }
       this.note.reverse()
       console.log(this.note)
+      console.log(response)
     })
   }
 

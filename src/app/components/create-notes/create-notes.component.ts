@@ -28,7 +28,6 @@ export class CreateNotesComponent implements OnInit {
     }
     this.note.addNotes(noteData).subscribe(response => {
       if (response['status'].success == true) {
-        //window.location.reload()
         this.snackBar.open("note added successfully", 'success')
       }
     },

@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import {Observable,Subject} from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
-private subject=new Subject<any>();
+  private subject = new Subject<any>();
   constructor() { }
-  sendEvent(){
+  sendEvent() {
     this.subject.next();
   }
-  getEvent():Observable<any>{
+  getEvent(): Observable<any> {
     return this.subject.asObservable();
   }
 

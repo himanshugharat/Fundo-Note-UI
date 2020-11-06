@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotesService } from 'src/app/service/notes.service';
+import { SharedService } from 'src/app/service/shared/shared.service';
 
 @Component({
   selector: 'app-card-pannel',
@@ -9,7 +10,7 @@ import { NotesService } from 'src/app/service/notes.service';
 })
 export class CardPannelComponent implements OnInit {
 
-  constructor(private noteService: NotesService, public snackBar: MatSnackBar) { }
+  constructor(private noteService: NotesService, public snackBar: MatSnackBar, private shared: SharedService) { }
   @Input() noteId
   ngOnInit(): void {
   }
@@ -22,6 +23,7 @@ export class CardPannelComponent implements OnInit {
       if (response['data'].success == true) {
         this.snackBar.open("note moved to bin", 'success')
         console.log(response)
+        this.shared.sendEvent();
       }
     },
       error => {
@@ -29,4 +31,22 @@ export class CardPannelComponent implements OnInit {
       }
     )
   }
+  archiveNote() {
+    let noteData = {
+      isArchived: true,
+      noteIdList: [this.noteId]
+    }
+    this.noteService.archiveNote(noteData).subscribe(response => {
+      if (response['data'].success == true) {
+        this.snackBar.open("note moved to archive", 'success')
+        console.log(response)
+        this.shared.sendEvent();
+      }
+    },
+      error => {
+        this.snackBar.open("unable to move to archive plz try again", 'failed')
+      }
+    )
+  }
+
 }

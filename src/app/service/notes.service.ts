@@ -29,5 +29,13 @@ export class NotesService {
     let url = this._url + "getTrashNotesList"
     return this.http.getService(url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
   }
+  archiveNote(data) {
+    let url = this._url + "archiveNotes"
+    return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
+  }
+  getArchiveNote() {
+    let url = this._url + "getArchiveNotesList"
+    return this.http.getService(url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
+  }
 }
 
