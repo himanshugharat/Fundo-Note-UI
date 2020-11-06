@@ -7,8 +7,8 @@ import { NotesService } from 'src/app/service/notes.service';
   styleUrls: ['./archive.component.scss']
 })
 export class ArchiveComponent implements OnInit {
-  note=[]
-  nonoteCondition=false
+  note = []
+  nonoteCondition = false
   constructor(private notesService: NotesService) { }
 
   ngOnInit(): void {
