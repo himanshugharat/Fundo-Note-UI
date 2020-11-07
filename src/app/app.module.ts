@@ -35,6 +35,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DialogNoteComponent } from './components/dialog-note/dialog-note.component';
 import { TrashBinComponent } from './components/trash-bin/trash-bin.component';
 import { ArchiveComponent } from './components/archive/archive.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { ColorPalletComponent } from './color-pallet/color-pallet.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,8 @@ import { ArchiveComponent } from './components/archive/archive.component';
     CardPannelComponent,
     DialogNoteComponent,
     TrashBinComponent,
-    ArchiveComponent
+    ArchiveComponent,
+    ColorPalletComponent
   ],
   entryComponents:[GetNoteComponent],
   imports: [
@@ -75,7 +78,8 @@ import { ArchiveComponent } from './components/archive/archive.component';
     TextFieldModule,
     MatMenuModule,
     MatDatepickerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTooltipModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

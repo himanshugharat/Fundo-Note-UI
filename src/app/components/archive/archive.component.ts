@@ -9,6 +9,7 @@ import { NotesService } from 'src/app/service/notes.service';
 export class ArchiveComponent implements OnInit {
   note = []
   nonoteCondition = false
+  hoverIndex = -1
   constructor(private notesService: NotesService) { }
 
   ngOnInit(): void {
@@ -24,5 +25,18 @@ export class ArchiveComponent implements OnInit {
   noNote() {
     return (this.note.length == 0) ? this.nonoteCondition = true : this.nonoteCondition = false;
   }
-
+  onHover(i: number) {
+    this.hoverIndex = i
+  }
+  restoreArchive(id: string) {
+    let noteData = {
+      isArchived: false,
+      noteIdList: [id]
+    }
+    this.notesService.archiveNote(noteData).subscribe(response => {
+      this.note = []
+      this.ngOnInit()
+      console.log(response)
+    })
+  }
 }

@@ -1,23 +1,28 @@
     <button mat-icon-button >
-        <mat-icon class="material-icons-outlined">add_alert</mat-icon>
+        <mat-icon class="material-icons-outlined"#tooltip="matTooltip"
+        matTooltip="reminder">add_alert</mat-icon>
     </button>
     <button mat-icon-button>
-        <mat-icon class="material-icons-outlined">person_add</mat-icon>
+        <mat-icon class="material-icons-outlined" #tooltip="matTooltip"
+        matTooltip="add peron">person_add</mat-icon>
     </button>
     <button mat-icon-button>
-        <mat-icon class="material-icons-outlined">color_lens</mat-icon>
+        <app-color-pallet></app-color-pallet>
     </button>
     <button mat-icon-button >
-        <mat-icon class="material-icons-outlined" (click)="trashNote()">delete</mat-icon>
+        <mat-icon class="material-icons-outlined" #tooltip="matTooltip"
+        matTooltip="delete" (click)="trashNote()">delete</mat-icon>
     </button>
 
     <button mat-icon-button>
-        <mat-icon class="material-icons-outlined" (click)="archiveNote()">archive</mat-icon>
+        <mat-icon class="material-icons-outlined" #tooltip="matTooltip"
+        matTooltip="archive" (click)="archiveNote()">archive</mat-icon>
     </button>
+   
     <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon class="material-icons-outlined">more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+    <mat-menu #menu="matMenu" yPosition="above" fxLayout="row">
         <button mat-menu-item>
             <span>add lable</span>
         </button>

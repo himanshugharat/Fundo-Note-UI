@@ -1,9 +1,8 @@
-
 <div fxLayout="row wrap " fxLayoutGap="20px" >
     <mat-card class="card" *ngFor="let n of note; let i=index" appearance="outline" (mouseenter)="onHover(i)"
     (mouseleave)="onHover(-1)">
       <div (click)="openDialog(n.title,n.description,n.id)">
-        <mat-card-header>
+        <mat-card-content>
           <mat-card-title>
             {{n.title}}
           </mat-card-title>
@@ -12,15 +11,17 @@
                 {{n.description}}
               </mat-card-content>
            </mat-card-title>
-        </mat-card-header>
+        </mat-card-content>
       </div>
        <mat-content>
         <span *ngIf="i==hoverIndex" class="pannel"> 
         <button mat-icon-button >
-          <mat-icon class="material-icons-outlined">restore_from_trash</mat-icon>
+          <mat-icon class="material-icons-outlined" #tooltip="matTooltip"
+          matTooltip="restore"(click)="restoreDelete(n.id)">restore_from_trash</mat-icon>
       </button>
       <button mat-icon-button>
-          <mat-icon class="material-icons-outlined">delete_forever</mat-icon>
+          <mat-icon class="material-icons-outlined" #tooltip="matTooltip"
+          matTooltip="delete forever" (click)="deleteForever(n.id)">delete_forever</mat-icon>
       </button>
       </span>
     </mat-content>

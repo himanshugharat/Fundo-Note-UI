@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { CardPannelComponent } from './components/card-pannel/card-pannel.component';
 import { TrashBinComponent } from './components/trash-bin/trash-bin.component';
 import { ArchiveComponent } from './components/archive/archive.component';
+import { ColorPalletComponent } from './color-pallet/color-pallet.component';
 
 const routes: Routes = [{ path: "register", component: RegisterComponent },
 { path: "login", component: LoginComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [{ path: "register", component: RegisterComponent },
 { path: "resetpassword/:id", component: ResetPasswordComponent },
 { path: "forgot", component: forgotPassword },
 { path: "icon-pannel", component: CardPannelComponent },
+{ path: "color-pallet", component: ColorPalletComponent },
 {
   path: "dashboard", component: DashboardComponent, children:
     [{ path: "notes", component: CreateNotesComponent },

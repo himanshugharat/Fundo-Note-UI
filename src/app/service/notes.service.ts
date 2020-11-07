@@ -37,5 +37,9 @@ export class NotesService {
     let url = this._url + "getArchiveNotesList"
     return this.http.getService(url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
   }
+  deleteNoteForever(data) {
+    let url = this._url + "deleteForeverNotes"
+    return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
+  }
 }
 
