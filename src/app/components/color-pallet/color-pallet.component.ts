@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NotesService } from '../service/notes.service';
-import { SharedService } from '../service/shared/shared.service';
+import { NotesService } from '../../service/notes.service';
+import { SharedService } from '../../service/shared/shared.service';
 
 @Component({
   selector: 'app-color-pallet',

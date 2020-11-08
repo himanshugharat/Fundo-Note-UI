@@ -36,7 +36,7 @@ import { DialogNoteComponent } from './components/dialog-note/dialog-note.compon
 import { TrashBinComponent } from './components/trash-bin/trash-bin.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { ColorPalletComponent } from './color-pallet/color-pallet.component';
+import { ColorPalletComponent } from './components/color-pallet/color-pallet.component';
 
 @NgModule({
   declarations: [
