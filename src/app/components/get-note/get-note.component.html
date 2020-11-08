@@ -1,24 +1,23 @@
 <div fxLayout="row wrap " fxLayoutGap="20px" *ngIf="!nonoteCondition">
   <mat-card class="card" *ngFor="let n of note; let i=index" appearance="outline" (mouseenter)="onHover(i)"
-    (mouseleave)="onHover(-1)">
+    (mouseleave)="onHover(-1)" [style.background]="n.color">
     <div (click)="openDialog(n.title,n.description,n.id)">
       <mat-card-content>
         <mat-card-title>
           {{n.title}}
         </mat-card-title>
-          <mat-card-title>
-            <mat-card-content>
-              {{n.description}}
-            </mat-card-content>
-         </mat-card-title>
+        <mat-card-title>
+          <mat-card-content>
+            {{n.description}}
+          </mat-card-content>
+        </mat-card-title>
       </mat-card-content>
     </div>
     <mat-card-content>
-       <span *ngIf="i==hoverIndex" class="pannel"> 
-      <!-- <span *ngIf="displayPannel()" class="pannel"> -->
+      <span [hidden]="!(hoverIndex==i)" class="pannel">
         <app-card-pannel [noteId]="n.id"></app-card-pannel>
-        </span>
-  </mat-card-content>
+      </span>
+    </mat-card-content>
   </mat-card>
 </div>
 <div *ngIf="noNote()" fxLayout="row" fxLayoutAlign="center center" class="disabled">

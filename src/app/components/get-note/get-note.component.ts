@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NotesService } from 'src/app/service/notes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogNoteComponent } from '../dialog-note/dialog-note.component';
@@ -10,10 +10,12 @@ import { notEqual } from 'assert';
   templateUrl: './get-note.component.html',
   styleUrls: ['./get-note.component.scss']
 })
+
 export class GetNoteComponent implements OnInit {
   note = []
   isButtonVisible = false
   hoverIndex = -1
+  active:boolean
   nonoteCondition = false
   clickEventSubscription: Subscription;
   constructor(private http: NotesService, public dialog: MatDialog, public shared: SharedService) {
@@ -41,8 +43,13 @@ export class GetNoteComponent implements OnInit {
     this.hoverIndex = i
   }
 
-  displayPannel() {
-    return true
+  displayPannel(i) {
+    if(this.hoverIndex==i){
+      this.active=true
+    }
+    else{
+      this.active=false
+    }
   }
 
   noNote() {

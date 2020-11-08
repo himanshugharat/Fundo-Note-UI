@@ -12,6 +12,7 @@ export class CardPannelComponent implements OnInit {
 
   constructor(private noteService: NotesService, public snackBar: MatSnackBar, private shared: SharedService) { }
   @Input() noteId
+  
   ngOnInit(): void {
   }
   trashNote() {
