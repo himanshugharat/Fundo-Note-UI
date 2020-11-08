@@ -45,5 +45,9 @@ export class NotesService {
     let url = this._url + "changesColorNotes"
     return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
   }
+  getNoteLable(data) {
+    let url = this._url + "changesColorNotes"
+    return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
+  }
 }
 

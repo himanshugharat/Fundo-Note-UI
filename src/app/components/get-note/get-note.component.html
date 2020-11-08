@@ -1,21 +1,32 @@
 <div fxLayout="row wrap " fxLayoutGap="20px" *ngIf="!nonoteCondition">
-  <mat-card class="card" *ngFor="let n of note; let i=index" appearance="outline" (mouseenter)="onHover(i)"
-    (mouseleave)="onHover(-1)" [style.background]="n.color">
-    <div (click)="openDialog(n.title,n.description,n.id)">
+  <mat-card class="card" *ngFor="let note of note; let i=index" appearance="outline" (mouseenter)="onHover(i)"
+    (mouseleave)="onHover(-1)" [style.background]="note.color">
+    <div (click)="openDialog(n.title,n.description,note.id)">
+      <div >        
+        
+      <mat-form-field appearance="none">
+        <mat-chip-list #chipList >
+          <mat-chip *ngFor="let lable of note.noteLabels">
+                   {{lable.label}} 
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+        </mat-chip-list>
+      </mat-form-field>
+      </div>
       <mat-card-content>
         <mat-card-title>
-          {{n.title}}
+          {{note.title}}
         </mat-card-title>
         <mat-card-title>
           <mat-card-content>
-            {{n.description}}
+            {{note.description}}
           </mat-card-content>
         </mat-card-title>
       </mat-card-content>
     </div>
     <mat-card-content>
       <span [hidden]="!(hoverIndex==i)" class="pannel">
-        <app-card-pannel [noteId]="n.id"></app-card-pannel>
+        <app-card-pannel [noteId]="note.id"></app-card-pannel>
       </span>
     </mat-card-content>
   </mat-card>

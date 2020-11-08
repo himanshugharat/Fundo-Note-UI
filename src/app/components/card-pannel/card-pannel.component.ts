@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotesService } from 'src/app/service/notes.service';
 import { SharedService } from 'src/app/service/shared/shared.service';
@@ -8,13 +10,15 @@ import { SharedService } from 'src/app/service/shared/shared.service';
   templateUrl: './card-pannel.component.html',
   styleUrls: ['./card-pannel.component.scss']
 })
-export class CardPannelComponent implements OnInit {
 
+
+export class CardPannelComponent implements OnInit {
   constructor(private noteService: NotesService, public snackBar: MatSnackBar, private shared: SharedService) { }
   @Input() noteId
-  
+  labelName=new FormControl("")
   ngOnInit(): void {
   }
+
   trashNote() {
     let noteData = {
       isDeleted: true,
@@ -32,6 +36,7 @@ export class CardPannelComponent implements OnInit {
       }
     )
   }
+
   archiveNote() {
     let noteData = {
       isArchived: true,
@@ -50,4 +55,7 @@ export class CardPannelComponent implements OnInit {
     )
   }
 
+  addNoteLable() {
+  console.log(this.labelName.value)
+  }
 }

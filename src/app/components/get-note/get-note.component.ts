@@ -4,7 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogNoteComponent } from '../dialog-note/dialog-note.component';
 import { SharedService } from '../../service/shared/shared.service'
 import { Subscription } from "rxjs"
-import { notEqual } from 'assert';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+
 @Component({
   selector: 'app-get-note',
   templateUrl: './get-note.component.html',
@@ -15,7 +17,7 @@ export class GetNoteComponent implements OnInit {
   note = []
   isButtonVisible = false
   hoverIndex = -1
-  active:boolean
+  active: boolean
   nonoteCondition = false
   clickEventSubscription: Subscription;
   constructor(private http: NotesService, public dialog: MatDialog, public shared: SharedService) {
@@ -23,6 +25,7 @@ export class GetNoteComponent implements OnInit {
       this.note = []
       this.ngOnInit();
     })
+
   }
 
   ngOnInit(): void {
@@ -37,6 +40,7 @@ export class GetNoteComponent implements OnInit {
       console.log(this.note)
       console.log(response)
     })
+    
   }
 
   onHover(i) {
@@ -44,11 +48,11 @@ export class GetNoteComponent implements OnInit {
   }
 
   displayPannel(i) {
-    if(this.hoverIndex==i){
-      this.active=true
+    if (this.hoverIndex == i) {
+      this.active = true
     }
-    else{
-      this.active=false
+    else {
+      this.active = false
     }
   }
 
@@ -58,4 +62,7 @@ export class GetNoteComponent implements OnInit {
   openDialog(title, description, id) {
     this.dialog.open(DialogNoteComponent, { data: { title: title, description: description, id: id } });
   }
+
+  
 }
+

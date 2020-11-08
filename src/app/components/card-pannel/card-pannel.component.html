@@ -1,27 +1,33 @@
-    <button mat-icon-button >
-        <mat-icon class="material-icons-outlined"#tooltip="matTooltip"
-        matTooltip="reminder">add_alert</mat-icon>
-    </button>
-    <button mat-icon-button>
-        <mat-icon class="material-icons-outlined" #tooltip="matTooltip"
-        matTooltip="add peron">person_add</mat-icon>
-    </button>
-    <button mat-icon-button>
-        <app-color-pallet [noteIdcard]="noteId"></app-color-pallet>
-    </button>
-    <button mat-icon-button >
-        <mat-icon class="material-icons-outlined" #tooltip="matTooltip"
-        matTooltip="delete" (click)="trashNote()">delete</mat-icon>
-    </button>
+<button mat-icon-button>
+    <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="reminder">add_alert</mat-icon>
+</button>
+<button mat-icon-button>
+    <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="add peron">person_add</mat-icon>
+</button>
+<button mat-icon-button>
+    <app-color-pallet [noteIdcard]="noteId"></app-color-pallet>
+</button>
+<button mat-icon-button>
+    <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="delete" (click)="trashNote()">delete
+    </mat-icon>
+</button>
 
-    <button mat-icon-button>
-        <mat-icon class="material-icons-outlined" #tooltip="matTooltip"
-        matTooltip="archive" (click)="archiveNote()">archive</mat-icon>
-    </button>
-   
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon class="material-icons-outlined">more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu" yPosition="above" fxLayout="row">
-        
-    </mat-menu>
+<button mat-icon-button>
+    <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="archive" (click)="archiveNote()">archive
+    </mat-icon>
+</button>
+
+<button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu" yPosition="below" fxLayout="row" overlapTrigger="false">
+    <div class="lableForm">
+        <form>
+            <div>Lable note</div>
+            <mat-form-field appearance="none" (click)="$event.stopPropagation();">
+                <input mat-menu-item matInput placeholder="enter lable name" type="text" autocomplete="off" [formControl]="labelName">
+            </mat-form-field>
+            <button mat-stroked-button type="submit" (click)="addNoteLable()">add</button>
+        </form>
+    </div>
+</mat-menu>

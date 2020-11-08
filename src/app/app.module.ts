@@ -37,6 +37,7 @@ import { TrashBinComponent } from './components/trash-bin/trash-bin.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ColorPalletComponent } from './components/color-pallet/color-pallet.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { ColorPalletComponent } from './components/color-pallet/color-pallet.com
     MatMenuModule,
     MatDatepickerModule,
     MatDialogModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatChipsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

@@ -1,7 +1,8 @@
 .card{
     max-width: 400px;
-    width:240px ;
-    height: 100px;
+    min-width:250px ;
+    max-height: 250px;
+    min-height: 100px;
     margin-top: 20px;
     border-radius: 10px;
     border: black 3px;

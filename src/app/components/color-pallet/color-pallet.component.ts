@@ -9,7 +9,6 @@ import { SharedService } from '../../service/shared/shared.service';
 })
 
 export class ColorPalletComponent implements OnInit {
-color
 @Input() noteIdcard
   constructor(private noteService:NotesService,public shared:SharedService) { }
 
