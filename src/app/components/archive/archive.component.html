@@ -15,7 +15,7 @@
       <span *ngIf="i==hoverIndex" class="pannel">
         <button mat-icon-button>
           <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="unarchive"
-            (click)="restoreArchive(note.id)">unarchive</mat-icon>
+            (click)="unArchive(note.id)">unarchive</mat-icon>
         </button>
       </span>
     </mat-card-content>

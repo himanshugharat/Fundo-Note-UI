@@ -18,7 +18,7 @@
         <mat-chip *ngFor="let lable of note.noteLabels"[selectable]="selectable"
         [removable]="removable" (removed)="remove(lable)">
                  {{lable.label}} 
-                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                 <mat-icon matChipRemove >cancel</mat-icon>
         </mat-chip>
       </mat-chip-list>
     </mat-form-field>
