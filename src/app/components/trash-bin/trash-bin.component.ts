@@ -20,8 +20,6 @@ export class TrashBinComponent implements OnInit {
         this.note.push(response['data'].data[i]);
       }
       this.note.reverse()
-      console.log(this.note)
-      console.log(response)
     })
   }
   noNote() {
@@ -36,7 +34,6 @@ export class TrashBinComponent implements OnInit {
       noteIdList: [id]
     }
     this.notesService.deleteNoteForever(noteData).subscribe(response => {
-      console.log(response)
       if (response['data'].success == true) {
         this.snackBar.open("note deleted successfully", 'success')
         this.note = []
@@ -53,7 +50,6 @@ export class TrashBinComponent implements OnInit {
       noteIdList: [id]
     }
     this.notesService.deleteNote(noteData).subscribe(response => {
-      console.log(response)
       if (response['data'].success == true) {
         this.snackBar.open("note restored successfully", 'success')
         this.note = []

@@ -59,6 +59,9 @@ export class GetNoteComponent implements OnInit {
   openDialog(title, description, id) {
     this.dialog.open(DialogNoteComponent, { data: { title: title, description: description, id: id } });
   }
-
+dia(inn){
+  console.log(inn)
+  inn.setAttribute("style","display:none")
+}
 }
 

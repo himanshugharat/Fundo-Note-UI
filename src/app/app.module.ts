@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { LoginComponent } from './components/login/login.component';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { UserService } from './service/user.service';
@@ -38,6 +38,7 @@ import { ArchiveComponent } from './components/archive/archive.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ColorPalletComponent } from './components/color-pallet/color-pallet.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { InterceptorInterceptor } from './service/auth/interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,7 @@ import {MatChipsModule} from '@angular/material/chips';
     MatTooltipModule,
     MatChipsModule
   ],
-  providers: [UserService],
+  providers: [UserService,{provide:HTTP_INTERCEPTORS,useClass:InterceptorInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
