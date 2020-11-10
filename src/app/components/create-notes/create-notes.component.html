@@ -13,7 +13,7 @@
       <mat-card *ngIf="!reset" class="back-card">
         <form>
           <mat-form-field appearance="none">
-            <input matInput autocomplete="off" placeholder="title" [formControl]="title">
+            <input matInput autocomplete="off" onfocus="this.value=''" placeholder="title" [formControl]="title">
           </mat-form-field>
           <button mat-icon-button>
             <mat-icon class="material-icons-outlined" (click)="changeNotePinned()" (click)="reset=true">
@@ -21,12 +21,12 @@
             </mat-icon>
           </button>
           <mat-form-field appearance="none">
-            <input matInput placeholder="take a note" autocomplete="off" autofocus [formControl]="description">
+            <input matInput placeholder="take a note" onfocus="this.value=''"autocomplete="off" autofocus [formControl]="description">
           </mat-form-field>
           <span fxLayout="row" fxLayoutAlign="end end">
             <app-card-pannel></app-card-pannel>
             <span class="settings"></span>
-            <button type="button" mat-button (click)="addNote()" (click)="reset=true" (click)="UpdateNoteComponent()"  >close</button>
+            <button type="button"  mat-button (click)="addNote()" (click)="reset=true" (click)="UpdateNoteComponent()"  >close</button>
           </span>
         </form>
       </mat-card>

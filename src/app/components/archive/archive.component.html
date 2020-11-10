@@ -1,13 +1,13 @@
 <div fxLayout="row wrap " fxLayoutGap="20px">
-  <mat-card class="card" *ngFor="let n of note; let i=index" appearance="outline" (mouseenter)="onHover(i)"
+  <mat-card class="card" *ngFor="let note of note; let i=index" appearance="outline" (mouseenter)="onHover(i)"
     (mouseleave)="onHover(-1)">
-    <div (click)="openDialog(n.title,n.description,n.id)">
+    <div (click)="openDialog(note.title,note.description,note.id)">
       <mat-card-content>
         <mat-card-title>
-          {{n.title}}
+          {{note.title}}
         </mat-card-title>
         <mat-card-content>
-        {{n.description}}
+        {{note.description}}
       </mat-card-content>
     </mat-card-content>
     </div>
@@ -15,11 +15,10 @@
       <span *ngIf="i==hoverIndex" class="pannel">
         <button mat-icon-button>
           <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="unarchive"
-            (click)="restoreArchive(n.id)">unarchive</mat-icon>
+            (click)="restoreArchive(note.id)">unarchive</mat-icon>
         </button>
       </span>
     </mat-card-content>
-  
   </mat-card>
 </div>
 <div *ngIf="noNote()" fxLayout="row" fxLayoutAlign="center center" class="disabled">

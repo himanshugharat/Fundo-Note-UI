@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotesService } from '../../service/notes.service';
 import { SharedService } from '../../service/shared/shared.service';
 
@@ -10,21 +11,26 @@ import { SharedService } from '../../service/shared/shared.service';
 
 export class ColorPalletComponent implements OnInit {
 @Input() noteIdcard
-  constructor(private noteService:NotesService,public shared:SharedService) { }
+  constructor(private noteService:NotesService,public shared:SharedService,public snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
   }
   getColor(color){
-    console.log(color) 
-    console.log(this.noteIdcard) 
     let noteColorData = {
       color: color,
       noteIdList: [this.noteIdcard]
     }
     this.noteService.changeNotecolor(noteColorData).subscribe(response=>{
-      console.log(response)
-      this.shared.sendEvent();
-    })
+      if (response['data'].success == true) {
+        this.snackBar.open("note color changed", 'success')
+        console.log(response)
+        this.shared.sendEvent();
+      }
+    },
+      error => {
+        this.snackBar.open("unable to change color plz try again", 'failed')
+      }
+    )
   }
 
 }

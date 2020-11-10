@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatMenuTrigger } from '@angular/material/menu';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotesService } from 'src/app/service/notes.service';
 import { SharedService } from 'src/app/service/shared/shared.service';
@@ -56,6 +55,21 @@ export class CardPannelComponent implements OnInit {
   }
 
   addNoteLable() {
-  console.log(this.labelName.value)
+  let lableData={
+    label:this.labelName.value,
+    isDeleted:false
+  }
+  this.noteService.addNoteLable(lableData,this.noteId).subscribe(response=>{
+    if (response) {
+      this.snackBar.open("note lable  added", 'success')
+      console.log(response)
+      this.shared.sendEvent();
+    }
+  },
+    error => {
+      this.snackBar.open("unable to add to note lable plz try again", 'failed')
+    }
+  )
+  
   }
 }
