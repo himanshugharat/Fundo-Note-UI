@@ -4,8 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogNoteComponent } from '../dialog-note/dialog-note.component';
 import { SharedService } from '../../service/shared/shared.service'
 import { Subscription } from "rxjs"
-import { MatChipInputEvent } from '@angular/material/chips';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-get-note',
@@ -19,10 +17,6 @@ export class GetNoteComponent implements OnInit {
   hoverIndex = -1
   active: boolean
   nonoteCondition = false
-  visible = true;
-  selectable = true;
-  removable = true;
-  lable=[]
   clickEventSubscription: Subscription;
   constructor(private http: NotesService, public dialog: MatDialog, public shared: SharedService) {
     this.clickEventSubscription = this.shared.getEvent().subscribe(() => {
@@ -42,9 +36,8 @@ export class GetNoteComponent implements OnInit {
       }
       this.note.reverse()
       console.log(this.note)
-      console.log(response)
     })
-    
+
   }
 
   onHover(i) {
@@ -66,14 +59,6 @@ export class GetNoteComponent implements OnInit {
   openDialog(title, description, id) {
     this.dialog.open(DialogNoteComponent, { data: { title: title, description: description, id: id } });
   }
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  remove(lable): void {
-    console.log(lable)
-    // const index = this.note.indexOf(lable);
 
-    // if (index >= 0) {
-    //   this.lable.splice(index, 1);
-    // }
-  }
 }
 
