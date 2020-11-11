@@ -33,7 +33,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { CardPannelComponent } from './components/card-pannel/card-pannel.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogNoteComponent } from './components/dialog-note/dialog-note.component';
-import { TrashBinComponent } from './components/trash-bin/trash-bin.component';
+import { TrashComponent } from './components/trash/trash.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ColorPalletComponent } from './components/color-pallet/color-pallet.component';
@@ -54,7 +54,7 @@ import { AuthInterceptor } from './service/auth/auth.interceptor';
     PageNotFoundComponent,
     CardPannelComponent,
     DialogNoteComponent,
-    TrashBinComponent,
+    TrashComponent,
     ArchiveComponent,
     ColorPalletComponent
   ],

@@ -3,11 +3,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotesService } from 'src/app/service/notes.service';
 
 @Component({
-  selector: 'app-trash-bin',
-  templateUrl: './trash-bin.component.html',
-  styleUrls: ['./trash-bin.component.scss']
+  selector: 'app-trash',
+  templateUrl: './trash.component.html',
+  styleUrls: ['./trash.component.scss']
 })
-export class TrashBinComponent implements OnInit {
+export class TrashComponent implements OnInit {
   note = []
   nonoteCondition = false
   isButtonVisible = false

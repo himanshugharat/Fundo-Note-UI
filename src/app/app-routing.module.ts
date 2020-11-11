@@ -9,7 +9,7 @@ import { CreateNotesComponent } from './components/create-notes/create-notes.com
 import { GetNoteComponent } from './components/get-note/get-note.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { CardPannelComponent } from './components/card-pannel/card-pannel.component';
-import { TrashBinComponent } from './components/trash-bin/trash-bin.component';
+import { TrashComponent } from './components/trash/trash.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { ColorPalletComponent } from './components/color-pallet/color-pallet.component';
 
@@ -25,7 +25,7 @@ const routes: Routes = [{ path: "register", component: RegisterComponent },
     [{ path: "notes", component: CreateNotesComponent },
     { path: "notes/:label", component: CreateNotesComponent },
     { path: "getnote", component: GetNoteComponent },
-    { path: "bin", component: TrashBinComponent },
+    { path: "bin", component: TrashComponent },
     { path: "archive", component: ArchiveComponent },]
 },
 { path: "**", component: PageNotFoundComponent },
