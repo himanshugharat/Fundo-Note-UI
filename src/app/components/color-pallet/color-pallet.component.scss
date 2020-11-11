@@ -1,66 +1,64 @@
+@import "../../../style/style.scss";
 @mixin color {
-    width:25px;
-    height: 25px;
-    margin: 3px;
-    text-align: center;
-    border-radius: 50%;
-    border: 1px solid lightgray;
+  width: 25px;
+  height: 25px;
+  margin: 3px;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid $borderColor;
 }
-.color-one{
-    @include color();
-    background-color: #fff;
+.color-one {
+  @include color();
+  background-color: $white;
 }
-.color-two{
-    @include color();
-    background-color: #f28b82;
+.color-two {
+  @include color();
+  background-color: $palletRed;
 }
-.color-three{
-    @include color();
-    background-color: #fbbc04;
+.color-three {
+  @include color();
+  background-color: $palletOrange;
 }
-.color-four{
-    @include color();
-    background-color: #fff475;
+.color-four {
+  @include color();
+  background-color: $palletYellow;
 }
-.color-five{
-    @include color();
-    background-color: #ccff90;
+.color-five {
+  @include color();
+  background-color: $palletGreen;
 }
-.color-six{
-    @include color();
-    background-color: #a7ffeb;
+.color-six {
+  @include color();
+  background-color: $palletCan;
 }
-.color-seven{
-    @include color();
-    background-color: #cbf0f8;
+.color-seven {
+  @include color();
+  background-color: $palletLightBlue;
 }
-.color-eight{
-    @include color();
-    background-color: #aecbfa;
+.color-eight {
+  @include color();
+  background-color: $palletBlue;
 }
-.color-nine{
-    @include color();
-    background-color: #d7aefb;
+.color-nine {
+  @include color();
+  background-color: $palletPurpl;
 }
-.color-ten{
-    @include color();
-    background-color: #fdcfe8;
+.color-ten {
+  @include color();
+  background-color: $palletPink;
 }
-.color-eleven{
-    @include color();
-    background-color: #e6c9a8;
+.color-eleven {
+  @include color();
+  background-color: $palletLightOrange;
 }
-.color-twelve{
-    @include color();
-    background-color: #e8eaed;
+.color-twelve {
+  @include color();
+  background-color: $palletFaint;
 }
-.color{
-    @include color();
-    background-color: #202124;
+
+.mat-icon {
+  font-size: 18px;
 }
-.mat-icon{
-    font-size: 18px;
-}
-.pallet{
-    padding: 5px;
+.pallet {
+  padding: 5px;
 }

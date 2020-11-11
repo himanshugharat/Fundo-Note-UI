@@ -1,13 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { NotesService } from 'src/app/service/notes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogNoteComponent } from '../dialog-note/dialog-note.component';
 import { SharedService } from '../../service/shared/shared.service'
 import { Subscription } from "rxjs"
-import { MatChipInputEvent } from '@angular/material/chips';
-import { error } from 'protractor';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-get-note',
@@ -21,31 +19,50 @@ export class GetNoteComponent implements OnInit {
   hoverIndex = -1
   active: boolean
   nonoteCondition = false
+  label = []
   visible = true;
   selectable = true;
   removable = true;
   addOnBlur = true;
+  labelName
   clickEventSubscription: Subscription;
-  constructor(private http: NotesService, public dialog: MatDialog, public shared: SharedService, public snackBar: MatSnackBar) {
+  constructor(private http: NotesService, public dialog: MatDialog, public shared: SharedService, public snackBar: MatSnackBar, public route: ActivatedRoute) {
     this.clickEventSubscription = this.shared.getEvent().subscribe(() => {
       this.note = []
       this.ngOnInit();
     })
-
   }
 
   ngOnInit(): void {
+    this.labelName=null
+    this.labelName = this.route.snapshot.paramMap.get('label')
     this.http.getNotes().subscribe(response => {
       for (let i = 0; i < response['data'].data.length; i++) {
         if (response['data'].data[i].isDeleted || response['data'].data[i].isArchived) { }
         else {
-          this.note.push(response['data'].data[i]);
+          if (this.labelName != null) {
+            for (let j = 0; j < response['data'].data[i].noteLabels.length; j++) {
+              if (response['data'].data[i].noteLabels[j].label === this.labelName) {
+                this.note.push(response['data'].data[i]);
+              }
+            }
+          } else {
+            this.note.push(response['data'].data[i]);
+          }
         }
       }
       this.note.reverse()
-      console.log(this.note)
-    })
-
+    //   this.label = []
+    //   this.note.forEach(element => {
+    //     for (let i = 0; i < element.noteLabels.length; i++)
+    //       this.label.push(element.noteLabels[i].label)
+    //   });
+    //   function onlyUnique(value, index, self) {
+    //     return self.indexOf(value) === index
+    //   }
+    //   this.label = this.label.filter(onlyUnique) 
+     })
+    
   }
 
   onHover(i) {

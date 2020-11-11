@@ -1,5 +1,5 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { HttpService } from './http_service/http.service';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { HttpService } from './http_service/http.service';
 })
 
 export class UserService {
-  private _url = "http://fundoonotes.incubation.bridgelabz.com/api/user/"
+  private _url = environment.apiUrl+"user/"
 
   constructor(private http: HttpService) {
   }
@@ -24,16 +24,16 @@ export class UserService {
 
   resetPassword(data) {
     let url = this._url + "reset-password"
-    return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
+    return this.http.postService(data, url)
   }
 
   resetMail(data) {
     let url = this._url + "reset"
-    return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
+    return this.http.postService(data, url)
   }
 
   logout(data) {
     let url = this._url + "logout"
-    return this.http.postService(data, url, true, { headers: { 'Authorization': localStorage.getItem('token') } })
+    return this.http.postService(data, url)
   }
 }

@@ -23,6 +23,7 @@ const routes: Routes = [{ path: "register", component: RegisterComponent },
 {
   path: "dashboard", component: DashboardComponent, children:
     [{ path: "notes", component: CreateNotesComponent },
+    { path: "notes/:label", component: CreateNotesComponent },
     { path: "getnote", component: GetNoteComponent },
     { path: "bin", component: TrashBinComponent },
     { path: "archive", component: ArchiveComponent },]

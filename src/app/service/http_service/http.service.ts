@@ -8,11 +8,11 @@ export class HttpService {
 
   constructor(private http:HttpClient) { }
 
-  postService(data,url, need=false ,header=null){
-    return this.http.post(url,data,need &&header);
+  postService(data,url){
+    return this.http.post(url,data);
   }
-  getService(url,need=false ,header=null){
-    return this.http.get(url,need &&header);
+  getService(url){
+    return this.http.get(url);
   }
   deleteService(url){
     return this.http.delete(url)
