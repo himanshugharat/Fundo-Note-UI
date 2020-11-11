@@ -1,9 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { NotesService } from 'src/app/service/notes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogNoteComponent } from '../dialog-note/dialog-note.component';
 import { SharedService } from '../../service/shared/shared.service'
 import { Subscription } from "rxjs"
+import { MatChipInputEvent } from '@angular/material/chips';
+import { error } from 'protractor';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-get-note',
@@ -17,8 +21,12 @@ export class GetNoteComponent implements OnInit {
   hoverIndex = -1
   active: boolean
   nonoteCondition = false
+  visible = true;
+  selectable = true;
+  removable = true;
+  addOnBlur = true;
   clickEventSubscription: Subscription;
-  constructor(private http: NotesService, public dialog: MatDialog, public shared: SharedService) {
+  constructor(private http: NotesService, public dialog: MatDialog, public shared: SharedService, public snackBar: MatSnackBar) {
     this.clickEventSubscription = this.shared.getEvent().subscribe(() => {
       this.note = []
       this.ngOnInit();
@@ -59,9 +67,23 @@ export class GetNoteComponent implements OnInit {
   openDialog(title, description, id) {
     this.dialog.open(DialogNoteComponent, { data: { title: title, description: description, id: id } });
   }
-dia(inn){
-  console.log(inn)
-  inn.setAttribute("style","display:none")
-}
+
+  remove(note): void {
+    this.note.forEach(element => {
+      const index = element.noteLabels.indexOf(note);
+
+      if (index >= 0) {
+        console.log(element.noteLabels[index].id)
+        this.http.deleteNoteLable(element.id, element.noteLabels[index].id).subscribe(response => {
+          this.snackBar.open("note label deleted", 'success')
+        },
+          error => {
+            this.snackBar.open("unable to delete label", 'failed')
+          })
+        element.noteLabels.splice(index, 1);
+      }
+    });
+  }
+
 }
 

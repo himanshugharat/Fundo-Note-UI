@@ -58,5 +58,9 @@ export class NotesService {
     let url = this._url +parm+"/noteLabels"
     return this.http.postService(data, url)
   }
+  deleteNoteLable(noteId,lableId){
+    let url = this._url +noteId+"/noteLabels/"+lableId
+    return this.http.deleteService(url)
+  }
 }
 

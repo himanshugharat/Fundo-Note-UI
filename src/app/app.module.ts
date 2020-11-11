@@ -38,7 +38,7 @@ import { ArchiveComponent } from './components/archive/archive.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ColorPalletComponent } from './components/color-pallet/color-pallet.component';
 import {MatChipsModule} from '@angular/material/chips';
-import { InterceptorInterceptor } from './service/auth/interceptor.interceptor';
+import { AuthInterceptor } from './service/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -84,7 +84,7 @@ import { InterceptorInterceptor } from './service/auth/interceptor.interceptor';
     MatTooltipModule,
     MatChipsModule
   ],
-  providers: [UserService,{provide:HTTP_INTERCEPTORS,useClass:InterceptorInterceptor,multi:true}],
+  providers: [UserService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
