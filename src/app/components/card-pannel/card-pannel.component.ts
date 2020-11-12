@@ -14,7 +14,9 @@ import { SharedService } from 'src/app/service/shared/shared.service';
 export class CardPannelComponent implements OnInit {
   constructor(private noteService: NotesService, public snackBar: MatSnackBar, private shared: SharedService) { }
   @Input() noteId
+  @Input() labelArray
   labelName=new FormControl("")
+  label=this.labelName.value
   ngOnInit(): void {
   }
 
@@ -37,6 +39,7 @@ export class CardPannelComponent implements OnInit {
   }
 
   archiveNote() {
+    
     let noteData = {
       isArchived: true,
       noteIdList: [this.noteId]
@@ -55,8 +58,12 @@ export class CardPannelComponent implements OnInit {
   }
 
   addNoteLable() {
+    console.log(this.label.value)
+    if(this.labelName.value){
+     this.label=this.labelName.value
+    }
   let lableData={
-    label:this.labelName.value,
+    label:this.label,
     isDeleted:false
   }
   this.noteService.addNoteLable(lableData,this.noteId).subscribe(response=>{
@@ -71,5 +78,9 @@ export class CardPannelComponent implements OnInit {
     }
   )
   
+  }
+  setLabelName(labelName){
+    console.log(labelName)
+    this.label=labelName
   }
 }

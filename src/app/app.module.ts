@@ -39,6 +39,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { ColorPalletComponent } from './components/color-pallet/color-pallet.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { AuthInterceptor } from './service/auth/auth.interceptor';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { AuthInterceptor } from './service/auth/auth.interceptor';
     MatDatepickerModule,
     MatDialogModule,
     MatTooltipModule,
-    MatChipsModule
+    MatChipsModule,
+    MatCheckboxModule
   ],
   providers: [UserService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]

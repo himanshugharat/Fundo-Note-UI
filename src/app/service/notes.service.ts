@@ -1,24 +1,21 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpService } from './http_service/http.service';
 
-var headers=new HttpHeaders({
-  Authorization:localStorage.getItem('token')
-});
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class NotesService {
-  private _url = environment.apiUrl+"notes/"
+  private _url = environment.apiUrl + "notes/"
   constructor(private http: HttpService) {
-    
+
   }
-  
+
   addNotes(data) {
-  
+
     let url = this._url + "addNotes"
     return this.http.postService(data, url)
   }
@@ -54,12 +51,12 @@ export class NotesService {
     let url = this._url + "changesColorNotes"
     return this.http.postService(data, url)
   }
-  addNoteLable(data,parm) {
-    let url = this._url +parm+"/noteLabels"
+  addNoteLable(data, parm) {
+    let url = this._url + parm + "/noteLabels"
     return this.http.postService(data, url)
   }
-  deleteNoteLable(noteId,lableId){
-    let url = this._url +noteId+"/noteLabels/"+lableId
+  deleteNoteLable(noteId, lableId) {
+    let url = this._url + noteId + "/noteLabels/" + lableId
     return this.http.deleteService(url)
   }
 }

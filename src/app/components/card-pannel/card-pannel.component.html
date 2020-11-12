@@ -26,6 +26,10 @@
             <div>Lable note</div>
             <mat-form-field appearance="none" (click)="$event.stopPropagation();">
                 <input mat-menu-item matInput placeholder="enter lable name" type="text" autocomplete="off" [formControl]="labelName">
+                <section class="example-section" *ngFor="let label of labelArray">
+                    <mat-checkbox value="label" (click)="setLabelName(label)"  >{{label}}</mat-checkbox>
+                   
+                  </section>
             </mat-form-field>
             <button mat-stroked-button type="submit" (click)="addNoteLable()">add</button>
         </form>

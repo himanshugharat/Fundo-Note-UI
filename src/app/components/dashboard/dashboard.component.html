@@ -52,6 +52,9 @@
           <mat-icon class="material-icons-outlined" (mouseenter)="drawer.toggle()">label</mat-icon>
         </button>
         <button mat-icon-button>
+          <mat-icon class="material-icons-outlined" (mouseenter)="drawer.toggle()">label</mat-icon>
+        </button>
+        <button mat-icon-button>
           <mat-icon class="material-icons-outlined" (mouseenter)="drawer.toggle()">archive</mat-icon>
         </button>
         <button mat-icon-button>
@@ -72,8 +75,7 @@
     </mat-list-option>
     <mat-list-option>Reminder</mat-list-option>
     <mat-list-option>Edit lable</mat-list-option>
-    <mat-list-option class="option" [routerLink]="['/dashboard/notes','2020']">2020</mat-list-option>
-    <mat-list-option class="option" [routerLink]="['/dashboard/notes','lecture']">lecture</mat-list-option>
+    <mat-list-option class="option" *ngFor="let label of label"[routerLink]="['/dashboard/notes',label]">{{label}}</mat-list-option>
     <mat-list-option class="option" routerLink="/dashboard/archive">Archive</mat-list-option>
     <mat-list-option class="option" routerLink="/dashboard/bin">Bin</mat-list-option>
   </mat-selection-list>

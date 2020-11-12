@@ -34,6 +34,7 @@ export class GetNoteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
     this.labelName=null
     this.labelName = this.route.snapshot.paramMap.get('label')
     this.http.getNotes().subscribe(response => {
@@ -52,15 +53,15 @@ export class GetNoteComponent implements OnInit {
         }
       }
       this.note.reverse()
-    //   this.label = []
-    //   this.note.forEach(element => {
-    //     for (let i = 0; i < element.noteLabels.length; i++)
-    //       this.label.push(element.noteLabels[i].label)
-    //   });
-    //   function onlyUnique(value, index, self) {
-    //     return self.indexOf(value) === index
-    //   }
-    //   this.label = this.label.filter(onlyUnique) 
+      //this.label = []
+      this.note.forEach(element => {
+        for (let i = 0; i < element.noteLabels.length; i++)
+          this.label.push(element.noteLabels[i].label)
+      });
+      function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index
+      }
+      this.label = this.label.filter(onlyUnique) 
      })
     
   }
@@ -79,7 +80,10 @@ export class GetNoteComponent implements OnInit {
   }
 
   noNote() {
+    this.shared.change(this.label)
+     
     return (this.note.length == 0) ? this.nonoteCondition = true : this.nonoteCondition = false;
+    
   }
   openDialog(title, description, id) {
     this.dialog.open(DialogNoteComponent, { data: { title: title, description: description, id: id } });

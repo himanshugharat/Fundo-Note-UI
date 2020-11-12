@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/service/shared/shared.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -11,10 +12,14 @@ import { UserService } from 'src/app/service/user.service';
 export class DashboardComponent implements OnInit {
   showFiller = false;
   isButtonVisible = true;
+  label=[]
+ 
   token = localStorage.getItem('token')
   name = localStorage.getItem('name')
   email = localStorage.getItem('email')
-  constructor(private http: UserService, public snackBar: MatSnackBar, public route: Router) { }
+  constructor(private http: UserService, public snackBar: MatSnackBar, public route: Router,public shared:SharedService) {
+   this.shared.dataArray.subscribe(array=> this.label=array)
+   }
 
   ngOnInit(): void {
   }
