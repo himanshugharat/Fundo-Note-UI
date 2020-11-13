@@ -16,6 +16,7 @@ export class CardPannelComponent implements OnInit {
   @Input() noteId
   @Input() labelArray
   labelName=new FormControl("")
+  colaboratorName=new FormControl("")
   label=this.labelName.value
   ngOnInit(): void {
   }

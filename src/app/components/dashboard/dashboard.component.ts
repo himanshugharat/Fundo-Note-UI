@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   showFiller = false;
   isButtonVisible = true;
   label=[]
- 
+  isExpanded=true
   token = localStorage.getItem('token')
   name = localStorage.getItem('name')
   email = localStorage.getItem('email')

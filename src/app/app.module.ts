@@ -40,6 +40,7 @@ import { ColorPalletComponent } from './components/color-pallet/color-pallet.com
 import {MatChipsModule} from '@angular/material/chips';
 import { AuthInterceptor } from './service/auth/auth.interceptor';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDialogModule,
     MatTooltipModule,
     MatChipsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatGridListModule
   ],
   providers: [UserService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]

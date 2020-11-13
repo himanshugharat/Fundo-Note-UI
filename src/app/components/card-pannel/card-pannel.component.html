@@ -1,9 +1,11 @@
+<div class="iconPannel">
 <button mat-icon-button>
     <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="reminder">add_alert</mat-icon>
 </button>
-<button mat-icon-button>
+<button mat-icon-button [matMenuTriggerFor]="menuColab">
     <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="add peron">person_add</mat-icon>
 </button>
+
 <button mat-icon-button>
     <app-color-pallet [noteIdcard]="noteId"></app-color-pallet>
 </button>
@@ -35,3 +37,15 @@
         </form>
     </div>
 </mat-menu>
+<mat-menu #menuColab="matMenu" yPosition="below" fxLayout="row" overlapTrigger="false">
+    <div class="lableForm">
+        <form>
+            <div>add Colaborator </div>
+            <mat-form-field appearance="none" (click)="$event.stopPropagation();">
+                <input mat-menu-item matInput placeholder="enter colaborator name" type="text" autocomplete="off" [formControl]="colaboratorName">
+            </mat-form-field>
+            <button mat-stroked-button type="submit">add</button>
+        </form>
+    </div>
+</mat-menu>
+</div>
