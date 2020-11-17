@@ -1,6 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule} from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing'
 import { GetNoteComponent } from './get-note.component';
+import { NotesService } from '../../service/notes.service'
+import {Overlay} from '@angular/cdk/overlay'
+import {MatDialogModule,MatDialogRef} from '@angular/material/dialog' 
+
 
 describe('GetNoteComponent', () => {
   let component: GetNoteComponent;
@@ -8,7 +13,9 @@ describe('GetNoteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GetNoteComponent ]
+      imports:[RouterTestingModule ,HttpClientTestingModule,MatDialogModule],
+      declarations: [ GetNoteComponent ],
+      providers:[NotesService,Overlay,MatDialogRef]
     })
     .compileComponents();
   });
@@ -19,7 +26,8 @@ describe('GetNoteComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should call getPost',()=>{
+    expect(component.noNote()).toBeTruthy()
+  }
+  );
 });

@@ -70,8 +70,8 @@ export class CardPannelComponent implements OnInit {
   this.noteService.addNoteLable(lableData,this.noteId).subscribe(response=>{
     if (response) {
       this.snackBar.open("note lable  added", 'success')
-      console.log(response)
       this.shared.sendEvent();
+      this.shared.getEvent()
     }
   },
     error => {

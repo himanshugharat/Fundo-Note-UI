@@ -11,7 +11,7 @@ export class SharedService {
   dataArray=this.data.asObservable();
   constructor() { }
   sendEvent() {
-    //this.subject.next();
+    this.subject.next();
   }
   getEvent(): Observable<any> {
     return this.subject.asObservable();

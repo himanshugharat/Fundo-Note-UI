@@ -2,20 +2,16 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpService } from './http_service/http.service';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
 
 export class NotesService {
-   _url = environment.apiUrl + "notes/"
+  _url = environment.apiUrl + "notes/"
   constructor(private http: HttpService) {
-
   }
 
   addNotes(data) {
-
     let url = this._url + "addNotes"
     return this.http.postService(data, url)
   }

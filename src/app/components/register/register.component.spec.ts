@@ -25,6 +25,7 @@ describe('RegisterComponent', () => {
     let email = "hello"
    // email.setValue("hello")
     expect(email).toBe(email)
+    
   });
 
   

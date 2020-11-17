@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing'
 import { NotesService } from './notes.service';
 
-
 fdescribe('NotesService', () => {
   let service: NotesService;
   let httpmock: HttpTestingController
@@ -15,7 +14,7 @@ fdescribe('NotesService', () => {
     httpmock.verify()
   })
   it('retrive data', () => {
-    const dummy = [
+    const dummyPost = [
       {
         title: "hg;hgh;g",
         description: "fdfdfdfd",
@@ -55,12 +54,12 @@ fdescribe('NotesService', () => {
           id: "5f984ef6beb12f0022223a03"
         }
       }]
-    service.getNotes().subscribe(note => {
-      expect(note).toEqual(dummy)
+    service.getNotes().subscribe((note) => {
+      expect(note).toBe(dummyPost)
     })
     const req = httpmock.expectOne(`${service._url}getNotesList`)
     expect(req.request.method).toBe('GET')
-    req.flush(dummy);
+    req.flush(dummyPost);
   });
  
 });

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { NotesService } from 'src/app/service/notes.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SharedService } from 'src/app/service/shared/shared.service';
@@ -15,7 +15,7 @@ export class CreateNotesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  title = new FormControl();
+  title = new FormControl(Validators.minLength(3));
   description = new FormControl();
   notePinned = false;
   card = false;
