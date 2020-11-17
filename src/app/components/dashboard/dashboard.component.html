@@ -74,9 +74,21 @@
       Notes
     </mat-list-option>
     <mat-list-option>Reminder</mat-list-option>
-    <mat-list-option>Edit lable</mat-list-option>
+    <mat-list-option [matMenuTriggerFor]="menuLable">Edit lable</mat-list-option>
     <mat-list-option class="option" *ngFor="let label of label"[routerLink]="['/dashboard/notes',label]">{{label}}</mat-list-option>
     <mat-list-option class="option" routerLink="/dashboard/archive">Archive</mat-list-option>
     <mat-list-option class="option" routerLink="/dashboard/bin">Bin</mat-list-option>
   </mat-selection-list>
 </mat-drawer>
+<mat-menu #menuLable="matMenu" yPosition="below" fxLayout="row" overlapTrigger="false">
+  <div class="lableForm">
+      <form>
+          <div>Lable note</div>
+          <mat-form-field appearance="none" (click)="$event.stopPropagation();">
+              <input mat-menu-item matInput placeholder="enter lable name" type="text" autocomplete="off" >
+             
+          </mat-form-field>
+          <button mat-stroked-button type="submit" >add</button>
+      </form>
+  </div>
+</mat-menu>

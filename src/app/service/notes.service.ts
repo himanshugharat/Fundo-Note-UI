@@ -9,7 +9,7 @@ import { HttpService } from './http_service/http.service';
 })
 
 export class NotesService {
-  private _url = environment.apiUrl + "notes/"
+   _url = environment.apiUrl + "notes/"
   constructor(private http: HttpService) {
 
   }
