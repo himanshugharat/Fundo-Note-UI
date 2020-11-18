@@ -14,7 +14,8 @@ export class DashboardComponent implements OnInit {
   isButtonVisible = true;
   label=[]
   isExpanded=true
- 
+  isMenuOpen=true
+  contentMargin = 240;
   token = localStorage.getItem('token')
   name = localStorage.getItem('name')
   email = localStorage.getItem('email')
@@ -24,7 +25,16 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  onToolbarMenuToggle(){
+    console.log("ok fire",this.isMenuOpen)
+    this.isMenuOpen=!this.isMenuOpen
+    if(!this.isMenuOpen) {
+      this.contentMargin = 70;
+    } else {
+      this.contentMargin = 240;
+    }
+  
+  }
   logout() {
     let data = {}
     this.http.logout(data).subscribe(response => {

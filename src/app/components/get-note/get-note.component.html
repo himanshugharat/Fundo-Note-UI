@@ -27,15 +27,15 @@
     </mat-form-field>
     <mat-card-content class="iconPannel">
 
-      <span [hidden]="!(hoverIndex==i)">
+      <span >
         <div>
-          <app-card-pannel [noteId]="note.id" [labelArray]="label"></app-card-pannel>
+          <app-card-pannel [noteId]="note.id" [labelArray]="label" [hidden]="!(hoverIndex==i)"></app-card-pannel>
         </div>
       </span>
     </mat-card-content>
   </mat-card>
 </div>
-<!-- </div> -->
+
 <div *ngIf="noNote()" fxLayout="row" fxLayoutAlign="center center" class="disabled">
   <img src="../../../assets/image/keepIcon.png" alt="icon">
   <div>

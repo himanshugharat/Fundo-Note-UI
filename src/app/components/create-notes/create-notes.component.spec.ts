@@ -5,8 +5,7 @@ import { CreateNotesComponent } from './create-notes.component';
 import { NotesService } from '../../service/notes.service'
 import {MatSnackBar} from '@angular/material/snack-bar' 
 import {Overlay} from '@angular/cdk/overlay'
-import {ReactiveFormsModule,FormsModule} from '@angular/forms'
-import { from } from 'rxjs';
+
 fdescribe('NotesComponent', () => {
   let component: CreateNotesComponent;
   let fixture: ComponentFixture<CreateNotesComponent>;
@@ -15,7 +14,7 @@ fdescribe('NotesComponent', () => {
   
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports:[RouterTestingModule ,HttpClientTestingModule,ReactiveFormsModule,FormsModule],
+      imports:[RouterTestingModule ,HttpClientTestingModule],
       declarations: [ CreateNotesComponent ],
       providers:[NotesService,MatSnackBar,Overlay]
       
@@ -32,7 +31,6 @@ fdescribe('NotesComponent', () => {
     httpmock = TestBed.get(HttpTestingController)
     component = fixture.componentInstance;
     fixture.detectChanges();
-    component.ngOnInit();
   });
 
   it('should add note', () => {   
@@ -50,11 +48,5 @@ fdescribe('NotesComponent', () => {
   it('pin the note',()=>{
     expect(component.changeNotePinned()).toBe(true)
   });
-  it('title input to form',()=>{
-    expect(component.title.value).toBeNull()
-    let email=component.title.setValue('nicato6850@rvemold.com')
-    expect(component.title.valid).toBeTruthy()
-    let invalidEmail=component.title.setValue('ni')
-    expect(component.title.valid).toBeFalsy()
-  })
+  
 });

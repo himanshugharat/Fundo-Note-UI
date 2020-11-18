@@ -3,7 +3,8 @@
   rel="stylesheet">
 <div fxLayout="row">
   <mat-toolbar class="header">
-    <button mat-icon-button (click)="drawer.toggle()" (click)="changeVisiblity()">
+    <!-- <button mat-icon-button (click)="drawer.toggle()" (click)="changeVisiblity()"> -->
+    <button mat-icon-button (click)="onToolbarMenuToggle()" (click)="changeVisiblity()">
       <mat-icon>menu</mat-icon>
     </button>
     <img src="../../../assets/image/keepIcon.png">
@@ -32,63 +33,60 @@
     </mat-menu>
   </mat-toolbar>
 </div>
-<mat-drawer-container class="container" autosize>
-  <div>
-    <div fxFlex="10%">
-      <span class="nav" *ngIf="checkVisiblity()" (mouseleave)="changeVisiblity()">
-        <button mat-icon-button>
-          <mat-icon class="material-icons-outlined" (mouseenter)="drawer.toggle()">emoji_objects</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon class="material-icons-outlined" (mouseenter)="drawer.toggle()">notifications</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon class="material-icons-outlined" (mouseenter)="drawer.toggle()">create</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon class="material-icons-outlined" (mouseenter)="drawer.toggle()">label</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon class="material-icons-outlined" (mouseenter)="drawer.toggle()">label</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon class="material-icons-outlined" (mouseenter)="drawer.toggle()">label</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon class="material-icons-outlined" (mouseenter)="drawer.toggle()">archive</mat-icon>
-        </button>
-        <button mat-icon-button>
-          <mat-icon (mouseenter)="drawer.toggle()" class="material-icons-outlined">delete</mat-icon>
-        </button>
-      </span>
-    </div>
-    <div fxFlex="90%" fxLayoutAlign="center " class="content">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</mat-drawer-container>
-<mat-drawer #drawer class="sidenav" mode="side" (mouseleave)="drawer.toggle()" (mouseleave)="changeVisiblity()"
-  class="slider">
-  <mat-selection-list [multiple]="false">
-    <mat-list-option class="option" routerLink="/dashboard/notes" #note [selected]="note">
-      Notes
-    </mat-list-option>
-    <mat-list-option>Reminder</mat-list-option>
-    <mat-list-option [matMenuTriggerFor]="menuLable">Edit lable</mat-list-option>
-    <mat-list-option class="option" *ngFor="let label of label"[routerLink]="['/dashboard/notes',label]">{{label}}</mat-list-option>
-    <mat-list-option class="option" routerLink="/dashboard/archive">Archive</mat-list-option>
-    <mat-list-option class="option" routerLink="/dashboard/bin">Bin</mat-list-option>
-  </mat-selection-list>
-</mat-drawer>
+<mat-sidenav-container class="container">
+  <mat-sidenav mode="side" #sidenav id="sidenav" [class.menu-open]="isMenuOpen" [class.menu-close]="!isMenuOpen" opened
+    (mouseenter)="onToolbarMenuToggle()"(mouseleave)="onToolbarMenuToggle()">
+    <mat-list id="menus">
+      <mat-selection-list [multiple]="false">
+        <mat-list-option class="option" routerLink="/dashboard/notes" #note [selected]="note"><button mat-icon-button>
+            <mat-icon class="material-icons-outlined">emoji_objects</mat-icon>
+
+            Notes
+          </button>
+        </mat-list-option>
+        <mat-list-option> <button mat-icon-button>
+            <mat-icon class="material-icons-outlined">notifications</mat-icon>
+            Reminder
+          </button>
+        </mat-list-option>
+        <mat-list-option [matMenuTriggerFor]="menuLable"><button mat-icon-button>
+            <mat-icon class="material-icons-outlined">create</mat-icon>
+            Edit lable
+          </button>
+        </mat-list-option>
+        <mat-list-option class="option" *ngFor="let label of label" [routerLink]="['/dashboard/notes',label]"><button
+            mat-icon-button>
+            <mat-icon class="material-icons-outlined">label</mat-icon>
+            {{label}}
+          </button>
+        </mat-list-option>
+        <mat-list-option class="option" routerLink="/dashboard/archive"><button mat-icon-button>
+            <mat-icon class="material-icons-outlined">archive</mat-icon>
+            Archive
+          </button>
+        </mat-list-option>
+        <mat-list-option class="option" routerLink="/dashboard/bin"><button mat-icon-button>
+            <mat-icon class="material-icons-outlined">delete</mat-icon>
+            Bin
+          </button>
+        </mat-list-option>
+      </mat-selection-list>
+    </mat-list>
+  </mat-sidenav>
+  
+  <router-outlet></router-outlet>
+
+</mat-sidenav-container>
+
 <mat-menu #menuLable="matMenu" yPosition="below" fxLayout="row" overlapTrigger="false">
   <div class="lableForm">
-      <form>
-          <div>Lable note</div>
-          <mat-form-field appearance="none" (click)="$event.stopPropagation();">
-              <input mat-menu-item matInput placeholder="enter lable name" type="text" autocomplete="off" >
-             
-          </mat-form-field>
-          <button mat-stroked-button type="submit" >add</button>
-      </form>
+    <form>
+      <div>Lable note</div>
+      <mat-form-field appearance="none" (click)="$event.stopPropagation();">
+        <input mat-menu-item matInput placeholder="enter lable name" type="text" autocomplete="off">
+
+      </mat-form-field>
+      <button mat-stroked-button type="submit">add</button>
+    </form>
   </div>
 </mat-menu>

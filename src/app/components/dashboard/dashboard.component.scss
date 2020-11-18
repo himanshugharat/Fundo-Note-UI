@@ -13,6 +13,15 @@ $white:white;
   width: 200px;
   
 }
+#sidenav{
+  widows: 240px; 
+}
+#sidenav.menu-open{
+  width: 60px;
+}
+#sidenav.menu-close{
+  width: 240px;
+}
 .titleBar {
   display: flex;
   flex-wrap: wrap;
