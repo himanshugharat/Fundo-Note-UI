@@ -22,9 +22,6 @@ export class CardPannelComponent implements OnInit {
   colaboratorUserId = new FormControl("")
   label = this.labelName.value
   constructor(private noteService: NotesService, public snackBar: MatSnackBar, private shared: SharedService) {
-    // this.shared.dataArray.subscribe(array=> this.noteArray=array)
-    // for(let i=0;i<this.noteArray.length;i++)
-    // console.log(this.noteArray)
   }
 
   ngOnInit(): void {
@@ -100,19 +97,25 @@ export class CardPannelComponent implements OnInit {
       lastName: this.colaboratorLastName.value,
       userId: this.colaboratorUserId.value
     }
-this.noteService.addNoteCollaborator(colabData,this.noteId).subscribe(response=>{
-  if(response['data'].success==true){
-  this.snackBar.open("collaborator  added", 'success')
-  console.log(response)
-  }
-  else{
-    this.snackBar.open("collaborator unable to added", 'failed')
-  }
-})
+    this.noteService.addNoteCollaborator(colabData, this.noteId).subscribe(response => {
+      if (response['data'].success == true) {
+        this.snackBar.open("collaborator  added", 'success')
+        console.log(response)
+      }
+      else {
+        this.snackBar.open("collaborator unable to added", 'failed')
+      }
+    })
   }
   removeCollaborator(userId) {
-    this.noteService.deleteCollaborator(this.noteId,userId).subscribe(response=>{
-      console.log(response)
+    this.noteService.deleteCollaborator(this.noteId, userId).subscribe(response => {
+      if (response['data'].success == true) {
+        this.snackBar.open("collaborator  deleted", 'success')
+        console.log(response)
+      }
+      else {
+        this.snackBar.open("collaborator unable to delete", 'failed')
+      }
     })
   }
 }

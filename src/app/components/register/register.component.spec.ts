@@ -6,12 +6,16 @@ import {  UserService } from '../../service/user.service'
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Overlay } from '@angular/cdk/overlay';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 fdescribe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let service: UserService;
-  let httpmock: HttpTestingController
+  let httpmock: HttpTestingController;
+  let de:DebugElement;
+  let el:HTMLElement
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterComponent],
@@ -25,17 +29,31 @@ fdescribe('RegisterComponent', () => {
     fixture = TestBed.createComponent(RegisterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    
+    de=fixture.debugElement.query(By.css('form'))
+    el=de.nativeElement
   });
+fit('invalid input check',()=>{
+  component.Email.setValue('')
+  component.FirstName.setValue('')
+  component.LastName.setValue('')
+  component.Password.setValue('')
+  expect(component.Email.valid).toBeFalse()
+  expect(component.FirstName.valid).toBeFalse()
+  expect(component.LastName.valid).toBeFalse()
+  expect(component.Password.valid).toBeFalse()
+ 
+})
+fit('valid input check',()=>{
+  component.Email.setValue('jevapa8908@1981pc.com')
+  component.FirstName.setValue('hello')
+  component.LastName.setValue('lord')
+  component.Password.setValue('Gharat!333')
+  expect(component.Email.valid).toBeTrue()
+  expect(component.FirstName.valid).toBeTrue()
+  expect(component.LastName.valid).toBeTrue()
+  expect(component.Password.valid).toBeTrue()
+})
 
-  // it('valid email', () => {
-  //   //component.Email.status
-  //   expect(component.Email.updateOn).toBeTruthy()
-  //   const compiled = fixture.debugElement.nativeElement;
-  //   const addressInput = compiled.querySelector('input[id="Email"]');
-  //   expect(addressInput).toBeTrue()
-    
-  // });
 
   
 });
