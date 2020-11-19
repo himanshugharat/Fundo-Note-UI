@@ -26,7 +26,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
   }
   onToolbarMenuToggle(){
-    console.log("ok fire",this.isMenuOpen)
     this.isMenuOpen=!this.isMenuOpen
     if(!this.isMenuOpen) {
       this.contentMargin = 70;
@@ -47,12 +46,12 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  changeVisiblity() {
-    return this.isButtonVisible = !this.isButtonVisible
-  }
+  // changeVisiblity() {
+  //   return this.isButtonVisible = !this.isButtonVisible
+  // }
 
-  checkVisiblity() {
-    return this.isButtonVisible
-  }
+  // checkVisiblity() {
+  //   return this.isButtonVisible
+  // }
 
 }

@@ -1,51 +1,74 @@
 <div class="iconPannel">
-<button mat-icon-button>
-    <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="reminder">add_alert</mat-icon>
-</button>
-<button mat-icon-button [matMenuTriggerFor]="menuColab">
-    <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="add peron">person_add</mat-icon>
-</button>
+    <button mat-icon-button>
+        <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="reminder">add_alert</mat-icon>
+    </button>
+    <button mat-icon-button [matMenuTriggerFor]="menuColab">
+        <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="add peron">person_add</mat-icon>
+    </button>
 
-<button mat-icon-button>
-    <app-color-pallet [noteIdcard]="noteId"></app-color-pallet>
-</button>
-<button mat-icon-button>
-    <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="delete" (click)="trashNote()">delete
-    </mat-icon>
-</button>
+    <button mat-icon-button>
+        <app-color-pallet [noteIdcard]="noteId"></app-color-pallet>
+    </button>
+    <button mat-icon-button>
+        <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="delete" (click)="trashNote()">delete
+        </mat-icon>
+    </button>
 
-<button mat-icon-button>
-    <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="archive" (click)="archiveNote()">archive
-    </mat-icon>
-</button>
+    <button mat-icon-button>
+        <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="archive" (click)="archiveNote()">
+            archive
+        </mat-icon>
+    </button>
 
-<button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon class="material-icons-outlined">more_vert</mat-icon>
-</button>
-<mat-menu #menu="matMenu" yPosition="below" fxLayout="row" overlapTrigger="false">
-    <div class="lableForm">
-        <form>
-            <div>Lable note</div>
-            <mat-form-field appearance="none" (click)="$event.stopPropagation();">
-                <input mat-menu-item matInput placeholder="enter lable name" type="text" autocomplete="off" [formControl]="labelName">
-                <section class="example-section" *ngFor="let label of labelArray">
-                    <mat-checkbox value="label" (click)="setLabelName(label)"  >{{label}}</mat-checkbox>
-                   
-                  </section>
-            </mat-form-field>
-            <button mat-stroked-button type="submit" (click)="addNoteLable()">add</button>
-        </form>
-    </div>
-</mat-menu>
-<mat-menu #menuColab="matMenu" yPosition="below" fxLayout="row" overlapTrigger="false">
-    <div class="lableForm">
-        <form>
-            <div>add Colaborator </div>
-            <mat-form-field appearance="none" (click)="$event.stopPropagation();">
-                <input mat-menu-item matInput placeholder="enter colaborator name" type="text" autocomplete="off" [formControl]="colaboratorName">
-            </mat-form-field>
-            <button mat-stroked-button type="submit">add</button>
-        </form>
-    </div>
-</mat-menu>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon class="material-icons-outlined">more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" yPosition="below" fxLayout="row" overlapTrigger="false">
+        <div class="lableForm">
+            <form>
+                <div>Lable note</div>
+                <mat-form-field appearance="none" (click)="$event.stopPropagation();">
+                    <input mat-menu-item matInput placeholder="enter lable name" type="text" autocomplete="off"
+                        [formControl]="labelName">
+                    <section class="example-section" *ngFor="let label of labelArray">
+                        <mat-checkbox value="label" (click)="setLabelName(label)">{{label}}</mat-checkbox>
+
+                    </section>
+                </mat-form-field>
+                <button mat-stroked-button type="submit" (click)="addNoteLable()">add</button>
+            </form>
+        </div>
+    </mat-menu>
+    <mat-menu #menuColab="matMenu" yPosition="below" fxLayout="row" overlapTrigger="false">
+        <div class="lableForm">
+            <form>
+                <div>add Colaborator </div>
+                <mat-form-field appearance="none" (click)="$event.stopPropagation();">
+                    <input mat-menu-item matInput placeholder="enter colaborator first name" type="text"
+                        autocomplete="off" [formControl]="colaboratorFirstName">
+                </mat-form-field>
+                <mat-form-field appearance="none" (click)="$event.stopPropagation();">
+                    <input mat-menu-item matInput placeholder="enter colaborator last name" type="text"
+                        autocomplete="off" [formControl]="colaboratorLastName">
+                </mat-form-field>
+                <mat-form-field appearance="none" (click)="$event.stopPropagation();">
+                    <input mat-menu-item matInput placeholder="enter colaborator email" type="text" autocomplete="off"
+                        [formControl]="colaboratorEmail">
+                </mat-form-field>
+                <mat-form-field appearance="none" (click)="$event.stopPropagation();">
+                    <input mat-menu-item matInput placeholder="enter colaborator userId" type="text" autocomplete="off"
+                        [formControl]="colaboratorUserId">
+                </mat-form-field>
+                
+                <button mat-stroked-button type="submit"(click)="addCollaborator()">add</button>
+                <div *ngFor="let colaborator of noteArray"><mat-icon class="material-icons-outlined">keyboard_arrow_right</mat-icon> {{colaborator.email}}<button mat-icon-button>
+                     <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="remove" (click)="removeCollaborator(colaborator.userId)">delete
+                    </mat-icon>
+                </button>
+            </div>
+            </form>
+        </div>
+    </mat-menu>
 </div>
+<!--{"email":"potter@gmail.com",
+"firstName":"harry","lastName":"potter","userId":"5bbd8e9d4a14440040844391"} -->

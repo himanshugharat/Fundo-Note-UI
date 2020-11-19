@@ -3,8 +3,7 @@
   rel="stylesheet">
 <div fxLayout="row">
   <mat-toolbar class="header">
-    <!-- <button mat-icon-button (click)="drawer.toggle()" (click)="changeVisiblity()"> -->
-    <button mat-icon-button (click)="onToolbarMenuToggle()" (click)="changeVisiblity()">
+    <button mat-icon-button (click)="onToolbarMenuToggle()" >
       <mat-icon>menu</mat-icon>
     </button>
     <img src="../../../assets/image/keepIcon.png">
@@ -40,7 +39,6 @@
       <mat-selection-list [multiple]="false">
         <mat-list-option class="option" routerLink="/dashboard/notes" #note [selected]="note"><button mat-icon-button>
             <mat-icon class="material-icons-outlined">emoji_objects</mat-icon>
-
             Notes
           </button>
         </mat-list-option>

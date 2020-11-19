@@ -26,10 +26,9 @@
       </mat-chip-list>
     </mat-form-field>
     <mat-card-content class="iconPannel">
-
       <span >
         <div>
-          <app-card-pannel [noteId]="note.id" [labelArray]="label" [hidden]="!(hoverIndex==i)"></app-card-pannel>
+          <app-card-pannel [noteId]="note.id" [labelArray]="label" [noteArray]="note.collaborators" [hidden]="!(hoverIndex==i)"></app-card-pannel>
         </div>
       </span>
     </mat-card-content>

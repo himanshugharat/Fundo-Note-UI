@@ -53,6 +53,7 @@ export class GetNoteComponent implements OnInit {
         }
       }
       this.note.reverse()
+      console.log(this.note)
       //this.label = []
       this.note.forEach(element => {
         for (let i = 0; i < element.noteLabels.length; i++)
@@ -81,7 +82,6 @@ export class GetNoteComponent implements OnInit {
 
   noNote() {
     this.shared.change(this.label)
-     
     return (this.note.length == 0) ? this.nonoteCondition = true : this.nonoteCondition = false;
     
   }

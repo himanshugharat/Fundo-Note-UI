@@ -12,12 +12,21 @@ import { SharedService } from 'src/app/service/shared/shared.service';
 
 
 export class CardPannelComponent implements OnInit {
-  constructor(private noteService: NotesService, public snackBar: MatSnackBar, private shared: SharedService) { }
   @Input() noteId
   @Input() labelArray
-  labelName=new FormControl("")
-  colaboratorName=new FormControl("")
-  label=this.labelName.value
+  @Input() noteArray
+  labelName = new FormControl("")
+  colaboratorEmail = new FormControl("")
+  colaboratorFirstName = new FormControl("")
+  colaboratorLastName = new FormControl("")
+  colaboratorUserId = new FormControl("")
+  label = this.labelName.value
+  constructor(private noteService: NotesService, public snackBar: MatSnackBar, private shared: SharedService) {
+    // this.shared.dataArray.subscribe(array=> this.noteArray=array)
+    // for(let i=0;i<this.noteArray.length;i++)
+    // console.log(this.noteArray)
+  }
+
   ngOnInit(): void {
   }
 
@@ -40,7 +49,7 @@ export class CardPannelComponent implements OnInit {
   }
 
   archiveNote() {
-    
+
     let noteData = {
       isArchived: true,
       noteIdList: [this.noteId]
@@ -60,28 +69,50 @@ export class CardPannelComponent implements OnInit {
 
   addNoteLable() {
     console.log(this.label.value)
-    if(this.labelName.value){
-     this.label=this.labelName.value
+    if (this.labelName.value) {
+      this.label = this.labelName.value
     }
-  let lableData={
-    label:this.label,
-    isDeleted:false
+    let lableData = {
+      label: this.label,
+      isDeleted: false
+    }
+    this.noteService.addNoteLable(lableData, this.noteId).subscribe(response => {
+      if (response) {
+        this.snackBar.open("note lable  added", 'success')
+        this.shared.sendEvent();
+        this.shared.getEvent()
+      }
+    },
+      error => {
+        this.snackBar.open("unable to add to note lable plz try again", 'failed')
+      }
+    )
+
   }
-  this.noteService.addNoteLable(lableData,this.noteId).subscribe(response=>{
-    if (response) {
-      this.snackBar.open("note lable  added", 'success')
-      this.shared.sendEvent();
-      this.shared.getEvent()
-    }
-  },
-    error => {
-      this.snackBar.open("unable to add to note lable plz try again", 'failed')
-    }
-  )
-  
-  }
-  setLabelName(labelName){
+  setLabelName(labelName) {
     console.log(labelName)
-    this.label=labelName
+    this.label = labelName
+  }
+  addCollaborator() {
+    let colabData = {
+      email: this.colaboratorEmail.value,
+      firstName: this.colaboratorFirstName.value,
+      lastName: this.colaboratorLastName.value,
+      userId: this.colaboratorUserId.value
+    }
+this.noteService.addNoteCollaborator(colabData,this.noteId).subscribe(response=>{
+  if(response['data'].success==true){
+  this.snackBar.open("collaborator  added", 'success')
+  console.log(response)
+  }
+  else{
+    this.snackBar.open("collaborator unable to added", 'failed')
+  }
+})
+  }
+  removeCollaborator(userId) {
+    this.noteService.deleteCollaborator(this.noteId,userId).subscribe(response=>{
+      console.log(response)
+    })
   }
 }

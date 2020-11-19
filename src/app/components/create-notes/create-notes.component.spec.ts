@@ -5,6 +5,8 @@ import { CreateNotesComponent } from './create-notes.component';
 import { NotesService } from '../../service/notes.service'
 import {MatSnackBar} from '@angular/material/snack-bar' 
 import {Overlay} from '@angular/cdk/overlay'
+import {  By } from '@angular/platform-browser';
+
 
 fdescribe('NotesComponent', () => {
   let component: CreateNotesComponent;
@@ -16,12 +18,9 @@ fdescribe('NotesComponent', () => {
     await TestBed.configureTestingModule({
       imports:[RouterTestingModule ,HttpClientTestingModule],
       declarations: [ CreateNotesComponent ],
-      providers:[NotesService,MatSnackBar,Overlay]
-      
-    })
-    
-    .compileComponents();
-    
+      providers:[NotesService,MatSnackBar,Overlay] 
+    }) 
+    .compileComponents(); 
   });
 
   beforeEach(() => {
@@ -45,8 +44,17 @@ fdescribe('NotesComponent', () => {
     expect(req.request.method).toBe('POST')
     req.flush(testNote)
   });
-  it('pin the note',()=>{
-    expect(component.changeNotePinned()).toBe(true)
+  fit('pin the note',()=>{
+    expect(component.notePinned).toBe(false,"note is pinned at first")
+    component.changeNotePinned()
+    expect(component.notePinned).toBe(true,"note is unpinned")
+    component.changeNotePinned()
+    expect(component.notePinned).toBe(false,"note is pinned")
   });
-  
+  fit('get button name',()=>{
+    const iconButton=fixture.debugElement;
+    const button = iconButton.query(By.css('.material-icons-outlined'))
+    const icon:HTMLElement=button.nativeElement;
+    expect(icon.textContent).toEqual('create')
+  })
 });

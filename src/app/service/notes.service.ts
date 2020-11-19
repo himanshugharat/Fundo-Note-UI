@@ -55,5 +55,13 @@ export class NotesService {
     let url = this._url + noteId + "/noteLabels/" + lableId
     return this.http.deleteService(url)
   }
+  addNoteCollaborator(data, parm) {
+    let url = this._url + parm + "/AddcollaboratorsNotes"
+    return this.http.postService(data, url)
+  }
+  deleteCollaborator(noteId, userId) {
+    let url = this._url + noteId + "/removeCollaboratorsNotes/" + userId
+    return this.http.deleteService(url)
+  }
 }
 
