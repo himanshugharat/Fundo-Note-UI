@@ -4,11 +4,18 @@
 <div *ngFor="let note of note; let i=index" fxLayoutGap="20px" class="grid">
   <mat-card class="grid-item" appearance="outline" (mouseenter)="onHover(i)" (mouseleave)="onHover(-1)"
     [style.background]="note.color">
-    <div (click)="openDialog(note.title,note.description,note.id)">
-      <mat-card-content>
+    <div >
+      <button mat-icon-button class="pin">
+        <mat-icon (click)="addPin(i)" class="material-icons-outlined" #tooltip="matTooltip" matTooltip="pin" >{{note.isPined==true ?  'done': 'push_pin'}}
+        </mat-icon>
+      </button>
+      <mat-card-content (click)="openDialog(note.title,note.description,note.id)">
         <mat-card-title>
           {{note.title}}
+         
         </mat-card-title>
+        
+      
         <mat-card-title>
           <mat-card-content>
             {{note.description}}

@@ -11,7 +11,7 @@ import { GetNoteComponent } from '../get-note/get-note.component';
 import { RoutesRecognized } from '@angular/router';
 
 
-fdescribe('DashboardComponent', () => {
+describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
   let service: NotesService;

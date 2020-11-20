@@ -84,7 +84,6 @@ export class CardPannelComponent implements OnInit {
         this.snackBar.open("unable to add to note lable plz try again", 'failed')
       }
     )
-
   }
   setLabelName(labelName) {
     console.log(labelName)
@@ -101,6 +100,7 @@ export class CardPannelComponent implements OnInit {
       if (response['data'].success == true) {
         this.snackBar.open("collaborator  added", 'success')
         console.log(response)
+        this.shared.sendEvent();
       }
       else {
         this.snackBar.open("collaborator unable to added", 'failed')
@@ -112,10 +112,24 @@ export class CardPannelComponent implements OnInit {
       if (response['data'].success == true) {
         this.snackBar.open("collaborator  deleted", 'success')
         console.log(response)
+        this.shared.sendEvent();
       }
       else {
         this.snackBar.open("collaborator unable to delete", 'failed')
       }
     })
   }
+  setReminder(value){
+    let date:Date=new Date()
+    if(value=="today"){
+    date.setHours(20)
+    }
+    if(value=="next"){
+    date.setDate(date.getDate() + (1 + 7 - date.getDay()) % 7) 
+    }
+    if(value=="tomorrow"){
+    date.setDate(date.getDate()+1);
+    date.setHours(20)
+  }
+}
 }

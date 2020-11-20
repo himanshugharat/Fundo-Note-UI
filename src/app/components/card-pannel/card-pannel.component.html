@@ -1,5 +1,5 @@
 <div class="iconPannel">
-    <button mat-icon-button>
+    <button mat-icon-button [matMenuTriggerFor]="matMenuReminder">
         <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="reminder">add_alert</mat-icon>
     </button>
     <button mat-icon-button [matMenuTriggerFor]="menuColab">
@@ -69,6 +69,17 @@
             </form>
         </div>
     </mat-menu>
+    <mat-menu #matMenuReminder="matMenu">
+        <button mat-menu-item (click)="setReminder('today')">
+          <span>Today</span>
+        </button>
+        <button mat-menu-item (click)="setReminder('tomorrow')">
+          <span>tomorrow</span>
+        </button>
+        <button mat-menu-item (click)="setReminder('next')">
+          <span>Next week</span>
+        </button>
+      </mat-menu>
 </div>
 <!--{"email":"potter@gmail.com",
 "firstName":"harry","lastName":"potter","userId":"5bbd8e9d4a14440040844391"} -->

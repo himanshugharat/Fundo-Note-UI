@@ -12,8 +12,6 @@ import { By } from '@angular/platform-browser';
 fdescribe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
-  let service: UserService;
-  let httpmock: HttpTestingController;
   let de:DebugElement;
   let el:HTMLElement
   beforeEach(async () => {
@@ -32,7 +30,7 @@ fdescribe('RegisterComponent', () => {
     de=fixture.debugElement.query(By.css('form'))
     el=de.nativeElement
   });
-fit('invalid input check',()=>{
+it('invalid input check',()=>{
   component.Email.setValue('')
   component.FirstName.setValue('')
   component.LastName.setValue('')
@@ -43,7 +41,7 @@ fit('invalid input check',()=>{
   expect(component.Password.valid).toBeFalse()
  
 })
-fit('valid input check',()=>{
+it('valid input check',()=>{
   component.Email.setValue('jevapa8908@1981pc.com')
   component.FirstName.setValue('hello')
   component.LastName.setValue('lord')
@@ -52,9 +50,6 @@ fit('valid input check',()=>{
   expect(component.FirstName.valid).toBeTrue()
   expect(component.LastName.valid).toBeTrue()
   expect(component.Password.valid).toBeTrue()
-})
-
-
-  
+})  
 });
 

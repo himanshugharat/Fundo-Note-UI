@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NotesService } from 'src/app/service/notes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogNoteComponent } from '../dialog-note/dialog-note.component';
@@ -15,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 
 export class GetNoteComponent implements OnInit {
   note = []
+  pin: boolean
   isButtonVisible = false
   hoverIndex = -1
   active: boolean
@@ -34,8 +35,8 @@ export class GetNoteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   
-    this.labelName=null
+
+    this.labelName = null
     this.labelName = this.route.snapshot.paramMap.get('label')
     this.http.getNotes().subscribe(response => {
       for (let i = 0; i < response['data'].data.length; i++) {
@@ -52,9 +53,11 @@ export class GetNoteComponent implements OnInit {
           }
         }
       }
+      this.note.forEach(element => {
+        this.note.sort((a,b)=> a.isPined-b.isPined)
+      });
       this.note.reverse()
       console.log(this.note)
-      //this.label = []
       this.note.forEach(element => {
         for (let i = 0; i < element.noteLabels.length; i++)
           this.label.push(element.noteLabels[i].label)
@@ -62,9 +65,9 @@ export class GetNoteComponent implements OnInit {
       function onlyUnique(value, index, self) {
         return self.indexOf(value) === index
       }
-      this.label = this.label.filter(onlyUnique) 
-     })
-    
+      this.label = this.label.filter(onlyUnique)
+    })
+
   }
 
   onHover(i) {
@@ -83,7 +86,6 @@ export class GetNoteComponent implements OnInit {
   noNote() {
     this.shared.change(this.label)
     return (this.note.length == 0) ? this.nonoteCondition = true : this.nonoteCondition = false;
-    
   }
   openDialog(title, description, id) {
     this.dialog.open(DialogNoteComponent, { data: { title: title, description: description, id: id } });
@@ -92,7 +94,6 @@ export class GetNoteComponent implements OnInit {
   remove(note): void {
     this.note.forEach(element => {
       const index = element.noteLabels.indexOf(note);
-
       if (index >= 0) {
         console.log(element.noteLabels[index].id)
         this.http.deleteNoteLable(element.id, element.noteLabels[index].id).subscribe(response => {
@@ -105,6 +106,23 @@ export class GetNoteComponent implements OnInit {
       }
     });
   }
+  addPin(i) {
+    let noteData = {
+      isPined: !this.note[i].isPined,
+      noteIdList: [this.note[i].id]
+    }
+    console.log(noteData)
+    this.http.pinNote(noteData).subscribe(response => {
+      if (response['data'].success == true) {
+        this.snackBar.open("note pinned successfully", 'success')
+        this.shared.sendEvent();
+      }
+    },
+      error => {
+        this.snackBar.open("unable to pin note plz try again", 'failed')
+      })
+  }
+
 
 }
 
