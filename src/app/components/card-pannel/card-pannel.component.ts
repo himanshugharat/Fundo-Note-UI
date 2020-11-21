@@ -21,6 +21,7 @@ export class CardPannelComponent implements OnInit {
   colaboratorLastName = new FormControl("")
   colaboratorUserId = new FormControl("")
   label = this.labelName.value
+  reminder
   constructor(private noteService: NotesService, public snackBar: MatSnackBar, private shared: SharedService) {
   }
 
@@ -119,17 +120,49 @@ export class CardPannelComponent implements OnInit {
       }
     })
   }
-  setReminder(value){
-    let date:Date=new Date()
-    if(value=="today"){
-    date.setHours(20)
+  setReminder(value) {
+    let date: Date = new Date()
+    if (value == "today") {
+      date.setHours(20)
+      this.reminder = date.toUTCString()
+      console.log(date.toUTCString())
     }
-    if(value=="next"){
-    date.setDate(date.getDate() + (1 + 7 - date.getDay()) % 7) 
+    if (value == "next") {
+      date.setDate(date.getDate() + (1 + 7 - date.getDay()) % 7)
+      this.reminder = date.toUTCString()
+      console.log(date.toUTCString())
     }
-    if(value=="tomorrow"){
-    date.setDate(date.getDate()+1);
-    date.setHours(20)
+    if (value == "tomorrow") {
+      date.setDate(date.getDate() + 1);
+      date.setHours(20)
+      console.log(date.toUTCString())
+      this.reminder = date.toUTCString()
+    }
+  }
+  setReminderToCard() {
+    let noteData = {
+      reminder: [this.reminder],
+      noteIdList: [this.noteId]
+    }
+this.noteService.addReminder(noteData).subscribe(response=>{
+  console.log(response)
+  if (response['data'].success == true) {
+    this.snackBar.open("reminder  added", 'success')
+    console.log(response)
+    this.shared.sendEvent();
+  }
+  else {
+    this.snackBar.open("reminder unable to add", 'failed')
+  }
+})
   }
 }
-}
+
+// this.todayDate = {
+//   reminder: [this.date],
+//   isPined: false,
+//   isArchived: false,
+//   isDeleted: false,
+//   noteIdList: [this.card.id],
+//   userId: 
+// };

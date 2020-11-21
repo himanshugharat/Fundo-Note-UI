@@ -54,7 +54,7 @@ export class GetNoteComponent implements OnInit {
         }
       }
       this.note.forEach(element => {
-        this.note.sort((a,b)=> a.isPined-b.isPined)
+        this.note.sort((a, b) => a.isPined - b.isPined)
       });
       this.note.reverse()
       console.log(this.note)
@@ -91,7 +91,7 @@ export class GetNoteComponent implements OnInit {
     this.dialog.open(DialogNoteComponent, { data: { title: title, description: description, id: id } });
   }
 
-  remove(note): void {
+  removeLable(note): void {
     this.note.forEach(element => {
       const index = element.noteLabels.indexOf(note);
       if (index >= 0) {
@@ -106,10 +106,27 @@ export class GetNoteComponent implements OnInit {
       }
     });
   }
-  addPin(i) {
+  removeReminder(index): void {
     let noteData = {
-      isPined: !this.note[i].isPined,
-      noteIdList: [this.note[i].id]
+      reminder: [],
+      noteIdList: [this.note[index].id]
+    }
+    this.http.removeReminder(noteData).subscribe(response => {
+      console.log(response)
+      if (response['data'].success == true) {
+        this.snackBar.open("reminder  deleted", 'success')
+        console.log(response)
+        this.shared.sendEvent();
+      }
+      else {
+        this.snackBar.open("reminder unable to delete", 'failed')
+      }
+    })
+  }
+  addPin(index) {
+    let noteData = {
+      isPined: !this.note[index].isPined,
+      noteIdList: [this.note[index].id]
     }
     console.log(noteData)
     this.http.pinNote(noteData).subscribe(response => {

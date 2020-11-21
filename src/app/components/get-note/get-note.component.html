@@ -12,10 +12,7 @@
       <mat-card-content (click)="openDialog(note.title,note.description,note.id)">
         <mat-card-title>
           {{note.title}}
-         
         </mat-card-title>
-        
-      
         <mat-card-title>
           <mat-card-content>
             {{note.description}}
@@ -26,8 +23,17 @@
     <mat-form-field appearance="none">
       <mat-chip-list #chipList>
         <mat-chip *ngFor="let lable of note.noteLabels" [selectable]="selectable" [removable]="removable"
-          (removed)="remove(lable)">
+          (removed)="removeLable(lable)">
           {{lable.label}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </mat-form-field>
+    <mat-form-field appearance="none">
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let lable of note.reminder" [selectable]="selectable" [removable]="removable"
+          (removed)="removeReminder(i)">
+          {{lable}}
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
       </mat-chip-list>

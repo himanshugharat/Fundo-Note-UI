@@ -70,13 +70,13 @@
         </div>
     </mat-menu>
     <mat-menu #matMenuReminder="matMenu">
-        <button mat-menu-item (click)="setReminder('today')">
+        <button mat-menu-item (click)="setReminder('today');setReminderToCard()">
           <span>Today</span>
         </button>
-        <button mat-menu-item (click)="setReminder('tomorrow')">
+        <button mat-menu-item (click)="setReminder('tomorrow');setReminderToCard()">
           <span>tomorrow</span>
         </button>
-        <button mat-menu-item (click)="setReminder('next')">
+        <button mat-menu-item (click)="setReminder('next');setReminderToCard()">
           <span>Next week</span>
         </button>
       </mat-menu>
