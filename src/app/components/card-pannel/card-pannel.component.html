@@ -59,27 +59,30 @@
                     <input mat-menu-item matInput placeholder="enter colaborator userId" type="text" autocomplete="off"
                         [formControl]="colaboratorUserId">
                 </mat-form-field>
-                
-                <button mat-stroked-button type="submit"(click)="addCollaborator()">add</button>
-                <div *ngFor="let colaborator of noteArray"><mat-icon class="material-icons-outlined">keyboard_arrow_right</mat-icon> {{colaborator.email}}<button mat-icon-button>
-                     <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="remove" (click)="removeCollaborator(colaborator.userId)">delete
-                    </mat-icon>
-                </button>
-            </div>
+
+                <button mat-stroked-button type="submit" (click)="addCollaborator()">add</button>
+                <div *ngFor="let colaborator of noteArray">
+                    <mat-icon class="material-icons-outlined">keyboard_arrow_right</mat-icon>
+                    {{colaborator.email}}<button mat-icon-button>
+                        <mat-icon class="material-icons-outlined" #tooltip="matTooltip" matTooltip="remove"
+                            (click)="removeCollaborator(colaborator.userId)">delete
+                        </mat-icon>
+                    </button>
+                </div>
             </form>
         </div>
     </mat-menu>
     <mat-menu #matMenuReminder="matMenu">
         <button mat-menu-item (click)="setReminder('today');setReminderToCard()">
-          <span>Today</span>
+            <span>Today</span>
         </button>
         <button mat-menu-item (click)="setReminder('tomorrow');setReminderToCard()">
-          <span>tomorrow</span>
+            <span>tomorrow</span>
         </button>
         <button mat-menu-item (click)="setReminder('next');setReminderToCard()">
-          <span>Next week</span>
+            <span>Next week</span>
         </button>
-      </mat-menu>
+    </mat-menu>
 </div>
 <!--{"email":"potter@gmail.com",
 "firstName":"harry","lastName":"potter","userId":"5bbd8e9d4a14440040844391"} -->

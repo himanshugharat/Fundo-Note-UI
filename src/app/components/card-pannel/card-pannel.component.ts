@@ -144,17 +144,17 @@ export class CardPannelComponent implements OnInit {
       reminder: [this.reminder],
       noteIdList: [this.noteId]
     }
-this.noteService.addReminder(noteData).subscribe(response=>{
-  console.log(response)
-  if (response['data'].success == true) {
-    this.snackBar.open("reminder  added", 'success')
-    console.log(response)
-    this.shared.sendEvent();
-  }
-  else {
-    this.snackBar.open("reminder unable to add", 'failed')
-  }
-})
+    this.noteService.addReminder(noteData).subscribe(response => {
+      console.log(response)
+      if (response['data'].success == true) {
+        this.snackBar.open("reminder  added", 'success')
+        console.log(response)
+        this.shared.sendEvent();
+      }
+      else {
+        this.snackBar.open("reminder unable to add", 'failed')
+      }
+    })
   }
 }
 

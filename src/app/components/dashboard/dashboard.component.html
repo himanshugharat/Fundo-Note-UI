@@ -3,7 +3,7 @@
   rel="stylesheet">
 <div fxLayout="row">
   <mat-toolbar class="header">
-    <button mat-icon-button (click)="onToolbarMenuToggle()" >
+    <button mat-icon-button (click)="onToolbarMenuToggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <img src="../../../assets/image/keepIcon.png">
@@ -34,7 +34,7 @@
 </div>
 <mat-sidenav-container class="container">
   <mat-sidenav mode="side" #sidenav id="sidenav" [class.menu-open]="isMenuOpen" [class.menu-close]="!isMenuOpen" opened
-    (mouseenter)="onToolbarMenuToggle()"(mouseleave)="onToolbarMenuToggle()">
+    (mouseenter)="onToolbarMenuToggle()" (mouseleave)="onToolbarMenuToggle()">
     <mat-list id="menus">
       <mat-selection-list [multiple]="false">
         <mat-list-option class="option" routerLink="/dashboard/notes" #note [selected]="note"><button mat-icon-button>
@@ -71,7 +71,7 @@
       </mat-selection-list>
     </mat-list>
   </mat-sidenav>
-  
+
   <router-outlet></router-outlet>
 
 </mat-sidenav-container>

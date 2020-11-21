@@ -63,15 +63,15 @@ export class NotesService {
     let url = this._url + noteId + "/removeCollaboratorsNotes/" + userId
     return this.http.deleteService(url)
   }
-  pinNote(data){
+  pinNote(data) {
     let url = this._url + "pinUnpinNotes"
     return this.http.postService(data, url)
   }
-  addReminder(data){
+  addReminder(data) {
     let url = this._url + "addUpdateReminderNotes"
     return this.http.postService(data, url)
   }
-  removeReminder(data){
+  removeReminder(data) {
     let url = this._url + "removeReminderNotes"
     return this.http.postService(data, url)
   }

@@ -4,9 +4,10 @@
 <div *ngFor="let note of note; let i=index" fxLayoutGap="20px" class="grid">
   <mat-card class="grid-item" appearance="outline" (mouseenter)="onHover(i)" (mouseleave)="onHover(-1)"
     [style.background]="note.color">
-    <div >
+    <div>
       <button mat-icon-button class="pin">
-        <mat-icon (click)="addPin(i)" class="material-icons-outlined" #tooltip="matTooltip" matTooltip="pin" >{{note.isPined==true ?  'done': 'push_pin'}}
+        <mat-icon (click)="addPin(i)" class="material-icons-outlined" #tooltip="matTooltip" matTooltip="pin">
+          {{note.isPined==true ?  'done': 'push_pin'}}
         </mat-icon>
       </button>
       <mat-card-content (click)="openDialog(note.title,note.description,note.id)">
@@ -31,17 +32,18 @@
     </mat-form-field>
     <mat-form-field appearance="none">
       <mat-chip-list #chipList>
-        <mat-chip *ngFor="let lable of note.reminder" [selectable]="selectable" [removable]="removable"
+        <mat-chip *ngFor="let reminder of note.reminder" [selectable]="selectable" [removable]="removable"
           (removed)="removeReminder(i)">
-          {{lable}}
+          {{reminder}}
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
       </mat-chip-list>
     </mat-form-field>
     <mat-card-content class="iconPannel">
-      <span >
+      <span>
         <div>
-          <app-card-pannel [noteId]="note.id" [labelArray]="label" [noteArray]="note.collaborators" [hidden]="!(hoverIndex==i)"></app-card-pannel>
+          <app-card-pannel [noteId]="note.id" [labelArray]="label" [noteArray]="note.collaborators"
+            [hidden]="!(hoverIndex==i)"></app-card-pannel>
         </div>
       </span>
     </mat-card-content>
