@@ -15,6 +15,8 @@ import { ActivatedRoute } from '@angular/router';
 
 export class GetNoteComponent implements OnInit {
   note = []
+  pinnedNote=[]
+  unPinnedNote=[]
   pin: boolean
   isButtonVisible = false
   hoverIndex = -1
@@ -35,7 +37,9 @@ export class GetNoteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.getNote()
+  }
+  getNote() {
     this.labelName = null
     this.labelName = this.route.snapshot.paramMap.get('label')
     this.http.getNotes().subscribe(response => {
@@ -66,8 +70,22 @@ export class GetNoteComponent implements OnInit {
         return self.indexOf(value) === index
       }
       this.label = this.label.filter(onlyUnique)
+      this.pinnedNote=[]
+      this.unPinnedNote=[]
+      this.note.forEach(element => {
+        console.log(element.isPined)
+        if(element.isPined){
+          this.pinnedNote.push(element)
+        }else{
+        this.unPinnedNote.push(element)
+        }
+       // this.note.sort((a, b) => a.isPined - b.isPined)
+      });
+      console.log(this.pinnedNote)
+    console.log(this.unPinnedNote)
     })
-
+    
+    
   }
 
   onHover(i) {
@@ -107,9 +125,10 @@ export class GetNoteComponent implements OnInit {
     });
   }
   removeReminder(index): void {
+    console.log(index)
     let noteData = {
       reminder: [],
-      noteIdList: [this.note[index].id]
+      noteIdList: [index]
     }
     this.http.removeReminder(noteData).subscribe(response => {
       console.log(response)
@@ -125,8 +144,8 @@ export class GetNoteComponent implements OnInit {
   }
   addPin(index) {
     let noteData = {
-      isPined: !this.note[index].isPined,
-      noteIdList: [this.note[index].id]
+      isPined: !this.pin,
+      noteIdList: [index]
     }
     console.log(noteData)
     this.http.pinNote(noteData).subscribe(response => {

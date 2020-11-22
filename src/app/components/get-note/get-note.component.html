@@ -1,12 +1,61 @@
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 
 <!-- <div fxLayout=" row wrap"  fxLayoutGap="20px" *ngIf="!nonoteCondition" > -->
-<div *ngFor="let note of note; let i=index" fxLayoutGap="20px" class="grid">
+<div *ngFor="let note of pinnedNote; let i=index" fxLayoutGap="20px" class="grid">
   <mat-card class="grid-item" appearance="outline" (mouseenter)="onHover(i)" (mouseleave)="onHover(-1)"
     [style.background]="note.color">
     <div>
       <button mat-icon-button class="pin">
-        <mat-icon (click)="addPin(i)" class="material-icons-outlined" #tooltip="matTooltip" matTooltip="pin">
+        <mat-icon (click)="addPin(note.id);pin=!pin"  #tooltip="matTooltip" matTooltip="pin">push_pin
+        </mat-icon>
+      </button>
+      <mat-card-content (click)="openDialog(note.title,note.description,note.id)">
+        <mat-card-title>
+          {{note.title}}
+        </mat-card-title>
+        <mat-card-title>
+          <mat-card-content>
+            {{note.description}}
+          </mat-card-content>
+        </mat-card-title>
+      </mat-card-content>
+    </div>
+    <mat-form-field appearance="none">
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let lable of note.noteLabels" [selectable]="selectable" [removable]="removable"
+          (removed)="removeLable(lable)">
+          {{lable.label}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </mat-form-field>
+    <mat-form-field appearance="none">
+      <mat-chip-list #chipList>
+        <mat-chip *ngFor="let reminder of note.reminder" [selectable]="selectable" [removable]="removable"
+          (removed)="removeReminder(note.id)">
+          {{reminder}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </mat-form-field>
+    <mat-card-content class="iconPannel">
+      <span>
+        <div>
+          <app-card-pannel [noteId]="note.id" [labelArray]="label" [noteArray]="note.collaborators"
+            [hidden]="!(hoverIndex==i)"></app-card-pannel>
+        </div>
+      </span>
+    </mat-card-content>
+  </mat-card>
+  
+</div>
+<hr>
+<div *ngFor="let note of unPinnedNote; let j=index" fxLayoutGap="20px" class="grid">
+  <mat-card class="grid-item" appearance="outline" (mouseenter)="onHover(j)" (mouseleave)="onHover(-1)"
+    [style.background]="note.color">
+    <div>
+      <button mat-icon-button class="pin">
+        <mat-icon (click)="addPin(note.id);pin=!pin" class="material-icons-outlined" #tooltip="matTooltip" matTooltip="pin">
           {{note.isPined==true ?  'done': 'push_pin'}}
         </mat-icon>
       </button>
@@ -33,7 +82,7 @@
     <mat-form-field appearance="none">
       <mat-chip-list #chipList>
         <mat-chip *ngFor="let reminder of note.reminder" [selectable]="selectable" [removable]="removable"
-          (removed)="removeReminder(i)">
+          (removed)="removeReminder(note.id)">
           {{reminder}}
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
@@ -43,11 +92,12 @@
       <span>
         <div>
           <app-card-pannel [noteId]="note.id" [labelArray]="label" [noteArray]="note.collaborators"
-            [hidden]="!(hoverIndex==i)"></app-card-pannel>
+            [hidden]="!(hoverIndex==j)"></app-card-pannel>
         </div>
       </span>
     </mat-card-content>
   </mat-card>
+  
 </div>
 
 <div *ngIf="noNote()" fxLayout="row" fxLayoutAlign="center center" class="disabled">

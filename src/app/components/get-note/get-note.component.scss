@@ -42,3 +42,15 @@
 .pin {
   float: right;
 }
+hr{
+  border-top: 3px dotted #bbb;
+}
+.mat-card-content{
+ height: 20px;
+}
+::ng-deep .mat-form-field-infix {
+  padding: 0px;
+}
+::ng-deep .mat-form-field-wrapper {
+  padding: 0;
+}
