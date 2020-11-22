@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit {
     this.http.logout(data).subscribe(response => {
       if (!response) {
         this.snackBar.open("logout successfully.", 'success')
+        localStorage.clear()
         this.route.navigate(['login'])
       }
     }, error => {
@@ -55,3 +56,4 @@ export class DashboardComponent implements OnInit {
   // }
 
 }
+//car@llubed.com

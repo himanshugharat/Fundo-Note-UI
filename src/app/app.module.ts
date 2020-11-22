@@ -41,6 +41,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { AuthInterceptor } from './service/auth/auth.interceptor';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { AuthGuardService } from './service/auth/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatCheckboxModule,
     MatGridListModule
   ],
-  providers: [UserService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
+  providers: [UserService,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
