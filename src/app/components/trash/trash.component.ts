@@ -15,18 +15,15 @@ export class TrashComponent implements OnInit {
   constructor(private notesService: NotesService, public snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.getArchive()
+  }
+  getArchive(){
     this.notesService.getTrashNote().subscribe(response => {
       for (let i = 0; i < response['data'].data.length; i++) {
         this.note.push(response['data'].data[i]);
       }
       this.note.reverse()
     })
-  }
-  noNote() {
-    return (this.note.length == 0) ? this.nonoteCondition = true : this.nonoteCondition = false;
-  }
-  onHover(i: number) {
-    this.hoverIndex = i
   }
   deleteForever(id: string) {
     let noteData = {

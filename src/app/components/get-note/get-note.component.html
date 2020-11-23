@@ -1,12 +1,10 @@
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-
-<!-- <div fxLayout=" row wrap"  fxLayoutGap="20px" *ngIf="!nonoteCondition" > -->
+<div class="heading" *ngIf="pinnedNote.length>0">Pinned Card</div>
 <div *ngFor="let note of pinnedNote; let i=index" fxLayoutGap="20px" class="grid">
   <mat-card class="grid-item" appearance="outline" (mouseenter)="onHover(i)" (mouseleave)="onHover(-1)"
     [style.background]="note.color">
     <div>
       <button mat-icon-button class="pin">
-        <mat-icon (click)="addPin(note.id);pin=!pin"  #tooltip="matTooltip" matTooltip="pin">push_pin
+        <mat-icon (click)="addPin(note.id);pin=!pin" #tooltip="matTooltip" matTooltip="pin">push_pin
         </mat-icon>
       </button>
       <mat-card-content (click)="openDialog(note.title,note.description,note.id)">
@@ -41,21 +39,35 @@
     <mat-card-content class="iconPannel">
       <span>
         <div>
-          <app-card-pannel [noteId]="note.id" [labelArray]="label" [noteArray]="note.collaborators"
-            [hidden]="!(hoverIndex==i)"></app-card-pannel>
+          <app-card-pannel [noteId]="note.id"  *ngIf="!note.isArchived && !note.isDeleted" [labelArray]="label" [noteArray]="note.collaborators"
+            [hidden]="!(hoverIndexPin==i)"></app-card-pannel>
+            <button mat-icon-button >  
+              <mat-icon class="material-icons-outlined" *ngIf="i==hoverIndexPin && note.isArchived" #tooltip="matTooltip" matTooltip="unarchive"
+              (click)="unArchive(note.id)">unarchive</mat-icon>
+            </button>
+            <span *ngIf="i==hoverIndexPin && note.isDeleted" class="pannel"> 
+              <button mat-icon-button >
+                <mat-icon class="material-icons-outlined" #tooltip="matTooltip"
+                matTooltip="restore"(click)="restoreDelete(note.id)">restore_from_trash</mat-icon>
+            </button>
+            <button mat-icon-button>
+                <mat-icon class="material-icons-outlined" #tooltip="matTooltip"
+                matTooltip="delete forever"(click)="deleteForever(note.id)" >delete_forever</mat-icon>
+            </button>
+            </span>
         </div>
       </span>
     </mat-card-content>
   </mat-card>
-  
 </div>
-<hr>
+<div class="heading" *ngIf="unPinnedNote.length>0">other</div>
 <div *ngFor="let note of unPinnedNote; let j=index" fxLayoutGap="20px" class="grid">
-  <mat-card class="grid-item" appearance="outline" (mouseenter)="onHover(j)" (mouseleave)="onHover(-1)"
+  <mat-card class="grid-item" appearance="outline" (mouseenter)="onHoverPin(j)" (mouseleave)="onHoverPin(-1)"
     [style.background]="note.color">
     <div>
       <button mat-icon-button class="pin">
-        <mat-icon (click)="addPin(note.id);pin=!pin" class="material-icons-outlined" #tooltip="matTooltip" matTooltip="pin">
+        <mat-icon (click)="addPin(note.id);pin=!pin" class="material-icons-outlined" #tooltip="matTooltip"
+          matTooltip="pin">
           {{note.isPined==true ?  'done': 'push_pin'}}
         </mat-icon>
       </button>
@@ -91,15 +103,27 @@
     <mat-card-content class="iconPannel">
       <span>
         <div>
-          <app-card-pannel [noteId]="note.id" [labelArray]="label" [noteArray]="note.collaborators"
-            [hidden]="!(hoverIndex==j)"></app-card-pannel>
+          <app-card-pannel [noteId]="note.id"  *ngIf="!note.isArchived && !note.isDeleted" [labelArray]="label" [noteArray]="note.collaborators"
+            [hidden]="!(hoverIndexUnPin==j)"></app-card-pannel>
+            <button mat-icon-button >  
+              <mat-icon class="material-icons-outlined" *ngIf="j==hoverIndexUnPin && note.isArchived" #tooltip="matTooltip" matTooltip="unarchive"
+              (click)="unArchive(note.id,j)">unarchive</mat-icon>
+            </button>
+            <span *ngIf="j==hoverIndexUnPin && note.isDeleted" class="pannel"> 
+              <button mat-icon-button >
+                <mat-icon class="material-icons-outlined" #tooltip="matTooltip"
+                matTooltip="restore"(click)="restoreDelete(note.id)">restore_from_trash</mat-icon>
+            </button>
+            <button mat-icon-button>
+                <mat-icon class="material-icons-outlined" #tooltip="matTooltip"
+                matTooltip="delete forever" (click)="deleteForever(note.id)">delete_forever</mat-icon>
+            </button>
+            </span>
         </div>
       </span>
     </mat-card-content>
   </mat-card>
-  
 </div>
-
 <div *ngIf="noNote()" fxLayout="row" fxLayoutAlign="center center" class="disabled">
   <img src="../../../assets/image/keepIcon.png" alt="icon">
   <div>

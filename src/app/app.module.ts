@@ -42,6 +42,7 @@ import { AuthInterceptor } from './service/auth/auth.interceptor';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { AuthGuardService } from './service/auth/auth-guard.service';
+import { ReminderNoteComponent } from './components/reminder-note/reminder-note.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AuthGuardService } from './service/auth/auth-guard.service';
     DialogNoteComponent,
     TrashComponent,
     ArchiveComponent,
-    ColorPalletComponent
+    ColorPalletComponent,
+    ReminderNoteComponent
   ],
   entryComponents:[GetNoteComponent],
   imports: [

@@ -1,7 +1,6 @@
 <link
   href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
   rel="stylesheet">
-
 <div fxLayout="column">
   <div fxLayoutAlign="center">
     <div>
@@ -22,12 +21,14 @@
             </mat-icon>
           </button>
           <mat-form-field appearance="none">
-            <input matInput placeholder="take a note" onfocus="this.value=''"autocomplete="off" autofocus [formControl]="description">
+            <input matInput placeholder="take a note" onfocus="this.value=''" autocomplete="off" autofocus
+              [formControl]="description">
           </mat-form-field>
           <span fxLayout="row" fxLayoutAlign="end end">
             <app-card-pannel></app-card-pannel>
             <span class="settings"></span>
-            <button type="button" class="addButton" mat-button (click)="addNote()" (click)="reset=true" (click)="UpdateNoteComponent()"  >close</button>
+            <button type="button" class="addButton" mat-button (click)="addNote()" (click)="reset=true"
+              (click)="UpdateNoteComponent()">close</button>
           </span>
         </form>
       </mat-card>
@@ -35,5 +36,5 @@
   </div>
 </div>
 <div fxLayoutAlign="start">
-  <app-get-note></app-get-note>
+  <app-get-note [note]="note"></app-get-note>
 </div>

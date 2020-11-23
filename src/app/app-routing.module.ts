@@ -12,6 +12,7 @@ import { CardPannelComponent } from './components/card-pannel/card-pannel.compon
 import { TrashComponent } from './components/trash/trash.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { AuthGuardService } from './service/auth/auth-guard.service';
+import { ReminderNoteComponent } from './components/reminder-note/reminder-note.component';
 
 
 const routes: Routes = [{ path: "register", component: RegisterComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [{ path: "register", component: RegisterComponent },
     { path: "notes/:label", component: CreateNotesComponent,canActivate:[AuthGuardService] },
     { path: "getnote", component: GetNoteComponent ,canActivate:[AuthGuardService]},
     { path: "bin", component: TrashComponent,canActivate:[AuthGuardService] },
+    { path: "reminder", component: ReminderNoteComponent,canActivate:[AuthGuardService] },
     { path: "archive", component: ArchiveComponent ,canActivate:[AuthGuardService]},]
 ,canActivate:[AuthGuardService]},
 { path: "**", component: PageNotFoundComponent },

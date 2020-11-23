@@ -158,11 +158,3 @@ export class CardPannelComponent implements OnInit {
   }
 }
 
-// this.todayDate = {
-//   reminder: [this.date],
-//   isPined: false,
-//   isArchived: false,
-//   isDeleted: false,
-//   noteIdList: [this.card.id],
-//   userId: 
-// };

@@ -11,9 +11,10 @@ import { SharedService } from 'src/app/service/shared/shared.service';
 })
 export class CreateNotesComponent implements OnInit {
   reset = true
-  constructor(private note: NotesService, public snackBar: MatSnackBar, private shared: SharedService) { }
-
+  constructor(private noteService: NotesService, public snackBar: MatSnackBar, private shared: SharedService) { }
+  note=[]
   ngOnInit(): void {
+    this.getNote()
   }
   title = new FormControl(Validators.minLength(3));
   description = new FormControl();
@@ -26,7 +27,7 @@ export class CreateNotesComponent implements OnInit {
       "title": this.title.value,
       "description": this.description.value
     }
-    this.note.addNotes(noteData).subscribe(response => {
+    this.noteService.addNotes(noteData).subscribe(response => {
       if (response['status'].success == true) {
         this.snackBar.open("note added successfully", 'success')
       }
@@ -37,11 +38,21 @@ export class CreateNotesComponent implements OnInit {
     )
 
   }
-
+ getNote(){
+   this.noteService.getNotes().subscribe(response=>{
+    for (let i = 0; i < response['data'].data.length; i++) {
+    if (response['data'].data[i].isDeleted || response['data'].data[i].isArchived) { }
+    else {
+      this.note.push(response['data'].data[i])
+    }
+   }
+   console.log(this.note)
+  })
+ }
   changeNotePinned() {
-    return this.notePinned = !this.notePinned
-  }
+      return this.notePinned = !this.notePinned
+    }
   UpdateNoteComponent(){
-    this.shared.sendEvent();
-  }
+      this.shared.sendEvent();
+    }
 }

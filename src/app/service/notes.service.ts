@@ -75,5 +75,9 @@ export class NotesService {
     let url = this._url + "removeReminderNotes"
     return this.http.postService(data, url)
   }
+  getReminderNotesList() {
+    let url = this._url + "getReminderNotesList"
+    return this.http.getService(url)
+  }
 }
 
