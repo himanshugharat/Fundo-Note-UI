@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { NotesService } from 'src/app/service/notes.service';
 
 @Component({
@@ -11,9 +10,12 @@ export class ArchiveComponent implements OnInit {
   note = []
   nonoteCondition = false
   hoverIndex = -1
-  constructor(private notesService: NotesService,public snackBar: MatSnackBar) { }
+  constructor(private notesService: NotesService) { }
 
   ngOnInit(): void {
+    
+  }
+  getArchiveNote(){
     this.notesService.getArchiveNote().subscribe(response => {
       for (let i = 0; i < response['data'].data.length; i++) {
         this.note.push(response['data'].data[i]);
@@ -21,28 +23,5 @@ export class ArchiveComponent implements OnInit {
       this.note.reverse()
     })
   }
-  noNote() {
-    return (this.note.length == 0) ? this.nonoteCondition = true : this.nonoteCondition = false;
-  }
-  onHover(i: number) {
-    this.hoverIndex = i
-  }
-  unArchive(id: string) {
-    let noteData = {
-      isArchived: false,
-      noteIdList: [id]
-    }
-    this.notesService.archiveNote(noteData).subscribe(response => {
-      this.note = []
-      this.ngOnInit()
-      console.log(response)
-      if (response['status'].success == true) {
-        this.snackBar.open("note unarchive successfully", 'success')
-      }
-    },
-      error => {
-        this.snackBar.open("unable to unarchive note plz try again", 'failed')
-      }
-    )
-    }
+  
 }
