@@ -55,10 +55,7 @@
                     <input mat-menu-item matInput placeholder="enter colaborator email" type="text" autocomplete="off"
                         [formControl]="colaboratorEmail">
                 </mat-form-field>
-                <mat-form-field appearance="none" (click)="$event.stopPropagation();">
-                    <input mat-menu-item matInput placeholder="enter colaborator userId" type="text" autocomplete="off"
-                        [formControl]="colaboratorUserId">
-                </mat-form-field>
+                
 
                 <button mat-stroked-button type="submit" (click)="addCollaborator()">add</button>
                 <div *ngFor="let colaborator of noteArray">

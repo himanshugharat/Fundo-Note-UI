@@ -19,7 +19,7 @@ export class CardPannelComponent implements OnInit {
   colaboratorEmail = new FormControl("")
   colaboratorFirstName = new FormControl("")
   colaboratorLastName = new FormControl("")
-  colaboratorUserId = new FormControl("")
+  colaboratorUserId = localStorage.getItem('token')
   label = this.labelName.value
   reminder
   constructor(private noteService: NotesService, public snackBar: MatSnackBar, private shared: SharedService) {
@@ -47,7 +47,6 @@ export class CardPannelComponent implements OnInit {
   }
 
   archiveNote() {
-
     let noteData = {
       isArchived: true,
       noteIdList: [this.noteId]
@@ -86,16 +85,18 @@ export class CardPannelComponent implements OnInit {
       }
     )
   }
+
   setLabelName(labelName) {
     console.log(labelName)
     this.label = labelName
   }
+
   addCollaborator() {
     let colabData = {
       email: this.colaboratorEmail.value,
       firstName: this.colaboratorFirstName.value,
       lastName: this.colaboratorLastName.value,
-      userId: this.colaboratorUserId.value
+      userId: this.colaboratorUserId
     }
     this.noteService.addNoteCollaborator(colabData, this.noteId).subscribe(response => {
       if (response['data'].success == true) {
@@ -108,6 +109,7 @@ export class CardPannelComponent implements OnInit {
       }
     })
   }
+
   removeCollaborator(userId) {
     this.noteService.deleteCollaborator(this.noteId, userId).subscribe(response => {
       if (response['data'].success == true) {
@@ -120,25 +122,24 @@ export class CardPannelComponent implements OnInit {
       }
     })
   }
+
   setReminder(value) {
     let date: Date = new Date()
     if (value == "today") {
       date.setHours(20)
-      this.reminder = date.toUTCString()
-      console.log(date.toUTCString())
+      this.reminder = date.toUTCString() 
     }
     if (value == "next") {
       date.setDate(date.getDate() + (1 + 7 - date.getDay()) % 7)
       this.reminder = date.toUTCString()
-      console.log(date.toUTCString())
     }
     if (value == "tomorrow") {
       date.setDate(date.getDate() + 1);
       date.setHours(20)
-      console.log(date.toUTCString())
       this.reminder = date.toUTCString()
     }
   }
+  
   setReminderToCard() {
     let noteData = {
       reminder: [this.reminder],

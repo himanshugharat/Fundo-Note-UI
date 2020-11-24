@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NotesService } from 'src/app/service/notes.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogNoteComponent } from '../dialog-note/dialog-note.component';
@@ -6,11 +6,8 @@ import { SharedService } from '../../service/shared/shared.service'
 import { Subscription } from "rxjs"
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { notEqual } from 'assert';
-import { NodeWithI18n } from '@angular/compiler';
 
 @Component({
-  //changeDetection:ChangeDetectionStrategy.OnPush,
   selector: 'app-get-note',
   templateUrl: './get-note.component.html',
   styleUrls: ['./get-note.component.scss']
@@ -18,41 +15,41 @@ import { NodeWithI18n } from '@angular/compiler';
 
 export class GetNoteComponent implements OnInit {
   @Input() note
-  //note=[]
   pinnedNote = []
   unPinnedNote = []
+  notelable=[]
   pin: boolean
-  //isButtonVisible = false
-  //active: boolean
   nonoteCondition = false
   label = []
-  //visible = true;
-  //selectable = true;
   removable = true;
-  //addOnBlur = true;
   labelName
   clickEventSubscription: Subscription;
   activePin: boolean;
   hoverIndexPin = -1
   hoverIndexunPin = -1
   hoverIndexUnPin: any;
+  type:boolean=true
   constructor(private noteService: NotesService, public dialog: MatDialog, public shared: SharedService, public snackBar: MatSnackBar, public route: ActivatedRoute) {
-   
+    this.shared.styleType.subscribe(type=>this.type=type)
+    console.log(this.type)
+    this.getLable()
     this.clickEventSubscription = this.shared.getEvent().subscribe(() => {
-     this.ngOnInit();
+      //this.getNote()
+      this.ngOnInit()
     })
   }
- 
+
   ngOnInit(): void {
     this.getNote()
-   }
-  
-   getNote(){
+    console.log(this.type)
+  }
+
+  getNote() {
     this.labelName = null
     this.labelName = this.route.snapshot.paramMap.get('label')
     if (this.route.snapshot.url[0].path.includes('note')) {
-           this.note = []
-         }
+      this.note = []
+    }
     this.noteService.getNotes().subscribe(response => {
       for (let i = 0; i < response['data'].data.length; i++) {
         if (response['data'].data[i].isDeleted || response['data'].data[i].isArchived) { }
@@ -64,15 +61,34 @@ export class GetNoteComponent implements OnInit {
               }
             }
           } else {
-            if(this.route.snapshot.url[0].path.includes('note') ){
-              console.log(this.route.snapshot.url[0].path.includes('note') )
-            this.note.push(response['data'].data[i]);
+            if (this.route.snapshot.url[0].path.includes('note')) {
+            //  console.log(this.route.snapshot.url[0].path.includes('note'))
+              this.note.push(response['data'].data[i]);
             }
           }
         }
       }
       this.note.reverse()
+      this.pinnedNote = []
+      this.unPinnedNote = []
       this.note.forEach(element => {
+        if (element.isPined) {
+          this.pinnedNote.push(element)
+        } else {
+          this.unPinnedNote.push(element)
+        }
+      });
+    })
+  }
+  getLable() {
+    this.noteService.getNotes().subscribe(response => {
+      for (let i = 0; i < response['data'].data.length; i++) {
+        if (response['data'].data[i].isDeleted || response['data'].data[i].isArchived) { }
+        else {
+          this.notelable.push(response['data'].data[i]);
+        }
+      }
+      this.notelable.forEach(element => {
         for (let i = 0; i < element.noteLabels.length; i++)
           this.label.push(element.noteLabels[i].label)
       });
@@ -80,18 +96,9 @@ export class GetNoteComponent implements OnInit {
         return self.indexOf(value) === index
       }
       this.label = this.label.filter(onlyUnique)
-      this.pinnedNote=[]
-      this.unPinnedNote=[]
-      this.note.forEach(element => {
-        if(element.isPined){
-          this.pinnedNote.push(element)
-        }else{
-        this.unPinnedNote.push(element)
-        }
-      });
+      console.log(this.label)
     })
   }
-
   onHover(i) {
     this.hoverIndexPin = i
   }
@@ -160,7 +167,7 @@ export class GetNoteComponent implements OnInit {
       })
   }
 
-  deleteForever(id: string,index) {
+  deleteForever(id: string, index) {
     let noteData = {
       isDeleted: true,
       noteIdList: [id]
@@ -177,7 +184,7 @@ export class GetNoteComponent implements OnInit {
       })
   }
 
-  restoreDelete(id: string,index) {
+  restoreDelete(id: string, index) {
     let noteData = {
       isDeleted: false,
       noteIdList: [id]
@@ -186,7 +193,7 @@ export class GetNoteComponent implements OnInit {
       if (response['data'].success == true) {
         this.snackBar.open("note restored successfully", 'success')
         this.note.splice(index, 1);
-      this.shared.sendEvent();
+        this.shared.sendEvent();
       }
     },
       error => {
@@ -194,7 +201,7 @@ export class GetNoteComponent implements OnInit {
       })
   }
 
-  unArchive(id: string,index) {
+  unArchive(id: string, index) {
     let noteData = {
       isArchived: false,
       noteIdList: [id]
@@ -202,13 +209,13 @@ export class GetNoteComponent implements OnInit {
     this.noteService.archiveNote(noteData).subscribe(response => {
       if (response) {
         this.snackBar.open("note unarchive successfully", 'success')
-      this.note.splice(index, 1);
-      this.shared.sendEvent();
+        this.note.splice(index, 1);
+        this.shared.sendEvent();
       }
     },
       error => {
         this.snackBar.open("unable to unarchive note plz try again", 'failed')
       })
-    }
+  }
 }
 

@@ -15,6 +15,9 @@
       </div>
     </mat-card>
     <span class="settings"></span>
+    <button mat-icon-button >
+      <mat-icon class="material-icons-outlined"(click)="changeType()">{{type?'view_module':'view_stream'}}</mat-icon>
+    </button>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon class="material-icons-outlined">account_circle</mat-icon>
     </button>

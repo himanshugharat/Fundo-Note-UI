@@ -1,5 +1,5 @@
-<div class="heading" *ngIf="pinnedNote.length>0">Pinned Card</div>
-<div *ngFor="let note of pinnedNote; let i=index" fxLayoutGap="20px" class="grid">
+<div class="heading" *ngIf="pinnedNote.length>0">Pinned</div>
+<div *ngFor="let note of pinnedNote; let i=index" fxLayoutGap="20px" [ngClass]="type?'grid':'list'">
   <mat-card class="grid-item" appearance="outline" (mouseenter)="onHover(i)" (mouseleave)="onHover(-1)"
     [style.background]="note.color">
     <div>
@@ -61,7 +61,7 @@
   </mat-card>
 </div>
 <div class="heading" *ngIf="unPinnedNote.length>0">other</div>
-<div *ngFor="let note of unPinnedNote; let j=index" fxLayoutGap="20px" class="grid">
+<div *ngFor="let note of unPinnedNote; let j=index" fxLayoutGap="20px" [ngClass]="type?'grid':'list'">
   <mat-card class="grid-item" appearance="outline" (mouseenter)="onHoverPin(j)" (mouseleave)="onHoverPin(-1)"
     [style.background]="note.color">
     <div>
@@ -78,6 +78,7 @@
         <mat-card-title>
           <mat-card-content>
             {{note.description}}
+            
           </mat-card-content>
         </mat-card-title>
       </mat-card-content>
@@ -95,7 +96,7 @@
       <mat-chip-list #chipList>
         <mat-chip *ngFor="let reminder of note.reminder" [selectable]="selectable" [removable]="removable"
           (removed)="removeReminder(note.id)">
-          {{reminder}}
+          {{reminder.substring(0,25)}}
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
       </mat-chip-list>

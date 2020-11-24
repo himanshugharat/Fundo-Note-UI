@@ -8,7 +8,6 @@ import { forgotPassword } from './components/forgot-password/forgot-password.com
 import { CreateNotesComponent } from './components/create-notes/create-notes.component';
 import { GetNoteComponent } from './components/get-note/get-note.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { CardPannelComponent } from './components/card-pannel/card-pannel.component';
 import { TrashComponent } from './components/trash/trash.component';
 import { ArchiveComponent } from './components/archive/archive.component';
 import { AuthGuardService } from './service/auth/auth-guard.service';

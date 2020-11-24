@@ -13,7 +13,7 @@ export class ArchiveComponent implements OnInit {
   constructor(private notesService: NotesService) { }
 
   ngOnInit(): void {
-    
+    this.getArchiveNote()
   }
   getArchiveNote(){
     this.notesService.getArchiveNote().subscribe(response => {

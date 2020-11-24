@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   showFiller = false;
   isButtonVisible = true;
   label=[]
+  type=true
   isExpanded=true
   isMenuOpen=true
   contentMargin = 240;
@@ -34,6 +35,10 @@ export class DashboardComponent implements OnInit {
     }
   
   }
+  changeType(){
+    this.type=!this.type
+    this.shared.changeType(this.type)
+  }
   logout() {
     let data = {}
     this.http.logout(data).subscribe(response => {
@@ -46,14 +51,5 @@ export class DashboardComponent implements OnInit {
       this.snackBar.open("logout unsuccessfully.", 'failed')
     })
   }
-
-  // changeVisiblity() {
-  //   return this.isButtonVisible = !this.isButtonVisible
-  // }
-
-  // checkVisiblity() {
-  //   return this.isButtonVisible
-  // }
-
 }
 //car@llubed.com

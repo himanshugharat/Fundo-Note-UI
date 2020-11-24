@@ -1,5 +1,5 @@
 .container {
-  margin-left: 5%;
+  margin-left: 10%;
   margin-right: 5%;
 }
 .iconPannel {
@@ -7,27 +7,35 @@
   height: 40px;
 }
 .grid {
-  display: inline-block;
-  padding: 8px;
+  display: inline-grid;
+  padding: 10px;
+  margin-left: 10px;
+}
+.list {
+  display: block;
+  padding: 10px;
+  margin-left: 10px;
 }
 .grid-item {
-  max-width: 400px;
+  max-width: 600px;
   min-width: 250px;
-  max-height: 250px;
+ // max-height: 250px;
   min-height: 190px;
   display: grid;
   margin-top: 2%;
+  //margin-left: 30px;
   border-radius: 10px;
   border: black 3px;
 }
 .disabled {
+  text-align: center;
   font-size: 40px;
   padding-top: 200px;
   color: gray;
   pointer-events: none;
   opacity: 0.4;
 }
-.card:hover {
+.grid-item:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .mat-card-title {
@@ -57,4 +65,5 @@ hr{
 .heading{
   font-size: 20px;
   color: gray;
+  padding-left: 10px;
 }
