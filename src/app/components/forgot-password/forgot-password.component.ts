@@ -27,11 +27,11 @@ export class forgotPassword implements OnInit {
     return this.user.resetMail(emailData).subscribe(response => {
       console.log(response)
       if (response['success'] == true) {
-        this.snackBar.open("email send succssefully", 'success')
+        this.snackBar.open("email send succssefully", 'success',{duration:2000})
       }
     },
       error => {
-        this.snackBar.open("email not send.", 'failed')
+        this.snackBar.open("email not send.", 'failed',{duration:2000})
       }
     )
   }

@@ -22,13 +22,13 @@ export class ColorPalletComponent implements OnInit {
     }
     this.noteService.changeNotecolor(noteColorData).subscribe(response=>{
       if (response['data'].success == true) {
-        this.snackBar.open("note color changed", 'success')
+        this.snackBar.open("note color changed", 'success',{duration:2000})
         console.log(response)
         this.shared.sendEvent();
       }
     },
       error => {
-        this.snackBar.open("unable to change color plz try again", 'failed')
+        this.snackBar.open("unable to change color plz try again", 'failed',{duration:2000})
       }
     )
   }

@@ -17,7 +17,7 @@ export class GetNoteComponent implements OnInit {
   @Input() note
   pinnedNote = []
   unPinnedNote = []
-  notelable=[]
+  notelable = []
   pin: boolean
   nonoteCondition = false
   label = []
@@ -28,9 +28,9 @@ export class GetNoteComponent implements OnInit {
   hoverIndexPin = -1
   hoverIndexunPin = -1
   hoverIndexUnPin: any;
-  type:boolean=true
+  type: boolean = true
   constructor(private noteService: NotesService, public dialog: MatDialog, public shared: SharedService, public snackBar: MatSnackBar, public route: ActivatedRoute) {
-    this.shared.styleType.subscribe(type=>this.type=type)
+    this.shared.styleType.subscribe(type => this.type = type)
     console.log(this.type)
     this.getLable()
     this.clickEventSubscription = this.shared.getEvent().subscribe(() => {
@@ -62,7 +62,6 @@ export class GetNoteComponent implements OnInit {
             }
           } else {
             if (this.route.snapshot.url[0].path.includes('note')) {
-            //  console.log(this.route.snapshot.url[0].path.includes('note'))
               this.note.push(response['data'].data[i]);
             }
           }
@@ -99,6 +98,7 @@ export class GetNoteComponent implements OnInit {
       console.log(this.label)
     })
   }
+  
   onHover(i) {
     this.hoverIndexPin = i
   }
@@ -122,10 +122,10 @@ export class GetNoteComponent implements OnInit {
       if (index >= 0) {
         console.log(element.noteLabels[index].id)
         this.noteService.deleteNoteLable(element.id, element.noteLabels[index].id).subscribe(response => {
-          this.snackBar.open("note label deleted", 'success')
+          this.snackBar.open("note label deleted", 'success', { duration: 2000 })
         },
           error => {
-            this.snackBar.open("unable to delete label", 'failed')
+            this.snackBar.open("unable to delete label", 'failed', { duration: 2000 })
           })
         element.noteLabels.splice(index, 1);
       }
@@ -141,12 +141,12 @@ export class GetNoteComponent implements OnInit {
     this.noteService.removeReminder(noteData).subscribe(response => {
       console.log(response)
       if (response['data'].success == true) {
-        this.snackBar.open("reminder  deleted", 'success')
+        this.snackBar.open("reminder  deleted", 'success', { duration: 2000 })
         console.log(response)
         this.shared.sendEvent();
       }
       else {
-        this.snackBar.open("reminder unable to delete", 'failed')
+        this.snackBar.open("reminder unable to delete", 'failed', { duration: 2000 })
       }
     })
   }
@@ -158,12 +158,12 @@ export class GetNoteComponent implements OnInit {
     }
     this.noteService.pinNote(noteData).subscribe(response => {
       if (response['data'].success == true) {
-        this.snackBar.open("note pinned successfully", 'success')
+        this.snackBar.open("note pinned successfully", 'success', { duration: 2000 })
         this.shared.sendEvent()
       }
     },
       error => {
-        this.snackBar.open("unable to pin note plz try again", 'failed')
+        this.snackBar.open("unable to pin note plz try again", 'failed', { duration: 2000 })
       })
   }
 
@@ -174,13 +174,13 @@ export class GetNoteComponent implements OnInit {
     }
     this.noteService.deleteNoteForever(noteData).subscribe(response => {
       if (response['data'].success == true) {
-        this.snackBar.open("note deleted successfully", 'success')
+        this.snackBar.open("note deleted successfully", 'success', { duration: 2000 })
         this.note.splice(index, 1);
         this.shared.sendEvent();
       }
     },
       error => {
-        this.snackBar.open("unable to delete plz try again", 'failed')
+        this.snackBar.open("unable to delete plz try again", 'failed', { duration: 2000 })
       })
   }
 
@@ -191,13 +191,13 @@ export class GetNoteComponent implements OnInit {
     }
     this.noteService.deleteNote(noteData).subscribe(response => {
       if (response['data'].success == true) {
-        this.snackBar.open("note restored successfully", 'success')
+        this.snackBar.open("note restored successfully", 'success', { duration: 2000 })
         this.note.splice(index, 1);
         this.shared.sendEvent();
       }
     },
       error => {
-        this.snackBar.open("unable to restore plz try again", 'failed')
+        this.snackBar.open("unable to restore plz try again", 'failed', { duration: 2000 })
       })
   }
 
@@ -208,13 +208,13 @@ export class GetNoteComponent implements OnInit {
     }
     this.noteService.archiveNote(noteData).subscribe(response => {
       if (response) {
-        this.snackBar.open("note unarchive successfully", 'success')
+        this.snackBar.open("note unarchive successfully", 'success', { duration: 2000 })
         this.note.splice(index, 1);
         this.shared.sendEvent();
       }
     },
       error => {
-        this.snackBar.open("unable to unarchive note plz try again", 'failed')
+        this.snackBar.open("unable to unarchive note plz try again", 'failed', { duration: 2000 })
       })
   }
 }

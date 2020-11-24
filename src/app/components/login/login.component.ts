@@ -49,12 +49,12 @@ export class LoginComponent implements OnInit {
       console.log(localStorage.getItem("name"))
       console.log(localStorage.getItem("email"))
       if (response['id']) {
-        this.snackBar.open("login successfully.", 'success')
+        this.snackBar.open("login successfully.", 'success',{duration:2000})
         this.route.navigate(['dashboard'])
       }
     },
       error => {
-        this.snackBar.open("login unsuccessfully.", 'failed')
+        this.snackBar.open("login unsuccessfully.", 'failed',{duration:2000})
       })
   }
 }

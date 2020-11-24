@@ -31,7 +31,7 @@ export class ResetPasswordComponent  {
       console.log(response)
     },
     error => {
-      this.snackBar.open("error please check inputs.",'failed')
+      this.snackBar.open("error please check inputs.",'failed',{duration:2000})
   })
   }
 }

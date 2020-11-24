@@ -16,7 +16,7 @@ export class CreateNotesComponent implements OnInit {
   ngOnInit(): void {
     this.getNote()
   }
-  title = new FormControl(Validators.minLength(3));
+  title = new FormControl("",Validators.minLength(3));
   description = new FormControl();
   notePinned = false;
   card = false;
@@ -29,11 +29,11 @@ export class CreateNotesComponent implements OnInit {
     }
     this.noteService.addNotes(noteData).subscribe(response => {
       if (response['status'].success == true) {
-        this.snackBar.open("note added successfully", 'success')
+        this.snackBar.open("note added successfully", 'success',{duration:2000})
       }
     },
       error => {
-        this.snackBar.open("unable to add plz try again", 'failed')
+        this.snackBar.open("unable to add plz try again", 'failed',{duration:2000})
       }
     )
 

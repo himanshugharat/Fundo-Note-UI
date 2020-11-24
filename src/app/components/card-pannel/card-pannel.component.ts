@@ -35,13 +35,13 @@ export class CardPannelComponent implements OnInit {
     }
     this.noteService.deleteNote(noteData).subscribe(response => {
       if (response['data'].success == true) {
-        this.snackBar.open("note moved to bin", 'success')
+        this.snackBar.open("note moved to bin", 'success',{duration:2000})
         console.log(response)
         this.shared.sendEvent();
       }
     },
       error => {
-        this.snackBar.open("unable to move to bin plz try again", 'failed')
+        this.snackBar.open("unable to move to bin plz try again", 'failed',{duration:2000})
       }
     )
   }
@@ -53,13 +53,13 @@ export class CardPannelComponent implements OnInit {
     }
     this.noteService.archiveNote(noteData).subscribe(response => {
       if (response['data'].success == true) {
-        this.snackBar.open("note moved to archive", 'success')
+        this.snackBar.open("note moved to archive", 'success',{duration:2000})
         console.log(response)
         this.shared.sendEvent();
       }
     },
       error => {
-        this.snackBar.open("unable to move to archive plz try again", 'failed')
+        this.snackBar.open("unable to move to archive plz try again", 'failed',{duration:2000})
       }
     )
   }
@@ -75,13 +75,13 @@ export class CardPannelComponent implements OnInit {
     }
     this.noteService.addNoteLable(lableData, this.noteId).subscribe(response => {
       if (response) {
-        this.snackBar.open("note lable  added", 'success')
+        this.snackBar.open("note lable  added", 'success',{duration:2000})
         this.shared.sendEvent();
         this.shared.getEvent()
       }
     },
       error => {
-        this.snackBar.open("unable to add to note lable plz try again", 'failed')
+        this.snackBar.open("unable to add to note lable plz try again", 'failed',{duration:2000})
       }
     )
   }
@@ -100,12 +100,12 @@ export class CardPannelComponent implements OnInit {
     }
     this.noteService.addNoteCollaborator(colabData, this.noteId).subscribe(response => {
       if (response['data'].success == true) {
-        this.snackBar.open("collaborator  added", 'success')
+        this.snackBar.open("collaborator  added", 'success',{duration:2000})
         console.log(response)
         this.shared.sendEvent();
       }
       else {
-        this.snackBar.open("collaborator unable to added", 'failed')
+        this.snackBar.open("collaborator unable to added", 'failed',{duration:2000})
       }
     })
   }
@@ -113,12 +113,12 @@ export class CardPannelComponent implements OnInit {
   removeCollaborator(userId) {
     this.noteService.deleteCollaborator(this.noteId, userId).subscribe(response => {
       if (response['data'].success == true) {
-        this.snackBar.open("collaborator  deleted", 'success')
+        this.snackBar.open("collaborator  deleted", 'success',{duration:2000})
         console.log(response)
         this.shared.sendEvent();
       }
       else {
-        this.snackBar.open("collaborator unable to delete", 'failed')
+        this.snackBar.open("collaborator unable to delete", 'failed',{duration:2000})
       }
     })
   }
@@ -148,12 +148,12 @@ export class CardPannelComponent implements OnInit {
     this.noteService.addReminder(noteData).subscribe(response => {
       console.log(response)
       if (response['data'].success == true) {
-        this.snackBar.open("reminder  added", 'success')
+        this.snackBar.open("reminder  added", 'success',{duration:2000})
         console.log(response)
         this.shared.sendEvent();
       }
       else {
-        this.snackBar.open("reminder unable to add", 'failed')
+        this.snackBar.open("reminder unable to add", 'failed',{duration:2000})
       }
     })
   }

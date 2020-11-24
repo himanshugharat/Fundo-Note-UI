@@ -81,12 +81,12 @@ export class RegisterComponent implements OnInit {
     }
     this.user.registerUser(userdata).subscribe(response => {
       if (response['data'].success == true) {
-        this.snackBar.open("register successfully", 'success')
+        this.snackBar.open("register successfully", 'success',{duration:2000})
         this.route.navigate(['login'])
       }
     },
       error => {
-        this.snackBar.open("login unsuccessfully.", 'failed')
+        this.snackBar.open("login unsuccessfully.", 'failed',{duration:2000})
       }
     )
   }

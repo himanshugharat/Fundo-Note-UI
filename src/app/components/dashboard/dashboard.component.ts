@@ -43,12 +43,12 @@ export class DashboardComponent implements OnInit {
     let data = {}
     this.http.logout(data).subscribe(response => {
       if (!response) {
-        this.snackBar.open("logout successfully.", 'success')
+        this.snackBar.open("logout successfully.", 'success',{duration:2000})
         localStorage.clear()
         this.route.navigate(['login'])
       }
     }, error => {
-      this.snackBar.open("logout unsuccessfully.", 'failed')
+      this.snackBar.open("logout unsuccessfully.", 'failed',{duration:2000})
     })
   }
 }
