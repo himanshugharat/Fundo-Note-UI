@@ -32,16 +32,18 @@ export class GetNoteComponent implements OnInit {
   constructor(private noteService: NotesService, public dialog: MatDialog, public shared: SharedService, public snackBar: MatSnackBar, public route: ActivatedRoute) {
     this.shared.styleType.subscribe(type => this.type = type)
     console.log(this.type)
-    this.getLable()
+    //this.getLable()
     this.clickEventSubscription = this.shared.getEvent().subscribe(() => {
       //this.getNote()
+      
       this.ngOnInit()
     })
   }
 
   ngOnInit(): void {
     this.getNote()
-    console.log(this.type)
+    this.getLable()
+   // console.log(this.type)
   }
 
   getNote() {
@@ -108,7 +110,7 @@ export class GetNoteComponent implements OnInit {
   }
 
   noNote() {
-    this.shared.change(this.label)
+   // this.shared.change(this.label)
     return (this.note.length == 0) ? this.nonoteCondition = true : this.nonoteCondition = false;
   }
 

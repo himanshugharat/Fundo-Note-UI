@@ -36,6 +36,14 @@
         </mat-chip>
       </mat-chip-list>
     </mat-form-field>
+    <div *ngIf="note.collaborators.length>0" >
+      <button mat-icon-button >
+        <mat-icon class="material-icons-outlined">account_circle</mat-icon>
+      </button>
+      <span *ngFor="let collaborators of note.collaborators">
+        {{collaborators.firstName}}
+      </span>
+    </div>
     <mat-card-content class="iconPannel">
       <span>
         <div>
@@ -101,6 +109,14 @@
         </mat-chip>
       </mat-chip-list>
     </mat-form-field>
+    <div *ngIf="note.collaborators.length>0" >
+      <button mat-icon-button >
+        <mat-icon class="material-icons-outlined">account_circle</mat-icon>
+      </button>
+      <span *ngFor="let collaborators of note.collaborators">
+      {{collaborators.firstName}}
+    </span>
+    </div>
     <mat-card-content class="iconPannel">
       <span>
         <div>
